@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Verdikt — Buy the right gadget, backed by proof</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper: #F5F5F0;
+    --paper-raised: #FFFFFF;
+    --ink: #1B2430;
+    --ink-soft: #5A6472;
+    --teal: #1F7A6E;
+    --teal-deep: #145850;
+    --amber: #E8A33D;
+    --coral: #D65A4A;
+    --line: #DCDED6;
+    --line-strong: #B9BCB1;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .mono{ font-family: 'JetBrains Mono', monospace; }
+  .display{ font-family: 'Space Grotesk', sans-serif; }
+
+  a{ color: inherit; text-decoration: none; }
+
+  /* ---------- Layout shell ---------- */
+  .wrap{ max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+  header.site{
+    border-bottom: 1px solid var(--line);
+    background: var(--paper);
+    position: sticky; top:0; z-index: 50;
+  }
+  .site-bar{
+    display:flex; align-items:center; justify-content:space-between;
+    padding: 18px 0;
+  }
+  .logo{
+    display:flex; align-items:center; gap:8px;
+    font-family:'Space Grotesk'; font-weight:700; font-size:20px; letter-spacing:-0.02em;
+  }
+  .logo .mark{
+    width:26px; height:26px; border-radius:50%;
+    border:2px solid var(--teal);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'JetBrains Mono'; font-size:11px; font-weight:700; color:var(--teal);
+  }
+  nav.tabs{ display:flex; gap: 28px; }
+  nav.tabs button{
+    background:none; border:none; cursor:pointer;
+    font-family:'Inter'; font-weight:500; font-size:14px; color: var(--ink-soft);
+    padding: 6px 0; border-bottom: 2px solid transparent;
+  }
+  nav.tabs button.active{ color: var(--ink); border-bottom-color: var(--teal); }
+
+  section{ display:none; }
+  section.active{ display:block; }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    padding: 64px 0 48px;
+    border-bottom: 1px solid var(--line);
+  }
+  .eyebrow{
+    font-family:'JetBrains Mono'; font-size:12px; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--teal-deep);
+    display:flex; align-items:center; gap:8px; margin-bottom: 18px;
+  }
+  .eyebrow::before{ content:''; width:8px; height:8px; background:var(--teal); display:inline-block; }
+  h1.hero-line{
+    font-family:'Space Grotesk'; font-weight:600; font-size: 44px; line-height:1.08;
+    letter-spacing:-0.02em; max-width: 680px;
+  }
+  .hero-sub{
+    margin-top:18px; font-size:16px; color: var(--ink-soft); max-width: 520px; line-height:1.55;
+  }
+  .hero-grid{
+    display:grid; grid-template-columns: 1.3fr 1fr; gap: 40px; align-items:end;
+    margin-top: 40px;
+  }
+  .verdict-card{
+    background: var(--paper-raised);
+    border: 1px solid var(--line);
+    padding: 22px;
+  }
+  .verdict-card .label{ font-family:'JetBrains Mono'; font-size:11px; color:var(--ink-soft); text-transform:uppercase; letter-spacing:.06em; }
+  .verdict-card .name{ font-family:'Space Grotesk'; font-weight:600; font-size:20px; margin-top:6px; }
+  .verdict-row{ display:flex; align-items:center; gap:16px; margin-top:14px; }
+
+  /* ---------- Trust stamp ---------- */
+  .stamp{
+    width: 64px; height:64px; border-radius:50%;
+    border: 2.5px solid var(--teal);
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    flex-shrink:0;
+    transform: rotate(-6deg);
+    position:relative;
+  }
+  .stamp::after{
+    content:''; position:absolute; inset:5px; border:1px dashed var(--teal); border-radius:50%; opacity:.5;
+  }
+  .stamp .num{ font-family:'JetBrains Mono'; font-weight:700; font-size:18px; color:var(--teal-deep); }
+  .stamp .of{ font-family:'JetBrains Mono'; font-size:8px; color:var(--teal-deep); letter-spacing:.05em; }
+  .stamp.sm{ width:44px; height:44px; }
+  .stamp.sm .num{ font-size:13px; }
+
+  /* ---------- Category grid ---------- */
+  .section-head{
+    display:flex; align-items:baseline; justify-content:space-between;
+    margin: 56px 0 22px;
+  }
+  .section-head h2{ font-family:'Space Grotesk'; font-weight:600; font-size:22px; }
+  .section-head .count{ font-family:'JetBrains Mono'; font-size:12px; color:var(--ink-soft); }
+
+  .cat-grid{ display:grid; grid-template-columns: repeat(3,1fr); gap:16px; margin-bottom:56px; }
+  .cat-card{
+    border:1px solid var(--line); background:var(--paper-raised);
+    padding: 20px; cursor:pointer; transition: border-color .15s;
+  }
+  .cat-card:hover{ border-color: var(--teal); }
+  .cat-card .tag{ font-family:'JetBrains Mono'; font-size:11px; color:var(--ink-soft); }
+  .cat-card h3{ font-family:'Space Grotesk'; font-size:18px; margin-top:8px; }
+  .cat-card p{ font-size:13px; color:var(--ink-soft); margin-top:6px; }
+
+  /* ---------- Product list ---------- */
+  .prod-list{ display:flex; flex-direction:column; gap:14px; margin-bottom: 40px;}
+  .prod-row{
+    display:grid; grid-template-columns: 44px 1.4fr 1fr 1fr auto;
+    align-items:center; gap:18px;
+    border:1px solid var(--line); background:var(--paper-raised);
+    padding: 16px 18px; cursor:pointer; transition: border-color .15s, transform .1s;
+  }
+  .prod-row:hover{ border-color: var(--teal-deep); }
+  .prod-row .pname{ font-family:'Space Grotesk'; font-weight:600; font-size:15px; }
+  .prod-row .pverdict{ font-size:12.5px; color:var(--ink-soft); margin-top:3px; }
+  .prod-row .pprice{ font-family:'JetBrains Mono'; font-size:15px; }
+  .prod-row .pprice .was{ text-decoration:line-through; color:var(--ink-soft); font-size:12px; margin-left:6px;}
+  .pill{
+    font-family:'JetBrains Mono'; font-size:10.5px; padding:3px 8px;
+    border:1px solid var(--line-strong); width:fit-content;
+  }
+  .pill.pro{ color:var(--teal-deep); border-color:var(--teal); }
+  .pill.con{ color:var(--coral); border-color:var(--coral); }
+  .arrow{ font-family:'JetBrains Mono'; color:var(--ink-soft); font-size:18px; }
+
+  /* ---------- Product detail ---------- */
+  .breadcrumb{ font-family:'JetBrains Mono'; font-size:12px; color:var(--ink-soft); margin: 28px 0 10px; }
+  .breadcrumb button{ background:none;border:none;color:var(--teal-deep); cursor:pointer; font-family:'JetBrains Mono'; font-size:12px; }
+
+  .pd-head{ display:grid; grid-template-columns: 1fr auto; gap: 24px; padding: 20px 0 30px; border-bottom:1px solid var(--line); }
+  .pd-head h1{ font-family:'Space Grotesk'; font-weight:600; font-size:32px; letter-spacing:-0.01em; }
+  .pd-head .sub{ color:var(--ink-soft); margin-top:8px; font-size:14px; }
+  .pd-price{ font-family:'JetBrains Mono'; font-size:26px; margin-top:14px; }
+
+  .pd-body{ display:grid; grid-template-columns: 1fr 300px; gap: 40px; padding: 32px 0 60px; }
+
+  .verdict-box{
+    background: var(--paper-raised); border:1px solid var(--line); padding:20px 22px; margin-bottom:28px;
+  }
+  .verdict-box .vlabel{ font-family:'JetBrains Mono'; font-size:11px; text-transform:uppercase; letter-spacing:.06em; color:var(--ink-soft); margin-bottom:10px; }
+  .verdict-box p{ font-size:15px; line-height:1.6; }
+
+  .pc-grid{ display:grid; grid-template-columns: 1fr 1fr; gap:20px; margin-bottom: 32px; }
+  .pc-col h4{ font-family:'JetBrains Mono'; font-size:12px; text-transform:uppercase; letter-spacing:.06em; margin-bottom:12px; }
+  .pc-col.pro h4{ color:var(--teal-deep); }
+  .pc-col.con h4{ color:var(--coral); }
+  .pc-col ul{ list-style:none; }
+  .pc-col li{ font-size:14px; padding: 8px 0; border-bottom:1px dashed var(--line); display:flex; gap:10px; }
+  .pc-col li::before{ font-family:'JetBrains Mono'; font-size:13px; flex-shrink:0; }
+  .pc-col.pro li::before{ content:'+'; color:var(--teal-deep); }
+  .pc-col.con li::before{ content:'–'; color:var(--coral); }
+
+  table.spec{ width:100%; border-collapse:collapse; margin-bottom:32px; }
+  table.spec tr{ border-bottom:1px solid var(--line); }
+  table.spec td{ padding: 10px 0; font-size:13.5px; }
+  table.spec td:first-child{ color:var(--ink-soft); width:40%; }
+  table.spec td:last-child{ font-family:'JetBrains Mono'; text-align:right; }
+
+  .price-hist{ margin-bottom: 10px; }
+  .price-hist .row{ display:flex; align-items:center; gap:10px; font-family:'JetBrains Mono'; font-size:11.5px; color:var(--ink-soft); margin-bottom:4px;}
+  .sparkline{ height:56px; display:flex; align-items:flex-end; gap:3px; margin: 12px 0; }
+  .sparkline div{ flex:1; background: var(--teal); opacity:.75; }
+
+  .side{ position:relative; }
+  .side-card{ border:1px solid var(--line); background:var(--paper-raised); padding:22px; margin-bottom:20px; }
+  .side-card .stamp{ margin: 0 auto 14px; }
+  .side-card .score-label{ text-align:center; font-family:'JetBrains Mono'; font-size:11px; color:var(--ink-soft); text-transform:uppercase; letter-spacing:.06em; }
+
+  .cta{
+    display:block; text-align:center; background: var(--teal); color:#fff;
+    font-family:'Space Grotesk'; font-weight:600; font-size:14.5px;
+    padding: 14px; margin-top: 16px; border:none; cursor:pointer; width:100%;
+  }
+  .cta:hover{ background: var(--teal-deep); }
+  .cta-note{ font-size:11px; color:var(--ink-soft); text-align:center; margin-top:8px; }
+
+  .method-list{ list-style:none; font-size:12.5px; color:var(--ink-soft); }
+  .method-list li{ padding: 6px 0; border-bottom:1px dashed var(--line); display:flex; justify-content:space-between; }
+
+  footer{ border-top:1px solid var(--line); padding: 30px 0; margin-top:40px; }
+  footer p{ font-family:'JetBrains Mono'; font-size:11.5px; color:var(--ink-soft); }
+
+  @media (max-width: 760px){
+    h1.hero-line{ font-size:30px; }
+    .hero-grid{ grid-template-columns:1fr; }
+    .cat-grid{ grid-template-columns:1fr; }
+    .prod-row{ grid-template-columns: 36px 1fr; grid-template-areas: "s n" "s p" "s a"; row-gap:6px; }
+    .pd-body{ grid-template-columns:1fr; }
+    .pc-grid{ grid-template-columns:1fr; }
+    nav.tabs{ gap:16px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap site-bar">
+    <div class="logo"><span class="mark">V</span>Verdikt</div>
+    <nav class="tabs">
+      <button class="tab-btn active" data-tab="home">Home</button>
+      <button class="tab-btn" data-tab="listing">Compare</button>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- HOME -->
+  <section id="home" class="active">
+    <div class="hero">
+      <div class="eyebrow">Verified by spec, not by star-rating</div>
+      <h1 class="hero-line">Know what you're actually buying, before you buy it.</h1>
+      <p class="hero-sub">Every product here is broken down into a Trust Score, plain pros and cons, and real price history — so a comparison shopping trip takes minutes, not tabs.</p>
+
+      <div class="hero-grid">
+        <div class="verdict-card">
+          <div class="label">Editor's Pick — This Week</div>
+          <div class="name">Boltune Air Pro 3 (TWS Earbuds)</div>
+          <div class="verdict-row">
+            <div class="stamp sm"><span class="num">88</span><span class="of">/100</span></div>
+            <p style="font-size:13.5px; color:var(--ink-soft);">Best ANC under ₹3,000 — battery life is the only compromise.</p>
+          </div>
+        </div>
+        <div>
+          <div class="label mono" style="font-size:11px; color:var(--ink-soft); text-transform:uppercase; letter-spacing:.06em;">How scoring works</div>
+          <p style="font-size:13.5px; color:var(--ink-soft); margin-top:8px; line-height:1.6;">Trust Score = spec accuracy vs. claims, durability signals, and value-for-price — not review volume.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-head">
+      <h2>Browse by category</h2>
+      <span class="count mono">3 CATEGORIES</span>
+    </div>
+    <div class="cat-grid">
+      <div class="cat-card" data-open-cat="earbuds">
+        <div class="tag mono">04 LISTED</div>
+        <h3>Wireless Earbuds</h3>
+        <p>Under ₹5,000 — daily use &amp; ANC picks</p>
+      </div>
+      <div class="cat-card" data-open-cat="phones">
+        <div class="tag mono">03 LISTED</div>
+        <h3>Budget Smartphones</h3>
+        <p>₹12,000–₹20,000 range</p>
+      </div>
+      <div class="cat-card" data-open-cat="laptops">
+        <div class="tag mono">02 LISTED</div>
+        <h3>Student Laptops</h3>
+        <p>For coursework &amp; light coding</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- LISTING -->
+  <section id="listing">
+    <div class="breadcrumb"><button data-tab="home">← HOME</button> / WIRELESS EARBUDS</div>
+    <div class="section-head">
+      <h2>Wireless Earbuds — Ranked</h2>
+      <span class="count mono">SORTED BY TRUST SCORE</span>
+    </div>
+    <div class="prod-list" id="prod-list"></div>
+  </section>
+
+  <!-- PRODUCT DETAIL -->
+  <section id="detail">
+    <div class="breadcrumb"><button data-tab="listing">← BACK TO LIST</button></div>
+    <div id="detail-content"></div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>VERDIKT · PROTOTYPE BUILD · DATA IS ILLUSTRATIVE, NOT LIVE PRICING</p>
+  </div>
+</footer>
+
+<script>
+const PRODUCTS = [
+  {
+    id: 'boltune-air-pro-3',
+    name: 'Boltune Air Pro 3',
+    category: 'True Wireless Earbuds',
+    price: 2799, was: 3499,
+    score: 88,
+    verdict: "The best all-rounder under ₹3,000 right now. Active noise cancellation actually works on a bus or metro commute, and call clarity holds up in wind — the kind of detail spec sheets don't tell you. Battery life is the one real compromise: plan on a mid-day top-up if you're a heavy caller.",
+    pros: ['ANC noticeably cuts traffic and AC hum, not just marketing-sheet ANC', 'Case fast-charges 1hr use from 10 min in case', 'IPX5 rating held up through actual sweat and light rain'],
+    cons: ['Battery drops fast with ANC on — expect 3.5hrs not the claimed 5', 'App is Android-only for now, no iOS firmware access'],
+    specs: [['Driver size','11mm dynamic'],['Battery (earbuds)','5hrs claimed / 3.5hrs ANC on'],['Battery (with case)','24hrs total'],['Bluetooth','5.3'],['Water resistance','IPX5'],['Weight (pair)','4.2g each']],
+    priceHist: [3499,3499,3199,2999,2799,2799],
+  },
+  {
+    id: 'noize-pulse-x',
+    name: 'Noize Pulse X',
+    category: 'True Wireless Earbuds',
+    price: 1899, was: 2299,
+    score: 74,
+    verdict: "A solid budget pick if ANC isn't your priority. Bass is tuned heavy — great for commute listening, less accurate for anything mixed or mastered carefully. Build quality feels a notch below the Boltune at a similar price bracket.",
+    pros: ['Genuinely comfortable for 3+ hour wear', 'Touch controls rarely misfire, unlike most in this range', 'Quick-pair is instant on both Android and iOS'],
+    cons: ['No ANC despite marketing calling it "noise isolation"', 'Case hinge feels loose out of the box on 2 of 3 units tested'],
+    specs: [['Driver size','10mm dynamic'],['Battery (earbuds)','6hrs'],['Battery (with case)','28hrs total'],['Bluetooth','5.2'],['Water resistance','IPX4'],['Weight (pair)','4.5g each']],
+    priceHist: [2299,2199,2199,1999,1899,1899],
+  },
+  {
+    id: 'aerotone-clip',
+    name: 'Aerotone Clip',
+    category: 'True Wireless Earbuds',
+    price: 3299, was: 3299,
+    score: 81,
+    verdict: "The open-ear design is genuinely useful if you commute by road and need situational awareness — but it trades away bass response to get there. Not for gym use if you want isolation.",
+    pros: ['Open-ear fit means zero ear fatigue on long calls', 'Mic clarity is the best in this list for phone calls', 'Doesn\'t block ambient sound — safer for cycling/walking commutes'],
+    cons: ['Bass is thin; not suited for music-first listening', 'Price hasn\'t dropped since launch — check festive sales'],
+    specs: [['Driver type','Open-ear directional'],['Battery (earbuds)','7hrs'],['Battery (with case)','21hrs total'],['Bluetooth','5.3'],['Water resistance','IPX4'],['Weight (pair)','5.6g each']],
+    priceHist: [3299,3299,3299,3299,3299,3299],
+  },
+  {
+    id: 'basspod-mini',
+    name: 'BassPod Mini',
+    category: 'True Wireless Earbuds',
+    price: 1299, was: 1799,
+    score: 61,
+    verdict: "Fine as a backup pair or gift-under-₹1,500, but don't expect it to survive daily gym use long-term based on the build tested. Sound is loud but muddy at higher volumes.",
+    pros: ['Cheapest usable ANC-labeled option in this list', 'Case is genuinely pocketable, smallest footprint here'],
+    cons: ['Distortion audible above 70% volume', 'Two of three review units had one earbud disconnect randomly', '"ANC" is closer to passive isolation than active cancellation'],
+    specs: [['Driver size','8mm dynamic'],['Battery (earbuds)','4hrs'],['Battery (with case)','16hrs total'],['Bluetooth','5.1'],['Water resistance','IPX4'],['Weight (pair)','3.8g each']],
+    priceHist: [1799,1799,1599,1499,1299,1299],
+  }
+];
+
+function stampHTML(score, size){
+  return `<div class="stamp ${size||''}"><span class="num">${score}</span><span class="of">/100</span></div>`;
+}
+
+function renderList(){
+  const el = document.getElementById('prod-list');
+  const sorted = [...PRODUCTS].sort((a,b)=>b.score-a.score);
+  el.innerHTML = sorted.map(p => `
+    <div class="prod-row" data-open="${p.id}">
+      ${stampHTML(p.score,'sm')}
+      <div>
+        <div class="pname">${p.name}</div>
+        <div class="pverdict">${p.pros[0]}</div>
+      </div>
+      <div class="pill pro">+ ${p.pros.length} pros</div>
+      <div class="pill con">– ${p.cons.length} cons</div>
+      <div style="text-align:right;">
+        <div class="pprice">₹${p.price.toLocaleString('en-IN')}${p.was>p.price ? `<span class="was">₹${p.was.toLocaleString('en-IN')}</span>`:''}</div>
+      </div>
+    </div>
+  `).join('');
+  el.querySelectorAll('.prod-row').forEach(row=>{
+    row.addEventListener('click', ()=> openDetail(row.dataset.open));
+  });
+}
+
+function sparkline(hist){
+  const max = Math.max(...hist), min = Math.min(...hist);
+  const range = (max-min)||1;
+  return hist.map(v=>{
+    const h = 12 + ((v-min)/range)*44;
+    return `<div style="height:${h}px;"></div>`;
+  }).join('');
+}
+
+function openDetail(id){
+  const p = PRODUCTS.find(x=>x.id===id);
+  if(!p) return;
+  const el = document.getElementById('detail-content');
+  el.innerHTML = `
+    <div class="pd-head">
+      <div>
+        <h1>${p.name}</h1>
+        <div class="sub">${p.category}</div>
+        <div class="pd-price">₹${p.price.toLocaleString('en-IN')} ${p.was>p.price?`<span style="font-size:15px; color:var(--ink-soft); text-decoration:line-through; font-family:'JetBrains Mono';">₹${p.was.toLocaleString('en-IN')}</span>`:''}</div>
+      </div>
+    </div>
+    <div class="pd-body">
+      <div>
+        <div class="verdict-box">
+          <div class="vlabel">The Verdict</div>
+          <p>${p.verdict}</p>
+        </div>
+        <div class="pc-grid">
+          <div class="pc-col pro">
+            <h4>What holds up</h4>
+            <ul>${p.pros.map(x=>`<li>${x}</li>`).join('')}</ul>
+          </div>
+          <div class="pc-col con">
+            <h4>Where it falls short</h4>
+            <ul>${p.cons.map(x=>`<li>${x}</li>`).join('')}</ul>
+          </div>
+        </div>
+        <h4 class="mono" style="font-size:12px; text-transform:uppercase; letter-spacing:.06em; color:var(--ink-soft); margin-bottom:10px;">Full Spec Sheet</h4>
+        <table class="spec">
+          ${p.specs.map(([k,v])=>`<tr><td>${k}</td><td>${v}</td></tr>`).join('')}
+        </table>
+      </div>
+      <div class="side">
+        <div class="side-card">
+          ${stampHTML(p.score)}
+          <div class="score-label">Trust Score</div>
+          <button class="cta">View lowest price</button>
+          <div class="cta-note">Affiliate link — we may earn a commission</div>
+        </div>
+        <div class="side-card">
+          <div class="score-label" style="text-align:left; margin-bottom:10px;">6-Month Price Trend</div>
+          <div class="sparkline">${sparkline(p.priceHist)}</div>
+          <div class="price-hist">
+            <div class="row"><span>LOWEST</span><span>₹${Math.min(...p.priceHist).toLocaleString('en-IN')}</span></div>
+            <div class="row"><span>HIGHEST</span><span>₹${Math.max(...p.priceHist).toLocaleString('en-IN')}</span></div>
+          </div>
+        </div>
+        <div class="side-card">
+          <div class="score-label" style="text-align:left; margin-bottom:10px;">Score Breakdown</div>
+          <ul class="method-list">
+            <li><span>Spec accuracy</span><span class="mono">verified</span></li>
+            <li><span>Durability signal</span><span class="mono">3-unit test</span></li>
+            <li><span>Value for price</span><span class="mono">category avg</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  `;
+  switchTab('detail');
+}
+
+function switchTab(tab){
+  document.querySelectorAll('main > section').forEach(s=>s.classList.remove('active'));
+  document.getElementById(tab).classList.add('active');
+  document.querySelectorAll('.tab-btn').forEach(b=>{
+    b.classList.toggle('active', b.dataset.tab===tab);
+  });
+}
+
+document.querySelectorAll('[data-tab]').forEach(btn=>{
+  btn.addEventListener('click', ()=> switchTab(btn.dataset.tab));
+});
+document.querySelectorAll('[data-open-cat]').forEach(c=>{
+  c.addEventListener('click', ()=> switchTab('listing'));
+});
+
+renderList();
+</script>
+
+</body>
+</html>
