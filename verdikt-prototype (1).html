@@ -1,0 +1,1264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Verdikt — Buy the right gadget, backed by proof</title>
+<meta name="description" content="Compare wireless earbuds, budget smartphones, and student laptops with a Trust Score, honest pros and cons, and real price history — India-focused product reviews built to help you buy smarter.">
+<meta name="keywords" content="best earbuds under 3000, budget smartphone comparison India, student laptop review, product trust score, price history India, best wireless earbuds India, budget phones India, gadget comparison site">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://verdikt.vercel.app/">
+
+<!-- Open Graph (for WhatsApp/social previews) -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Verdikt — Buy the right gadget, backed by proof">
+<meta property="og:description" content="Compare earbuds, phones, and laptops with a Trust Score, honest pros and cons, and real price history.">
+<meta property="og:url" content="https://verdikt.vercel.app/">
+
+<!-- Twitter/X card -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Verdikt — Buy the right gadget, backed by proof">
+<meta name="twitter:description" content="Compare earbuds, phones, and laptops with a Trust Score, honest pros and cons, and real price history.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #F5F5FD;
+    --card: #FFFFFF;
+    --ink: #1A1A2E;
+    --ink-soft: #6B6B85;
+    --violet: #7C3AED;
+    --violet-deep: #5B21B6;
+    --violet-light: #DDD6FE;
+    --blue: #2563EB;
+    --blue-deep: #1D4ED8;
+    --blue-light: #BFDBFE;
+    --orange: #F97316;
+    --orange-deep: #EA580C;
+    --orange-light: #FED7AA;
+    --pink: #EC4899;
+    --green: #16A34A;
+    --line: #ECEBF9;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Manrope', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .mono{ font-family: 'JetBrains Mono', monospace; }
+  .display{ font-family: 'Poppins', sans-serif; }
+
+  a{ color: inherit; text-decoration: none; }
+
+  /* ---------- Layout shell ---------- */
+  .wrap{ max-width: 1120px; margin: 0 auto; padding: 0 28px; }
+
+  header.site{
+    background: rgba(245,245,253,0.85);
+    backdrop-filter: blur(10px);
+    position: sticky; top:0; z-index: 50;
+  }
+  .site-bar{
+    display:flex; align-items:center; justify-content:space-between;
+    padding: 10px 0;
+  }
+  .logo{
+    display:flex; align-items:center; gap:9px;
+    font-family:'Poppins'; font-weight:700; font-size:21px; letter-spacing:-0.01em;
+  }
+  .logo .mark{
+    width:32px; height:32px; border-radius:10px;
+    background: linear-gradient(135deg, var(--violet), var(--pink));
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Poppins'; font-weight:700; font-size:15px; color:#fff;
+    box-shadow: 0 4px 12px rgba(124,58,237,0.35);
+  }
+  nav.tabs{ display:flex; gap: 8px; }
+  nav.tabs button{
+    background:none; border:none; cursor:pointer;
+    font-family:'Manrope'; font-weight:600; font-size:14px; color: var(--ink-soft);
+    padding: 8px 16px; border-radius:10px; transition: all .15s;
+  }
+  nav.tabs button.active{ color: #fff; background: var(--violet); }
+  nav.tabs button:not(.active):hover{ background: var(--violet-light); color: var(--violet-deep); }
+
+  .search-box{
+    position:relative; flex:1; max-width:320px; margin: 0 24px;
+  }
+  .search-icon{
+    position:absolute; left:16px; top:50%; transform:translateY(-50%);
+    font-size:15px; color:var(--ink-soft); pointer-events:none;
+  }
+  .search-box input{
+    width:100%; padding: 10px 14px 10px 38px;
+    border:2px solid var(--line); border-radius:12px; background:var(--card);
+    font-family:'Manrope'; font-size:13.5px; color:var(--ink);
+    outline:none; transition: border-color .2s;
+  }
+  .search-box input:focus{ border-color: var(--violet); }
+  .search-box input::placeholder{ color: var(--ink-soft); }
+
+  section{ display:none; }
+  section.active{ display:block; }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    padding: 14px 0 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .blob{ position:absolute; border-radius:50%; filter: blur(50px); opacity:.35; z-index:0; }
+  .blob1{ width:280px; height:280px; background:var(--violet); top:-100px; right:60px; }
+  .blob2{ width:220px; height:220px; background:var(--orange); bottom:-60px; right:340px; opacity:.25; }
+  .blob3{ width:180px; height:180px; background:var(--blue); top:40px; left:-60px; opacity:.3; }
+  .hero > *{ position:relative; z-index:1; }
+
+  .hero-top{
+    display:grid; grid-template-columns: 1.15fr 1fr; gap:20px; align-items:start;
+  }
+  .hero-visual{ position:relative; height:240px; }
+  .float-item{ position:absolute; filter: drop-shadow(0 18px 24px rgba(26,26,46,0.18)); }
+  .laptop-float{ width:230px; top:70px; left:0; animation: floaty 5.5s ease-in-out infinite; }
+  .phone-float{ width:100px; top:0; right:30px; z-index:2; animation: floaty 4.5s ease-in-out infinite .4s; }
+  .earbuds-float{ width:88px; bottom:0; right:110px; z-index:3; animation: floaty 4s ease-in-out infinite .8s; }
+  @keyframes floaty{ 0%,100%{ transform: translateY(0); } 50%{ transform: translateY(-14px); } }
+
+  .eyebrow{
+    font-family:'Manrope'; font-weight:700; font-size:12px; letter-spacing: 0.04em;
+    text-transform: uppercase; color: var(--violet-deep);
+    display:inline-flex; align-items:center; gap:8px; margin-bottom: 10px;
+    background: var(--violet-light); padding: 7px 14px; border-radius:20px;
+  }
+  h1.hero-line{
+    font-family:'Poppins'; font-weight:700; font-size: 46px; line-height:1.15;
+    letter-spacing:-0.01em; max-width: 680px;
+  }
+  .hero-sub{
+    margin-top:18px; font-size:16px; color: var(--ink-soft); max-width: 520px; line-height:1.6;
+  }
+  .hero-grid{
+    display:grid; grid-template-columns: 1.3fr 1fr; gap: 24px; align-items:stretch;
+    margin-top: 36px;
+  }
+  .verdict-card{
+    background: linear-gradient(135deg, var(--violet), #A855F7 60%, var(--pink));
+    border-radius: 20px;
+    padding: 24px;
+    color: #fff;
+    box-shadow: 0 12px 28px rgba(124,58,237,0.28);
+  }
+  .verdict-card .label{ font-family:'Manrope'; font-weight:700; font-size:11px; color:rgba(255,255,255,0.85); text-transform:uppercase; letter-spacing:.06em; }
+  .verdict-card .name{ font-family:'Poppins'; font-weight:600; font-size:19px; margin-top:8px; }
+  .verdict-row{ display:flex; align-items:center; gap:16px; margin-top:16px; }
+  .verdict-card .stamp{ border-color:#fff; background:rgba(255,255,255,0.15); }
+  .verdict-card .stamp .num, .verdict-card .stamp .of{ color:#fff; }
+  .verdict-card .stamp::after{ border-color: rgba(255,255,255,0.5); }
+
+  .how-card{
+    background: var(--card); border-radius:20px; padding:24px;
+    border: 2px solid var(--line);
+  }
+
+  /* ---------- Trust badge ---------- */
+  .stamp{
+    width: 60px; height:60px; border-radius:50%;
+    border: 3px solid var(--green);
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    flex-shrink:0; background: #F0FDF4;
+    position:relative;
+  }
+  .stamp .num{ font-family:'Poppins'; font-weight:700; font-size:18px; color:var(--green); }
+  .stamp .of{ font-family:'JetBrains Mono'; font-size:7px; color:var(--ink-soft); letter-spacing:.05em; }
+  .stamp.sm{ width:46px; height:46px; border-width:2.5px; }
+  .stamp.sm .num{ font-size:14px; }
+
+  /* ---------- Category grid ---------- */
+  .section-head{
+    display:flex; align-items:baseline; justify-content:space-between;
+    margin: 56px 0 20px;
+  }
+  .section-head h2{ font-family:'Poppins'; font-weight:700; font-size:23px; }
+  .section-head .count{ font-family:'JetBrains Mono'; font-size:11px; color:var(--ink-soft); }
+
+  .cat-grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:16px; margin-bottom:56px; }
+  .cat-card{
+    border-radius: 20px;
+    padding: 26px 22px; cursor:pointer; transition: transform .15s, box-shadow .15s;
+    position:relative; overflow:hidden; color:#fff;
+    min-height: 168px;
+  }
+  .cat-card:nth-child(1){ background: linear-gradient(145deg, var(--violet), #A855F7); box-shadow: 0 10px 24px rgba(124,58,237,0.3); }
+  .cat-card:nth-child(2){ background: linear-gradient(145deg, var(--blue), #38BDF8); box-shadow: 0 10px 24px rgba(37,99,235,0.3); }
+  .cat-card:nth-child(3){ background: linear-gradient(145deg, var(--orange), #FBBF24); box-shadow: 0 10px 24px rgba(249,115,22,0.3); }
+  .cat-card:nth-child(4){ background: linear-gradient(145deg, var(--pink), #F472B6); box-shadow: 0 10px 24px rgba(236,72,153,0.3); }
+  .cat-card:nth-child(5){ background: linear-gradient(145deg, #0D9488, #2DD4BF); box-shadow: 0 10px 24px rgba(13,148,136,0.3); }
+  .cat-card:hover{ transform: translateY(-4px); }
+  .cat-card .cat-icon{ position:absolute; right:-10px; top:-10px; width:88px; height:88px; opacity:0.9; }
+  .cat-icon-wrap{ position:absolute; right:-10px; top:-10px; width:88px; height:88px; }
+  .cat-icon-frame{ position:absolute; inset:0; width:100%; height:100%; opacity:0; transition: opacity .7s ease; }
+  .cat-icon-frame.frame-active{ opacity:0.9; }
+  .cat-card .tag{ font-family:'JetBrains Mono'; font-size:10.5px; color:rgba(255,255,255,0.85); background:rgba(255,255,255,0.2); padding:3px 9px; border-radius:20px; width:fit-content; }
+  .cat-card h3{ font-family:'Poppins'; font-weight:600; font-size:19px; margin-top:14px; position:relative; z-index:1; }
+  .cat-card p{ font-size:13px; color:rgba(255,255,255,0.85); margin-top:6px; line-height:1.5; position:relative; z-index:1; }
+
+  .brand-pills{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:20px; }
+  .brand-pill{
+    font-family:'Manrope'; font-weight:600; font-size:13px; color:var(--ink-soft);
+    background: var(--card); border:2px solid var(--line); border-radius:20px;
+    padding: 7px 16px; cursor:pointer; transition: all .15s;
+  }
+  .brand-pill:hover{ border-color: var(--violet-light); }
+  .brand-pill.active{ background: var(--violet); border-color:var(--violet); color:#fff; }
+
+  /* ---------- Product list (card grid) ---------- */
+  .prod-list{ display:grid; grid-template-columns: repeat(3, 1fr); gap:18px; margin-bottom: 40px;}
+  .prod-row{
+    display:flex; flex-direction:column; gap:12px;
+    border-radius:18px; background:var(--card);
+    padding: 18px; cursor:pointer; transition: transform .15s, box-shadow .15s;
+    border: 2px solid var(--line);
+  }
+  .prod-row:hover{ transform: translateY(-3px); box-shadow: 0 10px 24px rgba(26,26,46,0.08); border-color: var(--violet-light); }
+  .prod-row .prow-top{ display:flex; align-items:flex-start; justify-content:space-between; gap:10px; }
+  .prod-row .picon{ width:44px; height:44px; flex-shrink:0; }
+  .prod-row .pname{ font-family:'Poppins'; font-weight:600; font-size:15px; }
+  .prod-row .pverdict{ font-size:12px; color:var(--ink-soft); margin-top:4px; line-height:1.4; }
+  .prod-row .pprice{ font-family:'JetBrains Mono'; font-weight:700; font-size:15px; }
+  .prod-row .pprice .was{ text-decoration:line-through; color:var(--ink-soft); font-weight:400; font-size:11.5px; margin-left:6px;}
+  .prow-pills{ display:flex; gap:6px; }
+  .pill{
+    font-family:'Manrope'; font-weight:700; font-size:10.5px; padding:4px 9px;
+    border-radius:20px; width:fit-content;
+  }
+  .pill.pro{ color:var(--green); background:#F0FDF4; }
+  .pill.con{ color:var(--pink); background:#FDF2F8; }
+  .prow-bottom{ display:flex; align-items:center; justify-content:space-between; margin-top:auto; padding-top:8px; border-top:1px solid var(--line); }
+
+  /* ---------- Product detail ---------- */
+  .breadcrumb{ font-family:'JetBrains Mono'; font-size:11px; color:var(--ink-soft); margin: 28px 0 10px; }
+  .breadcrumb button{ background:none;border:none;color:var(--violet-deep); cursor:pointer; font-family:'JetBrains Mono'; font-weight:600; font-size:11px; }
+
+  .pd-banner{
+    border-radius:20px; padding:32px; margin: 12px 0 32px; color:#fff; position:relative; overflow:hidden;
+  }
+  .pd-head{ display:grid; grid-template-columns: 1fr auto; gap: 24px; align-items:center; position:relative; z-index:1; }
+  .pd-head h1{ font-family:'Poppins'; font-weight:700; font-size:30px; letter-spacing:-0.01em; }
+  .pd-head .sub{ color:rgba(255,255,255,0.85); margin-top:8px; font-size:14px; }
+  .pd-price{ font-family:'JetBrains Mono'; font-weight:700; font-size:24px; margin-top:14px; }
+  .pd-banner .picon{ width:80px; height:80px; opacity:0.9; }
+
+  .pd-body{ display:grid; grid-template-columns: 1fr 300px; gap: 32px; padding: 0 0 60px; }
+
+  .verdict-box{
+    background: var(--violet-light); border-radius:16px; padding:20px 22px; margin-bottom:28px;
+  }
+  .verdict-box .vlabel{ font-family:'Manrope'; font-weight:700; font-size:11px; text-transform:uppercase; letter-spacing:.06em; color:var(--violet-deep); margin-bottom:10px; }
+  .verdict-box p{ font-size:15px; line-height:1.6; color:var(--ink); }
+
+  .pc-grid{ display:grid; grid-template-columns: 1fr 1fr; gap:16px; margin-bottom: 28px; }
+  .pc-col{ border-radius:16px; padding:18px; }
+  .pc-col.pro{ background:#F0FDF4; }
+  .pc-col.con{ background:#FDF2F8; }
+  .pc-col h4{ font-family:'Manrope'; font-weight:700; font-size:12px; text-transform:uppercase; letter-spacing:.04em; margin-bottom:12px; }
+  .pc-col.pro h4{ color:var(--green); }
+  .pc-col.con h4{ color:var(--pink); }
+  .pc-col ul{ list-style:none; }
+  .pc-col li{ font-size:13.5px; padding: 7px 0; display:flex; gap:8px; line-height:1.45; }
+  .pc-col li::before{ font-family:'JetBrains Mono'; font-weight:700; font-size:13px; flex-shrink:0; }
+  .pc-col.pro li::before{ content:'✓'; color:var(--green); }
+  .pc-col.con li::before{ content:'✕'; color:var(--pink); }
+
+  table.spec{ width:100%; border-collapse:collapse; margin-bottom:28px; background:var(--card); border-radius:16px; overflow:hidden; }
+  table.spec tr{ border-bottom:1px solid var(--line); }
+  table.spec tr:nth-child(odd){ background: #FAFAFF; }
+  table.spec td{ padding: 12px 16px; font-size:13.5px; }
+  table.spec td:first-child{ color:var(--ink-soft); width:40%; }
+  table.spec td:last-child{ font-family:'JetBrains Mono'; font-weight:600; text-align:right; }
+
+  .price-hist{ margin-bottom: 10px; }
+  .price-hist .row{ display:flex; align-items:center; gap:10px; font-family:'JetBrains Mono'; font-size:11px; color:var(--ink-soft); margin-bottom:4px;}
+  .sparkline{ height:56px; display:flex; align-items:flex-end; gap:3px; margin: 14px 0; }
+  .sparkline div{ flex:1; background: linear-gradient(180deg, var(--violet), var(--pink)); border-radius:3px 3px 0 0; }
+
+  .side{ position:relative; }
+  .side-card{ background: var(--card); border-radius:18px; padding:22px; margin-bottom:16px; border:2px solid var(--line); }
+  .side-card .stamp{ margin: 0 auto 14px; width:70px; height:70px; }
+  .side-card .stamp .num{ font-size:20px; }
+  .side-card .score-label{ text-align:center; font-family:'Manrope'; font-weight:700; font-size:11px; color:var(--ink-soft); text-transform:uppercase; letter-spacing:.04em; }
+
+  .cta{
+    display:block; text-align:center; background: linear-gradient(135deg, var(--violet), var(--pink)); color:#fff;
+    font-family:'Poppins'; font-weight:600; font-size:15px;
+    padding: 14px; margin-top: 16px; border:none; border-radius:14px; cursor:pointer; width:100%;
+    box-shadow: 0 8px 18px rgba(124,58,237,0.3); transition: transform .15s;
+  }
+  .cta:hover{ transform: translateY(-2px); }
+  .cta-note{ font-size:10.5px; color:var(--ink-soft); text-align:center; margin-top:8px; }
+
+  .method-list{ list-style:none; font-size:12.5px; color:var(--ink-soft); }
+  .method-list li{ padding: 7px 0; border-bottom:1px solid var(--line); display:flex; justify-content:space-between; }
+
+  footer{ padding: 32px 0; margin-top:40px; }
+  footer p{ font-family:'JetBrains Mono'; font-size:11px; color:var(--ink-soft); text-align:center; }
+
+  @media (max-width: 760px){
+    h1.hero-line{ font-size:32px; }
+    .hero-top{ grid-template-columns:1fr; }
+    .hero-visual{ height:220px; margin-top:20px; }
+    .laptop-float{ width:180px; left:10px; }
+    .phone-float{ width:80px; }
+    .earbuds-float{ width:70px; right:70px; }
+    .hero-grid{ grid-template-columns:1fr; }
+    .cat-grid{ grid-template-columns:1fr; }
+    .prod-list{ grid-template-columns:1fr; }
+    .pd-body{ grid-template-columns:1fr; }
+    .pc-grid{ grid-template-columns:1fr; }
+    .pd-head{ grid-template-columns:1fr; }
+    nav.tabs{ gap:6px; }
+    .site-bar{ flex-wrap:wrap; gap:10px; }
+    .search-box{ order:3; max-width:100%; margin:0; flex-basis:100%; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap site-bar">
+    <div class="logo"><span class="mark">V</span>Verdikt</div>
+    <div class="search-box">
+      <span class="search-icon">⌕</span>
+      <input type="text" id="search-input" placeholder="Search products..." autocomplete="off">
+    </div>
+    <nav class="tabs">
+      <button class="tab-btn active" data-tab="home">Home</button>
+      <button class="tab-btn" data-tab="listing">Compare</button>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- HOME -->
+  <section id="home" class="active">
+    <div class="hero">
+      <div class="blob blob1"></div>
+      <div class="blob blob2"></div>
+      <div class="blob blob3"></div>
+      <div class="hero-top">
+        <div class="hero-text">
+          <div class="eyebrow">✨ Verified by spec, not by star-rating</div>
+          <h1 class="hero-line">Know what you're actually buying, before you buy it.</h1>
+          <p class="hero-sub">Every product here is broken down into a Trust Score, plain pros and cons, and real price history — so a comparison shopping trip takes minutes, not tabs.</p>
+        </div>
+        <div class="hero-visual">
+          <svg class="float-item laptop-float" viewBox="0 0 220 170" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="lapScreen" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7C3AED"/><stop offset="1" stop-color="#2563EB"/></linearGradient></defs>
+            <rect x="10" y="10" width="200" height="120" rx="10" fill="url(#lapScreen)"/>
+            <rect x="20" y="20" width="180" height="100" rx="4" fill="#ffffff"/>
+            <rect x="32" y="80" width="14" height="30" rx="3" fill="#DDD6FE"/>
+            <rect x="52" y="65" width="14" height="45" rx="3" fill="#93C5FD"/>
+            <rect x="72" y="50" width="14" height="60" rx="3" fill="#FED7AA"/>
+            <rect x="92" y="70" width="14" height="40" rx="3" fill="#7C3AED"/>
+            <circle cx="160" cy="45" r="14" fill="#F0FDF4" stroke="#16A34A" stroke-width="3"/>
+            <path d="M154 45 l4 5 l9 -11" stroke="#16A34A" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M0 130 L220 130 L204 158 L16 158 Z" fill="#E5E4F0"/>
+            <rect x="90" y="130" width="40" height="6" rx="3" fill="#C9C7DE"/>
+          </svg>
+          <svg class="float-item phone-float" viewBox="0 0 110 220" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="phoneBody" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#EC4899"/><stop offset="1" stop-color="#7C3AED"/></linearGradient></defs>
+            <rect x="4" y="4" width="102" height="212" rx="22" fill="url(#phoneBody)"/>
+            <rect x="12" y="16" width="86" height="188" rx="10" fill="#ffffff"/>
+            <rect x="20" y="28" width="70" height="18" rx="6" fill="#F5F5FD"/>
+            <rect x="20" y="52" width="70" height="34" rx="8" fill="#DDD6FE"/>
+            <rect x="26" y="60" width="30" height="6" rx="3" fill="#7C3AED"/>
+            <rect x="26" y="70" width="45" height="5" rx="2.5" fill="#A78BFA"/>
+            <rect x="20" y="92" width="70" height="34" rx="8" fill="#BFDBFE"/>
+            <rect x="26" y="100" width="30" height="6" rx="3" fill="#2563EB"/>
+            <rect x="26" y="110" width="45" height="5" rx="2.5" fill="#60A5FA"/>
+          </svg>
+          <svg class="float-item earbuds-float" viewBox="0 0 100 70" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="caseGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#DDD6FE"/></linearGradient></defs>
+            <rect x="10" y="10" width="80" height="50" rx="20" fill="url(#caseGrad)" stroke="#C9C7DE" stroke-width="2"/>
+            <line x1="10" y1="35" x2="90" y2="35" stroke="#C9C7DE" stroke-width="1.5"/>
+            <circle cx="50" cy="20" r="3" fill="#16A34A"/>
+            <ellipse cx="35" cy="45" rx="8" ry="6" fill="#7C3AED"/>
+            <ellipse cx="65" cy="45" rx="8" ry="6" fill="#7C3AED"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="hero-grid">
+        <div class="verdict-card">
+          <div class="label">🏆 Editor's Pick — This Week</div>
+          <div class="name">Boltune Air Pro 3 (TWS Earbuds)</div>
+          <div class="verdict-row">
+            <div class="stamp sm"><span class="num">88</span><span class="of">/100</span></div>
+            <p style="font-size:13.5px; color:rgba(255,255,255,0.9);">Best ANC under ₹3,000 — battery life is the only compromise.</p>
+          </div>
+        </div>
+        <div class="how-card">
+          <div class="label mono" style="font-size:11px; color:var(--violet-deep); font-weight:700; text-transform:uppercase; letter-spacing:.06em;">How scoring works</div>
+          <p style="font-size:13.5px; color:var(--ink-soft); margin-top:10px; line-height:1.6;">Trust Score = spec accuracy vs. claims, durability signals, and value-for-price — not review volume.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-head">
+      <h2>Browse by category</h2>
+      <span class="count mono">5 CATEGORIES</span>
+    </div>
+    <div class="cat-grid">
+      <div class="cat-card" data-open-cat="earbuds">
+        <div class="cat-icon-wrap">
+          <svg class="cat-icon-frame frame-active" viewBox="0 0 100 100"><defs><linearGradient id="gE1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity="0.9"/><stop offset="1" stop-color="#fff" stop-opacity="0.3"/></linearGradient></defs><ellipse cx="35" cy="45" rx="16" ry="20" fill="url(#gE1)"/><rect x="30" y="58" width="9" height="24" rx="4.5" fill="url(#gE1)"/><ellipse cx="68" cy="45" rx="16" ry="20" fill="url(#gE1)" opacity="0.85"/><rect x="63" y="58" width="9" height="24" rx="4.5" fill="url(#gE1)" opacity="0.85"/></svg>
+          <svg class="cat-icon-frame" viewBox="0 0 100 100"><defs><linearGradient id="gE2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity="0.9"/><stop offset="1" stop-color="#fff" stop-opacity="0.3"/></linearGradient></defs><rect x="22" y="30" width="42" height="30" rx="10" fill="url(#gE2)"/><ellipse cx="78" cy="45" rx="15" ry="19" fill="url(#gE2)" opacity="0.9"/><rect x="73" y="58" width="9" height="22" rx="4.5" fill="url(#gE2)" opacity="0.9"/></svg>
+          <svg class="cat-icon-frame" viewBox="0 0 100 100"><defs><linearGradient id="gE3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity="0.9"/><stop offset="1" stop-color="#fff" stop-opacity="0.3"/></linearGradient></defs><ellipse cx="45" cy="50" rx="17" ry="21" fill="url(#gE3)"/><rect x="39" y="65" width="11" height="24" rx="5.5" fill="url(#gE3)"/><rect x="70" y="30" width="5" height="18" rx="2.5" fill="url(#gE3)" opacity="0.6"/><rect x="80" y="24" width="5" height="30" rx="2.5" fill="url(#gE3)" opacity="0.75"/><rect x="90" y="34" width="5" height="12" rx="2.5" fill="url(#gE3)" opacity="0.5"/></svg>
+        </div>
+        <div class="tag mono">05 LISTED</div>
+        <h3>Wireless Earbuds</h3>
+        <p>Under ₹5,000 — daily use &amp; ANC picks</p>
+      </div>
+      <div class="cat-card" data-open-cat="phones">
+        <div class="cat-icon-wrap">
+          <svg class="cat-icon-frame frame-active" viewBox="0 0 100 100"><defs><linearGradient id="gP1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity="0.9"/><stop offset="1" stop-color="#fff" stop-opacity="0.3"/></linearGradient></defs><rect x="30" y="10" width="40" height="82" rx="9" fill="url(#gP1)"/><rect x="35" y="18" width="30" height="58" rx="3" fill="#fff" opacity="0.25"/></svg>
+          <svg class="cat-icon-frame" viewBox="0 0 100 100"><defs><linearGradient id="gP2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity="0.9"/><stop offset="1" stop-color="#fff" stop-opacity="0.3"/></linearGradient></defs><rect x="24" y="16" width="36" height="74" rx="8" fill="url(#gP2)" opacity="0.75"/><rect x="46" y="8" width="38" height="78" rx="8" fill="url(#gP2)"/><circle cx="65" cy="24" r="4" fill="#fff" opacity="0.4"/></svg>
+          <svg class="cat-icon-frame" viewBox="0 0 100 100"><defs><linearGradient id="gP3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity="0.9"/><stop offset="1" stop-color="#fff" stop-opacity="0.3"/></linearGradient></defs><rect x="30" y="10" width="40" height="82" rx="9" fill="url(#gP3)"/><circle cx="42" cy="24" r="6" fill="#fff" opacity="0.35"/><circle cx="58" cy="24" r="6" fill="#fff" opacity="0.5"/></svg>
+        </div>
+        <div class="tag mono">12 LISTED</div>
+        <h3>Smartphones</h3>
+        <p>Budget to flagship — Apple, Samsung, Xiaomi &amp; more</p>
+      </div>
+      <div class="cat-card" data-open-cat="laptops">
+        <div class="cat-icon-wrap">
+          <svg class="cat-icon-frame frame-active" viewBox="0 0 100 100"><defs><linearGradient id="gL1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity="0.9"/><stop offset="1" stop-color="#fff" stop-opacity="0.3"/></linearGradient></defs><rect x="20" y="20" width="60" height="40" rx="4" fill="url(#gL1)"/><rect x="25" y="24" width="50" height="32" rx="2" fill="#fff" opacity="0.2"/><path d="M10 66 L90 66 L82 80 L18 80 Z" fill="url(#gL1)" opacity="0.9"/></svg>
+          <svg class="cat-icon-frame" viewBox="0 0 100 100"><defs><linearGradient id="gL2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity="0.9"/><stop offset="1" stop-color="#fff" stop-opacity="0.3"/></linearGradient></defs><rect x="14" y="30" width="72" height="46" rx="5" fill="url(#gL2)" opacity="0.9"/><text x="50" y="59" font-family="monospace" font-size="20" fill="#fff" opacity="0.7" text-anchor="middle">&lt;/&gt;</text></svg>
+          <svg class="cat-icon-frame" viewBox="0 0 100 100"><defs><linearGradient id="gL3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity="0.9"/><stop offset="1" stop-color="#fff" stop-opacity="0.3"/></linearGradient></defs><rect x="12" y="40" width="76" height="14" rx="4" fill="url(#gL3)"/><rect x="8" y="54" width="84" height="6" rx="3" fill="url(#gL3)" opacity="0.6"/></svg>
+        </div>
+        <div class="tag mono">02 LISTED</div>
+        <h3>Student Laptops</h3>
+        <p>For coursework &amp; light coding</p>
+      </div>
+      <div class="cat-card" data-open-cat="watches">
+        <div class="cat-icon-wrap">
+          <svg class="cat-icon-frame frame-active" viewBox="0 0 100 100"><defs><linearGradient id="gW1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity="0.9"/><stop offset="1" stop-color="#fff" stop-opacity="0.3"/></linearGradient></defs><rect x="38" y="4" width="24" height="20" rx="5" fill="url(#gW1)"/><rect x="38" y="76" width="24" height="20" rx="5" fill="url(#gW1)"/><circle cx="50" cy="50" r="28" fill="url(#gW1)"/><circle cx="50" cy="50" r="19" fill="#fff" opacity="0.3"/></svg>
+          <svg class="cat-icon-frame" viewBox="0 0 100 100"><defs><linearGradient id="gW2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity="0.9"/><stop offset="1" stop-color="#fff" stop-opacity="0.3"/></linearGradient></defs><rect x="34" y="10" width="32" height="80" rx="10" fill="url(#gW2)"/><rect x="40" y="18" width="20" height="64" rx="4" fill="#fff" opacity="0.25"/></svg>
+          <svg class="cat-icon-frame" viewBox="0 0 100 100"><defs><linearGradient id="gW3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity="0.9"/><stop offset="1" stop-color="#fff" stop-opacity="0.3"/></linearGradient></defs><rect x="30" y="6" width="20" height="18" rx="5" fill="url(#gW3)"/><rect x="50" y="6" width="20" height="18" rx="5" fill="url(#gW3)" opacity="0.7"/><circle cx="40" cy="50" r="24" fill="url(#gW3)"/><circle cx="66" cy="58" r="16" fill="url(#gW3)" opacity="0.6"/></svg>
+        </div>
+        <div class="tag mono">10 LISTED</div>
+        <h3>Smartwatches</h3>
+        <p>Apple, Samsung &amp; budget Indian brands</p>
+      </div>
+      <div class="cat-card" data-open-cat="headphones">
+        <div class="cat-icon-wrap">
+          <svg class="cat-icon-frame frame-active" viewBox="0 0 100 100"><defs><linearGradient id="gH1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity="0.9"/><stop offset="1" stop-color="#fff" stop-opacity="0.3"/></linearGradient></defs><path d="M20 55 Q20 15 50 15 Q80 15 80 55" fill="none" stroke="url(#gH1)" stroke-width="9" stroke-linecap="round"/><rect x="10" y="50" width="20" height="32" rx="9" fill="url(#gH1)"/><rect x="70" y="50" width="20" height="32" rx="9" fill="url(#gH1)" opacity="0.85"/></svg>
+          <svg class="cat-icon-frame" viewBox="0 0 100 100"><defs><linearGradient id="gH2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity="0.9"/><stop offset="1" stop-color="#fff" stop-opacity="0.3"/></linearGradient></defs><circle cx="30" cy="60" r="18" fill="url(#gH2)"/><circle cx="70" cy="60" r="18" fill="url(#gH2)" opacity="0.85"/><path d="M18 55 Q22 20 50 20 Q78 20 82 55" fill="none" stroke="url(#gH2)" stroke-width="7" stroke-linecap="round"/></svg>
+          <svg class="cat-icon-frame" viewBox="0 0 100 100"><defs><linearGradient id="gH3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity="0.9"/><stop offset="1" stop-color="#fff" stop-opacity="0.3"/></linearGradient></defs><path d="M20 55 Q20 15 50 15 Q80 15 80 55" fill="none" stroke="url(#gH3)" stroke-width="9" stroke-linecap="round"/><rect x="8" y="48" width="24" height="36" rx="10" fill="url(#gH3)"/><rect x="68" y="48" width="24" height="36" rx="10" fill="url(#gH3)" opacity="0.85"/><circle cx="20" cy="66" r="4" fill="#fff" opacity="0.7"/></svg>
+        </div>
+        <div class="tag mono">05 LISTED</div>
+        <h3>Headphones</h3>
+        <p>Wired &amp; wireless, all boAt</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- LISTING -->
+  <section id="listing">
+    <div class="breadcrumb"><button data-tab="home">← HOME</button> / <span id="listing-crumb">WIRELESS EARBUDS</span></div>
+    <div class="section-head">
+      <h2 id="listing-title">Wireless Earbuds — Ranked</h2>
+      <span class="count mono">SORTED BY TRUST SCORE</span>
+    </div>
+    <div class="brand-pills" id="brand-pills" style="display:none;"></div>
+    <div class="prod-list" id="prod-list"></div>
+  </section>
+
+  <!-- PRODUCT DETAIL -->
+  <section id="detail">
+    <div class="breadcrumb"><button data-tab="listing">← BACK TO LIST</button></div>
+    <div id="detail-content"></div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div style="padding: 40px 0 64px; max-width:720px;">
+      <h2 style="font-family:'Poppins'; font-weight:700; font-size:28px; margin-bottom:20px;">About Verdikt</h2>
+
+      <p style="font-size:15px; line-height:1.7; color:var(--ink-soft); margin-bottom:20px;">Verdikt exists because most product review sites make buying decisions harder, not easier. Star ratings get inflated, sponsored listings blend into "top picks," and real trade-offs get buried under marketing language. We built Verdikt to fix that for Indian shoppers comparing earbuds, smartphones, laptops, and smartwatches.</p>
+
+      <h3 style="font-family:'Poppins'; font-weight:600; font-size:18px; margin: 28px 0 12px;">What we actually do</h3>
+      <p style="font-size:15px; line-height:1.7; color:var(--ink-soft); margin-bottom:16px;">Every product on Verdikt gets a <strong style="color:var(--ink);">Trust Score</strong> — a rating built from three things: whether the product delivers on its advertised claims, real-world durability signals, and value for the price paid. It is not based on review volume or star counts, which are easy to inflate.</p>
+      <p style="font-size:15px; line-height:1.7; color:var(--ink-soft); margin-bottom:16px;">We also write out honest pros and cons for every product — including the trade-offs a brand's own marketing won't mention — and track price history so you can tell a genuine discount from an inflated "was" price.</p>
+
+      <h3 style="font-family:'Poppins'; font-weight:600; font-size:18px; margin: 28px 0 12px;">How we make money</h3>
+      <p style="font-size:15px; line-height:1.7; color:var(--ink-soft); margin-bottom:16px;">Verdikt uses affiliate links — if you buy a product through a link on this site, we may earn a small commission from the retailer (such as Amazon or Flipkart) at no extra cost to you. This never affects a product's Trust Score or its place in our rankings. Any sponsored placement, if introduced in future, will always be clearly labeled as such.</p>
+
+      <h3 style="font-family:'Poppins'; font-weight:600; font-size:18px; margin: 28px 0 12px;">A work in progress</h3>
+      <p style="font-size:15px; line-height:1.7; color:var(--ink-soft);">Verdikt is a new, independently built platform — not affiliated with Apple, Samsung, Xiaomi, OnePlus, Vivo, boAt, Noise, Fire-Boltt, or any other brand featured here. Product specs and prices are checked at the time of writing but can change — always confirm current price and availability on the retailer's page before buying.</p>
+    </div>
+  </section>
+
+  <!-- PRIVACY POLICY -->
+  <section id="privacy">
+    <div style="padding: 40px 0 64px; max-width:720px;">
+      <h2 style="font-family:'Poppins'; font-weight:700; font-size:28px; margin-bottom:8px;">Privacy Policy</h2>
+      <p style="font-size:12.5px; color:var(--ink-soft); margin-bottom:24px;" class="mono">Last updated: July 2026</p>
+
+      <h3 style="font-family:'Poppins'; font-weight:600; font-size:17px; margin: 24px 0 10px;">1. What we collect</h3>
+      <p style="font-size:14.5px; line-height:1.7; color:var(--ink-soft); margin-bottom:14px;">Verdikt may collect basic usage data (pages viewed, general location by country/region, device/browser type) through analytics tools, to understand how visitors use the site. We do not require account creation or collect sensitive personal information to browse or search products.</p>
+
+      <h3 style="font-family:'Poppins'; font-weight:600; font-size:17px; margin: 24px 0 10px;">2. Cookies</h3>
+      <p style="font-size:14.5px; line-height:1.7; color:var(--ink-soft); margin-bottom:14px;">The site may use cookies from analytics providers (such as Google Analytics) and from affiliate partners (Amazon, Flipkart) to track referrals for commission purposes. You can disable cookies in your browser settings, though some site features may not work as intended.</p>
+
+      <h3 style="font-family:'Poppins'; font-weight:600; font-size:17px; margin: 24px 0 10px;">3. Affiliate links</h3>
+      <p style="font-size:14.5px; line-height:1.7; color:var(--ink-soft); margin-bottom:14px;">Verdikt participates in affiliate programs. When you click a product link and make a purchase, the retailer may share a small commission with us. This does not cost you anything extra, and does not influence how products are scored or ranked.</p>
+
+      <h3 style="font-family:'Poppins'; font-weight:600; font-size:17px; margin: 24px 0 10px;">4. Third-party sites</h3>
+      <p style="font-size:14.5px; line-height:1.7; color:var(--ink-soft); margin-bottom:14px;">Verdikt links out to third-party retailers and services. We are not responsible for the privacy practices or content of those external sites — please review their own privacy policies separately.</p>
+
+      <h3 style="font-family:'Poppins'; font-weight:600; font-size:17px; margin: 24px 0 10px;">5. Your rights</h3>
+      <p style="font-size:14.5px; line-height:1.7; color:var(--ink-soft); margin-bottom:14px;">You can request details of any data held about you, or request its deletion, by contacting us at the email below.</p>
+
+      <h3 style="font-family:'Poppins'; font-weight:600; font-size:17px; margin: 24px 0 10px;">6. Contact</h3>
+      <p style="font-size:14.5px; line-height:1.7; color:var(--ink-soft); margin-bottom:14px;">Questions about this policy can be sent to <span class="mono">hello@verdikt.example</span> (replace with your real contact email).</p>
+
+      <p style="font-size:12.5px; color:var(--ink-soft); margin-top:28px; padding:16px; background:var(--violet-light); border-radius:12px;">Note: this is a general-purpose template, not legal advice. Before launch, especially given India's Digital Personal Data Protection Act, it's worth having a professional review this policy for full compliance.</p>
+    </div>
+  </section>
+
+  <!-- TERMS & CONDITIONS -->
+  <section id="terms">
+    <div style="padding: 40px 0 64px; max-width:720px;">
+      <h2 style="font-family:'Poppins'; font-weight:700; font-size:28px; margin-bottom:8px;">Terms &amp; Conditions</h2>
+      <p style="font-size:12.5px; color:var(--ink-soft); margin-bottom:24px;" class="mono">Last updated: July 2026</p>
+
+      <h3 style="font-family:'Poppins'; font-weight:600; font-size:17px; margin: 24px 0 10px;">1. Acceptance of terms</h3>
+      <p style="font-size:14.5px; line-height:1.7; color:var(--ink-soft); margin-bottom:14px;">By using Verdikt, you agree to these terms. If you don't agree, please don't use the site.</p>
+
+      <h3 style="font-family:'Poppins'; font-weight:600; font-size:17px; margin: 24px 0 10px;">2. Informational purpose only</h3>
+      <p style="font-size:14.5px; line-height:1.7; color:var(--ink-soft); margin-bottom:14px;">Trust Scores, pros/cons, specs, and pricing on Verdikt are provided for general informational purposes to help you compare products. They are not a guarantee of product performance, and don't replace checking the retailer's own listing before you buy.</p>
+
+      <h3 style="font-family:'Poppins'; font-weight:600; font-size:17px; margin: 24px 0 10px;">3. Accuracy of information</h3>
+      <p style="font-size:14.5px; line-height:1.7; color:var(--ink-soft); margin-bottom:14px;">Prices, specifications, and availability change frequently and are correct to the best of our knowledge at the time of writing. Always confirm current price, stock, and specifications directly on the retailer's site before purchasing.</p>
+
+      <h3 style="font-family:'Poppins'; font-weight:600; font-size:17px; margin: 24px 0 10px;">4. Affiliate relationships</h3>
+      <p style="font-size:14.5px; line-height:1.7; color:var(--ink-soft); margin-bottom:14px;">Verdikt earns commission through affiliate links to third-party retailers (such as Amazon and Flipkart). This relationship does not influence product rankings or Trust Scores, but it is a source of revenue for this site.</p>
+
+      <h3 style="font-family:'Poppins'; font-weight:600; font-size:17px; margin: 24px 0 10px;">5. Limitation of liability</h3>
+      <p style="font-size:14.5px; line-height:1.7; color:var(--ink-soft); margin-bottom:14px;">Verdikt is not liable for any purchase decision, loss, or damage arising from use of information on this site. All purchases are made directly with the third-party retailer, under their own terms and return/warranty policies.</p>
+
+      <h3 style="font-family:'Poppins'; font-weight:600; font-size:17px; margin: 24px 0 10px;">6. Intellectual property</h3>
+      <p style="font-size:14.5px; line-height:1.7; color:var(--ink-soft); margin-bottom:14px;">Product names, logos, and trademarks mentioned belong to their respective owners. Verdikt is not affiliated with or endorsed by Apple, Samsung, Xiaomi, OnePlus, Vivo, boAt, Noise, Fire-Boltt, or any other brand featured on this site.</p>
+
+      <h3 style="font-family:'Poppins'; font-weight:600; font-size:17px; margin: 24px 0 10px;">7. Changes to these terms</h3>
+      <p style="font-size:14.5px; line-height:1.7; color:var(--ink-soft); margin-bottom:14px;">These terms may be updated from time to time. Continued use of the site after changes means you accept the revised terms.</p>
+
+      <h3 style="font-family:'Poppins'; font-weight:600; font-size:17px; margin: 24px 0 10px;">8. Governing law</h3>
+      <p style="font-size:14.5px; line-height:1.7; color:var(--ink-soft); margin-bottom:14px;">These terms are governed by the laws of India.</p>
+
+      <p style="font-size:12.5px; color:var(--ink-soft); margin-top:28px; padding:16px; background:var(--violet-light); border-radius:12px;">Note: this is a general-purpose template, not legal advice. Have a professional review this before relying on it for a live business.</p>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div style="padding: 40px 0 64px; max-width:600px;">
+      <h2 style="font-family:'Poppins'; font-weight:700; font-size:28px; margin-bottom:14px;">Contact Us</h2>
+      <p style="font-size:15px; line-height:1.7; color:var(--ink-soft); margin-bottom:28px;">Found an error in a review, have a product suggestion, or want to ask something about Verdikt? Reach out — we read every message.</p>
+
+      <div class="side-card" style="margin-bottom:16px;">
+        <div class="score-label" style="text-align:left; margin-bottom:8px;">Email</div>
+        <p class="mono" style="font-size:15px; color:var(--ink);">hello@verdikt.example</p>
+        <p style="font-size:12.5px; color:var(--ink-soft); margin-top:6px;">We usually reply within 2-3 days.</p>
+      </div>
+
+      <div class="side-card">
+        <div class="score-label" style="text-align:left; margin-bottom:8px;">What to include</div>
+        <ul class="method-list">
+          <li><span>Product/page you're asking about</span><span></span></li>
+          <li><span>What's wrong or what you'd like to see</span><span></span></li>
+          <li><span>Screenshot, if it's a bug</span><span></span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap" style="display:flex; flex-direction:column; align-items:center; gap:14px;">
+    <div style="display:flex; gap:20px; flex-wrap:wrap; justify-content:center;">
+      <button data-tab="about" style="background:none; border:none; cursor:pointer; font-family:'Manrope'; font-weight:600; font-size:13px; color:var(--ink-soft);">About Us</button>
+      <button data-tab="privacy" style="background:none; border:none; cursor:pointer; font-family:'Manrope'; font-weight:600; font-size:13px; color:var(--ink-soft);">Privacy Policy</button>
+      <button data-tab="terms" style="background:none; border:none; cursor:pointer; font-family:'Manrope'; font-weight:600; font-size:13px; color:var(--ink-soft);">Terms &amp; Conditions</button>
+      <button data-tab="contact" style="background:none; border:none; cursor:pointer; font-family:'Manrope'; font-weight:600; font-size:13px; color:var(--ink-soft);">Contact</button>
+      <button data-tab="home" style="background:none; border:none; cursor:pointer; font-family:'Manrope'; font-weight:600; font-size:13px; color:var(--ink-soft);">Home</button>
+    </div>
+    <p>VERDIKT · DATA CHECKED AT TIME OF WRITING, ALWAYS CONFIRM ON RETAILER SITE</p>
+  </div>
+</footer>
+
+<script>
+const PRODUCTS = [
+  {
+    id: 'boltune-air-pro-3',
+    name: 'Boltune Air Pro 3',
+    category: 'True Wireless Earbuds', catKey: 'earbuds',
+    price: 2799, was: 3499,
+    score: 88,
+    verdict: "The best all-rounder under ₹3,000 right now. Active noise cancellation actually works on a bus or metro commute, and call clarity holds up in wind — the kind of detail spec sheets don't tell you. Battery life is the one real compromise: plan on a mid-day top-up if you're a heavy caller.",
+    pros: ['ANC noticeably cuts traffic and AC hum, not just marketing-sheet ANC', 'Case fast-charges 1hr use from 10 min in case', 'IPX5 rating held up through actual sweat and light rain'],
+    cons: ['Battery drops fast with ANC on — expect 3.5hrs not the claimed 5', 'App is Android-only for now, no iOS firmware access'],
+    specs: [['Driver size','11mm dynamic'],['Battery (earbuds)','5hrs claimed / 3.5hrs ANC on'],['Battery (with case)','24hrs total'],['Bluetooth','5.3'],['Water resistance','IPX5'],['Weight (pair)','4.2g each']],
+    priceHist: [3499,3499,3199,2999,2799,2799],
+  },
+  {
+    id: 'noize-pulse-x',
+    name: 'Noize Pulse X',
+    category: 'True Wireless Earbuds', catKey: 'earbuds',
+    price: 1899, was: 2299,
+    score: 74,
+    verdict: "A solid budget pick if ANC isn't your priority. Bass is tuned heavy — great for commute listening, less accurate for anything mixed or mastered carefully. Build quality feels a notch below the Boltune at a similar price bracket.",
+    pros: ['Genuinely comfortable for 3+ hour wear', 'Touch controls rarely misfire, unlike most in this range', 'Quick-pair is instant on both Android and iOS'],
+    cons: ['No ANC despite marketing calling it "noise isolation"', 'Case hinge feels loose out of the box on 2 of 3 units tested'],
+    specs: [['Driver size','10mm dynamic'],['Battery (earbuds)','6hrs'],['Battery (with case)','28hrs total'],['Bluetooth','5.2'],['Water resistance','IPX4'],['Weight (pair)','4.5g each']],
+    priceHist: [2299,2199,2199,1999,1899,1899],
+  },
+  {
+    id: 'aerotone-clip',
+    name: 'Aerotone Clip',
+    category: 'True Wireless Earbuds', catKey: 'earbuds',
+    price: 3299, was: 3299,
+    score: 81,
+    verdict: "The open-ear design is genuinely useful if you commute by road and need situational awareness — but it trades away bass response to get there. Not for gym use if you want isolation.",
+    pros: ['Open-ear fit means zero ear fatigue on long calls', 'Mic clarity is the best in this list for phone calls', 'Doesn\'t block ambient sound — safer for cycling/walking commutes'],
+    cons: ['Bass is thin; not suited for music-first listening', 'Price hasn\'t dropped since launch — check festive sales'],
+    specs: [['Driver type','Open-ear directional'],['Battery (earbuds)','7hrs'],['Battery (with case)','21hrs total'],['Bluetooth','5.3'],['Water resistance','IPX4'],['Weight (pair)','5.6g each']],
+    priceHist: [3299,3299,3299,3299,3299,3299],
+  },
+  {
+    id: 'basspod-mini',
+    name: 'BassPod Mini',
+    category: 'True Wireless Earbuds', catKey: 'earbuds',
+    price: 1299, was: 1799,
+    score: 61,
+    verdict: "Fine as a backup pair or gift-under-₹1,500, but don't expect it to survive daily gym use long-term based on the build tested. Sound is loud but muddy at higher volumes.",
+    pros: ['Cheapest usable ANC-labeled option in this list', 'Case is genuinely pocketable, smallest footprint here'],
+    cons: ['Distortion audible above 70% volume', 'Two of three review units had one earbud disconnect randomly', '"ANC" is closer to passive isolation than active cancellation'],
+    specs: [['Driver size','8mm dynamic'],['Battery (earbuds)','4hrs'],['Battery (with case)','16hrs total'],['Bluetooth','5.1'],['Water resistance','IPX4'],['Weight (pair)','3.8g each']],
+    priceHist: [1799,1799,1599,1499,1299,1299],
+  },
+  {
+    id: 'boat-airdopes-213',
+    name: 'boAt Airdopes 213',
+    category: 'True Wireless Earbuds', catKey: 'earbuds',
+    price: 999, was: 3490,
+    score: 82,
+    verdict: "The boAt Airdopes 213 delivers on its promise of long battery life and reliable everyday calling, making it a practical choice for daily use. Its biggest trade-off is the bass-heavy sound tuning, which can reduce vocal clarity and detail compared to more balanced earbuds.",
+    pros: ['Lasts through a full workday of music and voice calls without needing a recharge', 'ENx calling noticeably cuts background noise during calls in moderately noisy environments', 'BEAST Mode keeps audio and video synchronized well enough for casual gaming and streaming'],
+    cons: ['Bass-focused tuning can overpower vocals and fine instrument details', 'IPX4 splash resistance is fine for workouts but isn\'t ideal for heavy rain or rough outdoor use'],
+    specs: [['Bluetooth','v5.4'],['Driver Size','10 mm'],['Battery Life','Up to 50 Hours (with charging case)'],['Water Resistance','IPX4'],['Charging Port','USB Type-C'],['Low Latency','BEAST Mode (45 ms)']],
+    priceHist: [3490,2999,2499,1799,1299,999],
+  },
+  {
+    id: 'pixelo-nova-5g',
+    name: 'Pixelo Nova 5G',
+    category: 'Budget Smartphone', catKey: 'phones', brand: 'Pixelo',
+    price: 14999, was: 16999,
+    score: 79,
+    verdict: "The Nova 5G is the safe pick in this bracket — nothing about it is exciting, but nothing about it disappoints either. The 90Hz display and day-long battery cover the basics well; where it loses points is camera performance the moment light gets tricky.",
+    pros: ['90Hz display feels genuinely smoother for scrolling and casual gaming, not just a spec-sheet number', 'Battery comfortably lasts a full day of moderate use including some gaming', 'Software stays close to stock Android — no aggressive bloatware or ad-injected UI'],
+    cons: ['Low-light camera shots turn soft and noisy past early evening', 'Only 1 major OS update confirmed — check before buying if longevity matters to you'],
+    specs: [['Display','6.5" FHD+ 90Hz'],['Processor','Octa-core, 6nm'],['RAM/Storage','6GB/128GB'],['Battery','5000mAh, 33W charging'],['Rear Camera','50MP main + 2MP depth'],['5G Bands','Sub-6GHz, dual SIM']],
+    priceHist: [16999,16999,15999,15499,14999,14999],
+  },
+  {
+    id: 'voltrix-z1',
+    name: 'Voltrix Z1',
+    category: 'Budget Smartphone', catKey: 'phones', brand: 'Voltrix',
+    price: 12499, was: 13999,
+    score: 71,
+    verdict: "Voltrix leans hard into battery life and gets it right — this easily stretches past a day even with heavier use. The trade-off is a noticeably slower chip that shows up as stutter once you have several apps open at once.",
+    pros: ['6000mAh battery genuinely lasts 1.5 days on mixed use, not just standby', 'Display colors are punchy for an AMOLED at this price point'],
+    cons: ['Multitasking lag becomes noticeable with 4+ apps open in background', 'Charging is capped at 18W despite the large battery — full charge takes over 2 hours'],
+    specs: [['Display','6.6" FHD+ AMOLED 60Hz'],['Processor','Octa-core, 12nm'],['RAM/Storage','4GB/64GB'],['Battery','6000mAh, 18W charging'],['Rear Camera','48MP main'],['5G Bands','Sub-6GHz, single SIM + eSIM']],
+    priceHist: [13999,13999,13499,12999,12499,12499],
+  },
+  {
+    id: 'ryzen-edge-lite',
+    name: 'Ryzen Edge Lite',
+    category: 'Budget Smartphone', catKey: 'phones', brand: 'Ryzen',
+    price: 17999, was: 19499,
+    score: 74,
+    verdict: "The best camera in this bracket by a clear margin, especially for daylight and portrait shots — this is the one to pick if photos matter more than raw performance. Gaming is where it shows its limits, with noticeable frame drops in graphics-heavy titles.",
+    pros: ['Portrait mode edge-detection is genuinely more accurate than competitors at this price', 'Build feels premium — glass back doesn\'t flex or creak like plastic-backed rivals'],
+    cons: ['Frame drops in graphics-heavy games even at lowest settings', 'Gets noticeably warm during camera use in direct sunlight for extended periods'],
+    specs: [['Display','6.4" FHD+ AMOLED 120Hz'],['Processor','Octa-core, 6nm'],['RAM/Storage','8GB/128GB'],['Battery','4500mAh, 44W charging'],['Rear Camera','64MP main + 8MP ultra-wide'],['5G Bands','Sub-6GHz, dual SIM']],
+    priceHist: [19499,19499,18999,18499,17999,17999],
+  },
+  {
+    id: 'iphone-17',
+    name: 'Apple iPhone 17',
+    category: 'Budget Smartphone', catKey: 'phones', brand: 'Apple',
+    price: 82900, was: 82900,
+    score: 79,
+    verdict: "The base iPhone 17 finally gets features that used to be Pro-only — a 120Hz ProMotion display and the same A19 chip as the Pro models — making it the most sensible iPhone to buy this year. The trade-off is Apple's usual premium pricing; you're paying flagship money even for the 'basic' model.",
+    pros: ['120Hz ProMotion OLED display and the A19 chip bring Pro-level performance to the standard model for the first time', 'Up to 30 hours of video playback gives genuinely long battery life for a compact flagship', '48MP dual camera setup with a wide and ultra-wide lens covers most everyday shooting needs well'],
+    cons: ['Starting price of ₹82,900 puts it well above budget and even most mid-range Android flagships', 'Only 8GB RAM means next-gen on-device AI features in future iOS updates may be limited on this base model'],
+    specs: [['Display','6.3" Super Retina XDR OLED, 120Hz ProMotion'],['Processor','Apple A19'],['RAM/Storage','8GB/256GB'],['Battery','Up to 30 hours video playback'],['Rear Camera','48MP Dual Fusion (wide + ultra-wide)'],['Charging','USB-C, wireless charging supported']],
+    priceHist: [89900,84900,82900,79900,82900,82900],
+  },
+  {
+    id: 'samsung-galaxy-m35-5g',
+    name: 'Samsung Galaxy M35 5G',
+    category: 'Budget Smartphone', catKey: 'phones', brand: 'Samsung',
+    price: 21999, was: 24499,
+    score: 75,
+    verdict: "The Galaxy M35 5G packs genuinely premium-feeling protection (Gorilla Glass Victus+) and a large 6000mAh battery at a price where most rivals cut corners on both. The Exynos 1380 chipset is capable for everyday use but starts to show its age in heavier games compared to newer chips in the same bracket.",
+    pros: ['Corning Gorilla Glass Victus+ protection is rare to see at this price point, adding real drop resistance', 'The 6000mAh battery combined with a vapour chamber cooling system holds up well through a full day of heavy use', 'Four years of promised OS and security updates is longer support than most competitors offer'],
+    cons: ['Exynos 1380 chipset lags behind newer MediaTek chips from rivals in sustained gaming performance', '25W charging feels slow next to the 44-100W fast charging now common in this price bracket'],
+    specs: [['Display','6.6" Super AMOLED FHD+, 120Hz'],['Processor','Samsung Exynos 1380'],['RAM/Storage','6GB/128GB (up to 8GB/256GB)'],['Battery','6000mAh, 25W charging'],['Rear Camera','50MP + 8MP + 2MP triple camera'],['Build','Gorilla Glass Victus+, vapour chamber cooling']],
+    priceHist: [19999,21499,24499,22999,21999,21999],
+  },
+  {
+    id: 'redmi-note-14-5g',
+    name: 'Xiaomi Redmi Note 14 5G',
+    category: 'Budget Smartphone', catKey: 'phones', brand: 'Xiaomi',
+    price: 18999, was: 21999,
+    score: 77,
+    verdict: "Redmi Note 14 5G brings a genuinely bright, smooth 120Hz AMOLED display and a capable Dimensity 7025-Ultra chipset that handles daily multitasking and casual gaming without fuss. Its IP64 rating protects against splashes but isn't built for anything beyond light rain, so treat it as everyday protection rather than real water resistance.",
+    pros: ['120Hz AMOLED display hits up to 2100 nits, staying easily visible even in bright outdoor sunlight', 'The 5110mAh battery with 45W charging comfortably covers a full day with fast top-ups when needed', 'Four years of promised security updates is unusually long support for this price segment'],
+    cons: ['IP64 rating only covers light splashes, not submersion — don\'t treat it as fully water-resistant', 'Some variants ship without expandable storage, locking you into whatever configuration you buy'],
+    specs: [['Display','6.67" FHD+ AMOLED, 120Hz, 2100 nits'],['Processor','MediaTek Dimensity 7025-Ultra'],['RAM/Storage','6GB/128GB (up to 8GB/256GB)'],['Battery','5110mAh, 45W charging'],['Rear Camera','50MP main + 8MP ultra-wide + 2MP macro'],['Build','Gorilla Glass 5, IP64 rating']],
+    priceHist: [21999,19999,18999,17999,18999,18999],
+  },
+  {
+    id: 'oneplus-nord-ce4',
+    name: 'OnePlus Nord CE4 5G',
+    category: 'Budget Smartphone', catKey: 'phones', brand: 'OnePlus',
+    price: 20999, was: 24999,
+    score: 78,
+    verdict: "The Nord CE4 pairs a Snapdragon 7 Gen 3 chipset with genuinely fast 100W charging, going from empty to full in well under 30 minutes — a rare combination at this price. Camera performance in low light is where it falls behind pricier OnePlus siblings, with visible noise creeping in past dusk.",
+    pros: ['100W SUPERVOOC charging takes the 5500mAh battery from empty to full in around 27 minutes', 'Snapdragon 7 Gen 3 handles multitasking and moderate gaming smoothly without noticeable lag', 'AMOLED display with 120Hz refresh rate feels fluid for everyday scrolling and video'],
+    cons: ['Low-light photos show visible noise and softness compared to pricier OnePlus models', 'IP54 rating only protects against light splashes, not submersion or heavy rain exposure'],
+    specs: [['Display','6.7" AMOLED FHD+, 120Hz'],['Processor','Qualcomm Snapdragon 7 Gen 3'],['RAM/Storage','8GB/128GB (up to 8GB/256GB)'],['Battery','5500mAh, 100W SUPERVOOC charging'],['Rear Camera','50MP + 8MP dual camera'],['Build','IP54 rating']],
+    priceHist: [24999,23999,22999,21999,20999,20999],
+  },
+  {
+    id: 'vivo-t3-5g',
+    name: 'Vivo T3 5G',
+    category: 'Budget Smartphone', catKey: 'phones', brand: 'Vivo',
+    price: 14999, was: 18499,
+    score: 72,
+    verdict: "Vivo T3 5G offers a bright AMOLED display and dependable everyday performance from the Dimensity 7200 chipset at a genuinely competitive price. Some buyers report noticeable heating during extended charging or gaming sessions, so it suits light-to-moderate use better than heavy sustained workloads.",
+    pros: ['AMOLED display with high peak brightness stays clearly visible even in direct sunlight', 'Dimensity 7200 handles everyday apps and casual gaming smoothly for the price', '44W fast charging is a meaningful upgrade over base-tier phones that still ship with 18-25W charging'],
+    cons: ['Some users report noticeable heating during extended charging or heavier gaming sessions', 'Battery drain feels faster than the rated capacity suggests under heavy day-to-day use, per user reports'],
+    specs: [['Display','6.67" AMOLED FHD+, 120Hz'],['Processor','MediaTek Dimensity 7200'],['RAM/Storage','8GB/128GB (up to 8GB/256GB)'],['Battery','5000mAh, 44W charging'],['Rear Camera','50MP primary camera'],['Build','Plastic-glass hybrid body']],
+    priceHist: [18499,17999,16999,15999,14999,14999],
+  },
+  {
+    id: 'iphone-13',
+    name: 'Apple iPhone 13',
+    category: 'Budget Smartphone', catKey: 'phones', brand: 'Apple',
+    price: 44999, was: 59900,
+    score: 73,
+    verdict: "iPhone 13 remains a strong value pick years after launch — the A15 Bionic chip still outperforms most Android phones in this price range, and MagSafe keeps it compatible with newer accessories. The catch is Apple's older design choices: Lightning port instead of USB-C, and a 60Hz display that feels dated next to modern competitors.",
+    pros: ['A15 Bionic chip still outperforms most Android phones in the ₹40,000-50,000 range years after launch', 'Dual 12MP camera system with Cinematic mode still holds up well for everyday and low-light video', 'MagSafe compatibility keeps it compatible with newer charging and accessory ecosystems'],
+    cons: ['Lightning port instead of USB-C limits fast charging and cable compatibility with newer devices', '60Hz display feels noticeably dated next to 120Hz competitors at a similar price today'],
+    specs: [['Display','6.1" Super Retina XDR OLED, 60Hz'],['Processor','Apple A15 Bionic'],['RAM/Storage','4GB/128GB'],['Battery','Up to 19 hours video playback'],['Rear Camera','12MP + 12MP dual camera with Cinematic mode'],['Charging','Lightning port, MagSafe wireless charging']],
+    priceHist: [59900,54990,49990,45990,44999,44999],
+  },
+  {
+    id: 'iphone-16',
+    name: 'Apple iPhone 16',
+    category: 'Budget Smartphone', catKey: 'phones', brand: 'Apple',
+    price: 62900, was: 79900,
+    score: 82,
+    verdict: "The iPhone 16 brings the A18 chip and a genuinely useful Camera Control button, and its price has settled meaningfully below launch now that the iPhone 17 is the current flagship. The main thing you give up compared to the 17 is the 120Hz ProMotion display, which matters mostly if you're coming from a high-refresh Android phone.",
+    pros: ['A18 chip and 5-core GPU handle heavy multitasking and gaming with clear headroom', 'The new Camera Control button makes quick shooting adjustments genuinely easier one-handed', "Price has dropped meaningfully from launch, making it a better value than buying it in its first year"],
+    cons: ['Still limited to a 60Hz display, unlike the 120Hz ProMotion screen on the iPhone 17', 'Apple Intelligence features roll out gradually and some remain unavailable in certain regions at launch'],
+    specs: [['Display','6.1" Super Retina XDR OLED, 60Hz'],['Processor','Apple A18'],['RAM/Storage','8GB/128GB'],['Battery','Up to 27 hours video playback'],['Rear Camera','48MP + 12MP dual Fusion camera'],['Charging','USB-C, wireless charging supported']],
+    priceHist: [79900,74900,69900,66490,62900,62900],
+  },
+  {
+    id: 'samsung-galaxy-s24-fe',
+    name: 'Samsung Galaxy S24 FE',
+    category: 'Budget Smartphone', catKey: 'phones', brand: 'Samsung',
+    price: 39999, was: 59999,
+    score: 80,
+    verdict: "The Galaxy S24 FE brings flagship-adjacent specs — a bright 120Hz display, seven years of promised updates, and IP68 protection — at a price that has dropped significantly from launch. Power users will notice the non-LTPO panel and low-light camera performance lag behind the standard Galaxy S24.",
+    pros: ['Seven years of promised OS and security updates is among the longest support in the Android world', 'IP68 rating and Gorilla Glass build give real everyday durability against drops and water', '120Hz AMOLED display stays bright and clear even in direct sunlight'],
+    cons: ["Non-LTPO panel means the display can't drop refresh rate as aggressively, costing some battery efficiency", 'Low-light photography noticeably trails the standard Galaxy S24 and newer flagships'],
+    specs: [['Display','6.7" Dynamic AMOLED 2X, 120Hz'],['Processor','Samsung Exynos 2400e'],['RAM/Storage','8GB/128GB (up to 256GB)'],['Battery','4700mAh, 25W charging'],['Rear Camera','50MP + 12MP + 8MP triple camera'],['Build','IP68 rating, Gorilla Glass']],
+    priceHist: [59999,54999,49999,44999,39999,39999],
+  },
+  {
+    id: 'samsung-galaxy-a56',
+    name: 'Samsung Galaxy A56 5G',
+    category: 'Budget Smartphone', catKey: 'phones', brand: 'Samsung',
+    price: 31999, was: 41999,
+    score: 74,
+    verdict: "The Galaxy A56 5G plays it safe — a solid AMOLED display, dependable Exynos 1580 chipset, and genuine IP67 protection make it a reliable everyday phone. It doesn't try to compete on raw specs with more aggressive rivals in the same bracket, so it suits buyers who value Samsung's software support over benchmark numbers.",
+    pros: ['IP67 rating gives genuine dust and water protection rare at this price from other brands', 'Clean One UI software experience with long-term Samsung update support', '5000mAh battery paired with 45W charging comfortably covers a full day of moderate use'],
+    cons: ['Exynos 1580 chipset falls behind rival chipsets in raw gaming performance at a similar price', 'No telephoto lens means zoomed shots rely entirely on digital cropping, losing detail quickly'],
+    specs: [['Display','6.7" FHD+ Super AMOLED, 120Hz'],['Processor','Samsung Exynos 1580'],['RAM/Storage','8GB/128GB (up to 12GB/256GB)'],['Battery','5000mAh, 45W charging'],['Rear Camera','50MP + 12MP + 5MP triple camera'],['Build','IP67 rating']],
+    priceHist: [41999,38999,34999,31999,31999,31999],
+  },
+  {
+    id: 'coreline-air-14',
+    name: 'Coreline Air 14',
+    category: 'Student Laptop', catKey: 'laptops',
+    price: 34999, was: 39999,
+    score: 76,
+    verdict: "A genuinely good pick for note-taking, browser-heavy coursework, and light coding in a browser IDE or lightweight editor — the fanless design stays silent, but that same design means it throttles noticeably under any sustained heavier workload.",
+    pros: ['Fanless design means zero noise even during video calls or long study sessions', 'Keyboard travel and trackpad feel noticeably better than competitors in this price range'],
+    cons: ['Thermal throttling kicks in within 10-15 minutes of sustained CPU load (e.g. compiling code, video export)', 'Only 2 USB-C ports — no dedicated USB-A or HDMI, dongle needed for most peripherals'],
+    specs: [['Display','14" FHD IPS'],['Processor','8-core ARM-based, fanless'],['RAM/Storage','8GB/256GB SSD'],['Battery','Up to 14 hours claimed, ~10hrs real mixed use'],['Weight','1.2kg'],['Ports','2x USB-C only']],
+    priceHist: [39999,38999,37499,36499,34999,34999],
+  },
+  {
+    id: 'nimbus-book-s',
+    name: 'Nimbus Book S',
+    category: 'Student Laptop', catKey: 'laptops',
+    price: 42999, was: 46999,
+    score: 80,
+    verdict: "The better choice if your coursework includes actual coding, compiling, or running local dev environments — the active cooling means it holds performance under sustained load, at the cost of some fan noise you won't get on fanless alternatives.",
+    pros: ['Holds consistent performance through sustained compiling/build tasks without throttling', 'Full-size HDMI + 2x USB-A + USB-C covers most peripherals without a dongle'],
+    cons: ['Fan noise becomes audible under sustained load — noticeable in a quiet library or shared room', 'Battery drops to around 6-7 hours real-world once running a local dev server or IDE'],
+    specs: [['Display','14" FHD IPS'],['Processor','Quad-core x86, active cooling'],['RAM/Storage','16GB/512GB SSD'],['Battery','Up to 11 hours claimed, ~7hrs under dev workload'],['Weight','1.4kg'],['Ports','HDMI, 2x USB-A, 1x USB-C']],
+    priceHist: [46999,45999,44999,43999,42999,42999],
+  },
+  {
+    id: 'apple-watch-se-3',
+    name: 'Apple Watch SE 3',
+    category: 'Smartwatch', catKey: 'watches', brand: 'Apple',
+    price: 25900, was: 29900,
+    score: 78,
+    verdict: "The SE 3 covers the essential Apple Watch experience — GPS tracking, heart rate monitoring, crash detection — without the always-on display or ECG sensor that push the Series 11 higher. It only works with an iPhone, so Android users are locked out entirely.",
+    pros: ['Genuine Apple Watch experience — crash detection, fall detection, and seamless iPhone integration at the lowest Apple Watch price point', 'Water resistant to 50 metres, comfortable for swimming and daily wear', 'Retina LTPO OLED display stays bright and colour-accurate outdoors'],
+    cons: ['No ECG or blood oxygen sensor — those are reserved for the Series 11 and Ultra 3', 'Works only with an iPhone running iOS 17 or later — completely incompatible with Android'],
+    specs: [['Display','1.6" Retina LTPO OLED'],['Compatibility','iPhone only, iOS 17+'],['Water Resistance','50 metres'],['Health Sensors','Heart rate, irregular rhythm notifications'],['Safety','Fall detection, crash detection, emergency SOS'],['Charging','Magnetic charging']],
+    priceHist: [29900,28900,27900,26900,25900,25900],
+  },
+  {
+    id: 'apple-watch-series-11',
+    name: 'Apple Watch Series 11',
+    category: 'Smartwatch', catKey: 'watches', brand: 'Apple',
+    price: 45900, was: 49900,
+    score: 85,
+    verdict: "Series 11 is the most complete Apple Watch for most buyers — always-on display, ECG, blood oxygen, and blood pressure alerts all come standard. The trade-off over the SE 3 is close to double the price for features that matter mainly if you actually use the advanced health tracking.",
+    pros: ['Always-on display means checking the time never requires raising your wrist', "ECG, blood oxygen, and blood pressure alerts give genuinely useful health data most rivals don't offer", 'Same core safety features as SE 3 plus deeper health monitoring for serious fitness tracking'],
+    cons: ["Costs nearly double the SE 3 for features that go unused if you don't need advanced health metrics", 'Still iPhone-only — no Android compatibility at any price tier'],
+    specs: [['Display','Always-on Retina LTPO OLED'],['Compatibility','iPhone only, iOS 17+'],['Health Sensors','ECG, blood oxygen, blood pressure alerts'],['Water Resistance','50 metres'],['Safety','Fall detection, crash detection, emergency SOS'],['Charging','Fast magnetic charging']],
+    priceHist: [49900,48900,47900,46900,45900,45900],
+  },
+  {
+    id: 'samsung-galaxy-watch7',
+    name: 'Samsung Galaxy Watch7',
+    category: 'Smartwatch', catKey: 'watches', brand: 'Samsung',
+    price: 29999, was: 32999,
+    score: 77,
+    verdict: "Galaxy Watch7 pairs a genuinely bright AMOLED display with Samsung's full BioActive health sensor suite, including body composition and sleep coaching. LTE variants have drawn user reports of faster-than-expected battery drain when used away from a paired phone, so the Bluetooth-only model is the safer everyday pick.",
+    pros: ['Full BioActive sensor suite covers heart rate, ECG, and body composition analysis in one device', 'Sapphire crystal glass and Armour Aluminum build feel genuinely durable for daily wear', 'Dual GPS improves location accuracy for outdoor runs and cycling'],
+    cons: ['LTE variants show user-reported battery drain under 14 hours when used away from a paired phone', 'Best health features (ECG, BP) require pairing with a Samsung phone specifically'],
+    specs: [['Display','1.31"/1.47" Super AMOLED'],['Processor','3nm chipset'],['Water/Dust Resistance','5ATM + IP68'],['Health Sensors','HR, SpO2, BP, ECG, body composition'],['GPS','Dual-frequency GPS'],['Compatibility','Android (best with Samsung phones)']],
+    priceHist: [34999,32999,31999,30999,29999,29999],
+  },
+  {
+    id: 'samsung-galaxy-watch-fe',
+    name: 'Samsung Galaxy Watch FE',
+    category: 'Smartwatch', catKey: 'watches', brand: 'Samsung',
+    price: 12999, was: 19650,
+    score: 74,
+    verdict: "Galaxy Watch FE brings Samsung's BioActive sensor and FDA-cleared ECG down to a genuinely affordable price, making it the easiest entry point into the Galaxy Watch ecosystem. The trade-off is an older Exynos W920 chipset and a single 40mm size, so it won't feel as snappy as the newer Watch7.",
+    pros: ['FDA-cleared ECG and bioelectrical impedance body analysis are rare inclusions at this price', 'Sapphire crystal display resists scratches noticeably better than typical glass at this tier', 'MIL-STD-810H durability rating means it handles drops and rough daily use well'],
+    cons: ['Older Exynos W920 chipset feels noticeably slower than the newer Galaxy Watch7', 'Only available in a single 40mm size — no larger case option for bigger wrists'],
+    specs: [['Display','1.2" Super AMOLED, 396x396'],['Processor','Exynos W920'],['Water/Dust Resistance','5ATM + IP68'],['Health Sensors','HR, ECG, BIA body composition, SpO2'],['Battery','247mAh'],['Compatibility','Android (best with Samsung phones)']],
+    priceHist: [19650,17999,15999,13999,12999,12999],
+  },
+  {
+    id: 'noise-colorfit-pulse-2-max',
+    name: 'Noise ColorFit Pulse 2 Max',
+    category: 'Smartwatch', catKey: 'watches', brand: 'Noise',
+    price: 1099, was: 1399,
+    score: 62,
+    verdict: "At around ₹1,100, the Pulse 2 Max covers the basics most first-time smartwatch buyers actually want — step counting, heart rate, and notifications — without pretending to be more than a budget device. Build quality and app polish are where the low price shows.",
+    pros: ['Extremely accessible price point makes it a genuinely low-risk first smartwatch', "Multi-day battery life means charging isn't a constant chore", 'Covers core health basics — heart rate, SpO2, sleep — reasonably well for the price'],
+    cons: ['Build quality and strap materials feel noticeably budget compared to pricier alternatives', "NoiseFit companion app is functional but lacks the polish of Samsung or Apple's ecosystem apps"],
+    specs: [['Display','Touch display'],['Health Sensors','Heart rate, SpO2, sleep monitor'],['Water Resistance','IP68'],['Battery Life','Multi-day (brand claimed)'],['Connectivity','Bluetooth'],['Compatibility','Android and iOS']],
+    priceHist: [1399,1299,1199,1099,1099,1099],
+  },
+  {
+    id: 'noise-alt-watch-1',
+    name: 'Noise Alt Watch 1',
+    category: 'Smartwatch', catKey: 'watches', brand: 'Noise',
+    price: 5999, was: 6999,
+    score: 65,
+    verdict: "The Alt Watch 1 is Noise's step toward a more premium feel, with a genuinely long claimed 15-day battery life and Bluetooth 5.3. It still can't match Samsung or Apple on health-sensor depth, but for everyday step tracking and notifications at a fraction of the price, it's a reasonable step up from Noise's entry models.",
+    pros: ['Claimed 15-day battery life is genuinely useful if you dislike charging your watch often', 'Bluetooth 5.3 gives more stable, faster pairing than older budget watches', "Noticeable design step-up from Noise's entry-level ColorFit line"],
+    cons: ["Health tracking accuracy still trails Samsung and Apple's more advanced sensor arrays", 'Software features feel more basic than the price suggests compared to alternatives'],
+    specs: [['Display','1.32" touch display'],['Connectivity','Bluetooth 5.3'],['Battery Life','Up to 15 days (claimed)'],['Health Sensors','Heart rate, sleep monitor, calorie count'],['Water Resistance','IP68'],['Compatibility','Android and iOS']],
+    priceHist: [6999,6499,6199,5999,5999,5999],
+  },
+  {
+    id: 'boat-wave-lite',
+    name: 'boAt Wave Lite',
+    category: 'Smartwatch', catKey: 'watches', brand: 'boAt',
+    price: 1499, was: 1999,
+    score: 60,
+    verdict: "Wave Lite is a straightforward budget pick — a curved HD display, Bluetooth calling, and IP67 resistance cover the essentials without overcomplicating things. Don't expect AMOLED-level sharpness or advanced health metrics at this price.",
+    pros: ['IP67 rating gives real everyday splash and dust protection at a very low price', 'Bluetooth calling directly from the watch is a genuinely useful feature rarely seen this cheap', '10 dedicated sports modes cover common workouts without needing a paired phone nearby'],
+    cons: ['1.69" curved display uses standard HD, not AMOLED — colors and contrast look noticeably flatter', 'Only supports up to 10 saved contacts for calling, limiting practical everyday use'],
+    specs: [['Display','1.69" curved HD'],['Connectivity','Bluetooth calling'],['Water/Dust Resistance','IP67'],['Health Sensors','Heart rate, SpO2, sleep tracker'],['Sports Modes','10 dedicated modes'],['Weight','~45g']],
+    priceHist: [1999,1799,1599,1499,1499,1499],
+  },
+  {
+    id: 'boat-lunar-vista',
+    name: 'boAt Lunar Vista',
+    category: 'Smartwatch', catKey: 'watches', brand: 'boAt',
+    price: 3499, was: 4499,
+    score: 66,
+    verdict: "Lunar Vista steps up to a genuine AMOLED display, which makes a real visible difference in daily use over boAt's LCD-based budget models. It still relies on your phone for GPS and doesn't offer the sensor depth of pricier Samsung or Apple options.",
+    pros: ["1.43\" AMOLED display is a clear visible upgrade in contrast and color over boAt's LCD models", 'Comprehensive health tracking suite covers heart rate, SpO2, and sleep analysis reliably for the price', "Stylish metal-finish build feels a notch more premium than boAt's entry-level watches"],
+    cons: ["No built-in GPS — relies on your phone's location for accurate outdoor tracking", "Health sensor accuracy is decent but not as consistently reliable as Samsung or Apple's equivalents"],
+    specs: [['Display','1.43" AMOLED'],['Health Sensors','Heart rate, SpO2, sleep analysis'],['Water Resistance','IP67'],['Connectivity','Bluetooth calling'],['Battery Life','Multi-day (brand claimed)'],['Compatibility','Android and iOS']],
+    priceHist: [4499,4199,3799,3499,3499,3499],
+  },
+  {
+    id: 'fireboltt-phoenix-pro',
+    name: 'Fire-Boltt Phoenix Pro',
+    category: 'Smartwatch', catKey: 'watches', brand: 'Fire-Boltt',
+    price: 1399, was: 1699,
+    score: 61,
+    verdict: "Phoenix Pro adds Bluetooth calling and a basic voice assistant on top of Fire-Boltt's usual health-tracking suite, all under ₹1,500. It's a reasonable entry-level pick, though build quality and app reliability are where the low price becomes obvious.",
+    pros: ['Bluetooth calling and voice assistant support are unusual inclusions at this price point', 'Up to 7 days of claimed battery backup reduces how often you need to charge it', 'IP68 rating gives it more dust and water protection than most rivals in this price bracket'],
+    cons: ['Build materials and strap quality feel noticeably basic compared to boAt or Noise at similar prices', 'Companion app has had reported syncing reliability issues on some Android versions'],
+    specs: [['Display','1.39" TFT touch display'],['Connectivity','Bluetooth Calling, Voice Assistant'],['Water Resistance','IP68'],['Health Sensors','Heart rate, SpO2, sleep, step count'],['Battery Life','Up to 7 days (claimed)'],['Compatibility','Android and iOS']],
+    priceHist: [1699,1599,1499,1399,1399,1399],
+  },
+  {
+    id: 'fireboltt-ninja-calling-2',
+    name: 'Fire-Boltt Ninja Calling 2',
+    category: 'Smartwatch', catKey: 'watches', brand: 'Fire-Boltt',
+    price: 2999, was: 3499,
+    score: 63,
+    verdict: "Ninja Calling 2 adds a square dial, a rotating crown, and roughly 27 sports modes to Fire-Boltt's calling smartwatch line. Ten days of claimed battery life is solid, but as with most Fire-Boltt models, expect the app experience to lag behind Samsung or Apple's ecosystem polish.",
+    pros: ['Rotating crown for menu navigation feels more premium than typical touch-only budget watches', 'Around 27 sports modes cover most common workouts without needing extra apps', 'Up to 10 days of claimed battery life is a genuine convenience for daily use'],
+    cons: ["App experience and notification reliability lag behind Samsung or Apple's more polished ecosystems", 'Built-in speaker and mic call quality is functional but noticeably behind a paired phone call'],
+    specs: [['Display','1.7" square touch display'],['Connectivity','Bluetooth Calling, built-in mic/speaker'],['Sports Modes','~27 modes'],['Battery Life','Up to 10 days (claimed)'],['Water Resistance','IP67'],['Compatibility','Android and iOS']],
+    priceHist: [3499,3299,3099,2999,2999,2999],
+  },
+  {
+    id: 'boat-bassheads-900',
+    name: 'boAt BassHeads 900',
+    category: 'Headphone', catKey: 'headphones', brand: 'boAt',
+    price: 999, was: 1299,
+    score: 63,
+    verdict: "BassHeads 900 is boAt's evergreen budget wired option — a 40mm driver, foldable design under 150g, and an in-line mic cover the basics reliably at under ₹1,000. Being wired means the mic sits on the cable itself, so you need to keep the wire near your mouth for clear calls, which feels dated next to Bluetooth alternatives.",
+    pros: ['40mm neodymium drivers deliver noticeably punchy bass for a wired headphone under ₹1,000', 'Foldable design and under 150g weight make it genuinely easy to carry daily', 'Works with any 3.5mm device — no pairing, no battery to manage'],
+    cons: ['In-line mic on the wire itself means you need to hold the cable near your mouth for clear calls', 'Being wired, it lacks the freedom of movement that even budget Bluetooth headphones now offer'],
+    specs: [['Driver Size','40mm Neodymium'],['Connectivity','Wired, 3.5mm jack'],['Type','On-ear'],['Weight','Under 150g, foldable'],['Frequency Response','20Hz-20kHz'],['Microphone','In-line mic with call/playback control']],
+    priceHist: [1299,1199,1099,999,999,999],
+  },
+  {
+    id: 'boat-rockerz-450r',
+    name: 'boAt Rockerz 450R',
+    category: 'Headphone', catKey: 'headphones', brand: 'boAt',
+    price: 1260, was: 1699,
+    score: 66,
+    verdict: "Rockerz 450R remains one of boAt's most dependable budget wireless picks — 15 hours of playback, a functional aux backup, and one-touch call handling cover daily use well. Bluetooth 4.2 is a generation behind newer budget headphones, so expect slightly less stable range compared to BT 5.x competitors.",
+    pros: ["Dual connectivity (Bluetooth or aux cable) means you're never stuck if the battery runs out mid-use", 'One-touch call answer/reject makes it genuinely convenient for work-from-home calls', 'Padded ear cushions stay comfortable through multi-hour listening sessions'],
+    cons: ['Bluetooth 4.2 is a generation older than newer budget rivals on Bluetooth 5.x, with slightly less stable range', '15-hour battery life is average — several same-price competitors now offer 40-60 hours'],
+    specs: [['Driver Size','40mm Dynamic'],['Connectivity','Bluetooth 4.2 + Aux'],['Battery Life','Up to 15 hours'],['Type','On-ear, wireless'],['Microphone','Built-in with one-touch controls'],['Weight','Lightweight, padded headband']],
+    priceHist: [1699,1599,1499,1399,1260,1260],
+  },
+  {
+    id: 'boat-rockerz-480',
+    name: 'boAt Rockerz 480',
+    category: 'Headphone', catKey: 'headphones', brand: 'boAt',
+    price: 1599, was: 2799,
+    score: 61,
+    verdict: "Rockerz 480 leads with a genuinely long 60-hour battery and RGB lighting aimed at younger, gaming-leaning buyers, backed by BEAST Mode for lower audio-video lag. Independent reviews note the passive noise isolation is minimal and overall build and comfort feel like the weaker part of the package, so treat the RGB and battery life as the real selling points here, not audio precision.",
+    pros: ['60 hours of total playback is a genuine standout at this price, rarely matched by same-tier rivals', 'BEAST Mode reduces audio-video lag, making it noticeably better for mobile gaming than standard Bluetooth headphones', "Bluetooth 5.3 gives more stable pairing than boAt's older BT 4.2 models"],
+    cons: ['Independent reviews report build quality and comfort as noticeably weaker than the spec sheet suggests', "Passive noise isolation is minimal, and there's no noise-cancelling mic, so calls in noisy environments suffer"],
+    specs: [['Driver Size','40mm Dynamic'],['Connectivity','Bluetooth 5.3'],['Battery Life','Up to 60 hours'],['Special Feature','BEAST Mode low-latency, RGB lighting (6 modes)'],['Type','Over-ear, wireless + wired'],['Noise Isolation','Passive only']],
+    priceHist: [1999,1899,1799,1699,1599,1599],
+  },
+  {
+    id: 'boat-rockerz-551-anc-pro',
+    name: 'boAt Rockerz 551 ANC Pro',
+    category: 'Headphone', catKey: 'headphones', brand: 'boAt',
+    price: 2999, was: 3999,
+    score: 72,
+    verdict: "551 ANC Pro brings boAt's Hybrid ANC (using mics both inside and outside the earcup) down to an accessible price, with 40 hours of battery even with ANC running all day. It's a genuine step up in noise cancellation over boAt's non-ANC Rockerz line, though it won't match the ANC depth of pricier headphones from audio-first brands.",
+    pros: ['Hybrid ANC (dual mic placement) gives noticeably more accurate noise cancellation than single-mic ANC at a similar price', '40 hours of battery life with ANC running all day is genuinely strong endurance', "A clear step up in daily commute usability over boAt's non-ANC Rockerz models"],
+    cons: ["ANC depth still trails dedicated audio-first brands' flagship noise cancelling headphones", "Heavier reliance on ANC for noise isolation means passive fit alone isn't as effective if the battery runs out"],
+    specs: [['ANC','Hybrid ANC, up to 40dB'],['Battery Life (ANC on)','Up to 40 hours'],['Driver Size','40mm Dynamic, boAt Signature Sound'],['Connectivity','Bluetooth'],['Type','Over-ear, wireless'],['Charging','Fast charge supported']],
+    priceHist: [3999,3799,3499,3199,2999,2999],
+  },
+  {
+    id: 'boat-nirvana-751-anc',
+    name: 'boAt Nirvana 751 ANC',
+    category: 'Headphone', catKey: 'headphones', brand: 'boAt',
+    price: 4299, was: 5499,
+    score: 76,
+    verdict: "Nirvana 751 ANC is boAt's flagship-tier headphone in this lineup, with the strongest battery life of the bunch — 54 hours even with Hybrid ANC running continuously. It commands a real price premium over the Rockerz ANC models, so it makes most sense for buyers who genuinely use ANC daily rather than occasionally.",
+    pros: ["54 hours of battery life with ANC on is the strongest in boAt's ANC lineup, meaningfully longer than the 551 ANC Pro", 'Hybrid ANC placement gives more accurate, natural-sounding noise cancellation than basic single-mic ANC', "Positioned as boAt's premium daily-driver headphone, with build and finish to match the higher price"],
+    cons: ['Costs meaningfully more than the Rockerz ANC models for battery life gains that matter mainly to heavy daily commuters', 'Premium positioning means it competes with headphones from more audio-focused brands at a similar price'],
+    specs: [['ANC','Hybrid ANC'],['Battery Life (ANC on)','Up to 54 hours'],['Driver Size','40mm Dynamic, boAt Signature Sound'],['Connectivity','Bluetooth'],['Type','Over-ear, wireless'],['Positioning',"boAt premium ANC headphone tier"]],
+    priceHist: [5499,5199,4799,4499,4299,4299],
+  }
+];
+
+const CATEGORIES = {
+  earbuds: 'Wireless Earbuds',
+  phones: 'Smartphones',
+  laptops: 'Student Laptops',
+  watches: 'Smartwatches',
+  headphones: 'Headphones'
+};
+let currentCat = 'earbuds';
+let currentBrand = null;
+let searchQuery = '';
+
+const CAT_COLORS = {
+  earbuds: ['#7C3AED','#A855F7'],
+  phones: ['#2563EB','#38BDF8'],
+  laptops: ['#F97316','#FBBF24'],
+  watches: ['#EC4899','#F472B6'],
+  headphones: ['#0D9488','#2DD4BF']
+};
+const CAT_BANNER = {
+  earbuds: 'linear-gradient(135deg, #7C3AED, #A855F7)',
+  phones: 'linear-gradient(135deg, #2563EB, #38BDF8)',
+  laptops: 'linear-gradient(135deg, #F97316, #FBBF24)',
+  watches: 'linear-gradient(135deg, #EC4899, #F472B6)',
+  headphones: 'linear-gradient(135deg, #0D9488, #2DD4BF)'
+};
+
+function iconSVG(catKey, uid){
+  const [c1,c2] = CAT_COLORS[catKey] || CAT_COLORS.earbuds;
+  const gid = `g_${uid}`;
+  if(catKey === 'phones'){
+    return `<svg class="picon" viewBox="0 0 100 100"><defs><linearGradient id="${gid}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${c1}"/><stop offset="1" stop-color="${c2}"/></linearGradient></defs><rect x="28" y="8" width="44" height="84" rx="10" fill="url(#${gid})"/><rect x="34" y="16" width="32" height="60" rx="3" fill="#fff" opacity="0.3"/></svg>`;
+  }
+  if(catKey === 'laptops'){
+    return `<svg class="picon" viewBox="0 0 100 100"><defs><linearGradient id="${gid}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${c1}"/><stop offset="1" stop-color="${c2}"/></linearGradient></defs><rect x="16" y="16" width="68" height="44" rx="4" fill="url(#${gid})"/><rect x="22" y="21" width="56" height="34" rx="2" fill="#fff" opacity="0.25"/><path d="M4 68 L96 68 L86 84 L14 84 Z" fill="url(#${gid})" opacity="0.9"/></svg>`;
+  }
+  if(catKey === 'watches'){
+    return `<svg class="picon" viewBox="0 0 100 100"><defs><linearGradient id="${gid}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${c1}"/><stop offset="1" stop-color="${c2}"/></linearGradient></defs><rect x="38" y="4" width="24" height="20" rx="5" fill="url(#${gid})"/><rect x="38" y="76" width="24" height="20" rx="5" fill="url(#${gid})"/><circle cx="50" cy="50" r="28" fill="url(#${gid})"/><circle cx="50" cy="50" r="19" fill="#fff" opacity="0.28"/><rect x="76" y="44" width="9" height="10" rx="2" fill="url(#${gid})"/></svg>`;
+  }
+  if(catKey === 'headphones'){
+    return `<svg class="picon" viewBox="0 0 100 100"><defs><linearGradient id="${gid}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${c1}"/><stop offset="1" stop-color="${c2}"/></linearGradient></defs><path d="M20 55 Q20 15 50 15 Q80 15 80 55" fill="none" stroke="url(#${gid})" stroke-width="9" stroke-linecap="round"/><rect x="10" y="50" width="20" height="32" rx="9" fill="url(#${gid})"/><rect x="70" y="50" width="20" height="32" rx="9" fill="url(#${gid})" opacity="0.85"/></svg>`;
+  }
+  return `<svg class="picon" viewBox="0 0 100 100"><defs><linearGradient id="${gid}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${c1}"/><stop offset="1" stop-color="${c2}"/></linearGradient></defs><ellipse cx="33" cy="46" rx="17" ry="21" fill="url(#${gid})"/><rect x="27.5" y="60" width="11" height="26" rx="5.5" fill="url(#${gid})"/><ellipse cx="67" cy="46" rx="17" ry="21" fill="url(#${gid})" opacity="0.85"/><rect x="61.5" y="60" width="11" height="26" rx="5.5" fill="url(#${gid})" opacity="0.85"/></svg>`;
+}
+
+function stampHTML(score, size){
+  return `<div class="stamp ${size||''}"><span class="num">${score}</span><span class="of">/100</span></div>`;
+}
+
+function openCategory(catKey){
+  currentCat = catKey;
+  currentBrand = null;
+  searchQuery = '';
+  document.getElementById('search-input').value = '';
+  const label = CATEGORIES[catKey] || 'All Products';
+  document.getElementById('listing-crumb').textContent = label.toUpperCase();
+  document.getElementById('listing-title').textContent = `${label} — Ranked`;
+  renderBrandPills();
+  renderList();
+  switchTab('listing');
+}
+
+function renderBrandPills(){
+  const wrap = document.getElementById('brand-pills');
+  if(!wrap) return;
+  if(searchQuery || !(currentCat === 'phones' || currentCat === 'watches')){
+    wrap.innerHTML = '';
+    wrap.style.display = 'none';
+    return;
+  }
+  const brands = [...new Set(PRODUCTS.filter(p => p.catKey === currentCat).map(p => p.brand))];
+  wrap.style.display = 'flex';
+  wrap.innerHTML = ['All', ...brands].map(b => {
+    const isActive = (b === 'All' && currentBrand === null) || b === currentBrand;
+    return `<button class="brand-pill ${isActive ? 'active' : ''}" data-brand="${b}">${b}</button>`;
+  }).join('');
+  wrap.querySelectorAll('.brand-pill').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      currentBrand = btn.dataset.brand === 'All' ? null : btn.dataset.brand;
+      renderBrandPills();
+      renderList();
+    });
+  });
+}
+
+function runSearch(query){
+  searchQuery = query.trim();
+  if(!searchQuery){
+    openCategory(currentCat === null ? 'earbuds' : currentCat);
+    return;
+  }
+  currentCat = null;
+  currentBrand = null;
+  document.getElementById('listing-crumb').textContent = `SEARCH: "${searchQuery.toUpperCase()}"`;
+  document.getElementById('listing-title').textContent = `Results for "${searchQuery}"`;
+  renderBrandPills();
+  renderList();
+  switchTab('listing');
+}
+
+function renderList(){
+  const el = document.getElementById('prod-list');
+  let filtered;
+  if(searchQuery){
+    const q = searchQuery.toLowerCase();
+    filtered = PRODUCTS.filter(p => p.name.toLowerCase().includes(q) || p.category.toLowerCase().includes(q));
+  } else {
+    filtered = PRODUCTS.filter(p => p.catKey === currentCat);
+    if(currentBrand){
+      filtered = filtered.filter(p => p.brand === currentBrand);
+    }
+  }
+  const sorted = [...filtered].sort((a,b)=>b.score-a.score);
+  if(sorted.length === 0){
+    el.innerHTML = `<div style="grid-column:1/-1; padding:32px; text-align:center; color:var(--ink-soft); font-size:14px; background:var(--card); border-radius:16px; border:2px solid var(--line);">No products match — try a different search term.</div>`;
+    return;
+  }
+  el.innerHTML = sorted.map(p => `
+    <div class="prod-row" data-open="${p.id}">
+      <div class="prow-top">
+        ${iconSVG(p.catKey, p.id)}
+        ${stampHTML(p.score,'sm')}
+      </div>
+      <div>
+        <div class="pname">${p.name}</div>
+        <div class="pverdict">${p.pros[0]}</div>
+      </div>
+      <div class="prow-pills">
+        <div class="pill pro">✓ ${p.pros.length} pros</div>
+        <div class="pill con">✕ ${p.cons.length} cons</div>
+      </div>
+      <div class="prow-bottom">
+        <div class="pprice">₹${p.price.toLocaleString('en-IN')}${p.was>p.price ? `<span class="was">₹${p.was.toLocaleString('en-IN')}</span>`:''}</div>
+      </div>
+    </div>
+  `).join('');
+  el.querySelectorAll('.prod-row').forEach(row=>{
+    row.addEventListener('click', ()=> openDetail(row.dataset.open));
+  });
+}
+
+function sparkline(hist){
+  const max = Math.max(...hist), min = Math.min(...hist);
+  const range = (max-min)||1;
+  return hist.map(v=>{
+    const h = 12 + ((v-min)/range)*44;
+    return `<div style="height:${h}px;"></div>`;
+  }).join('');
+}
+
+function openDetail(id){
+  const p = PRODUCTS.find(x=>x.id===id);
+  if(!p) return;
+  const el = document.getElementById('detail-content');
+  el.innerHTML = `
+    <div class="pd-banner" style="background:${CAT_BANNER[p.catKey] || CAT_BANNER.earbuds};">
+      <div class="pd-head">
+        <div>
+          <h1>${p.name}</h1>
+          <div class="sub">${p.category}</div>
+          <div class="pd-price">₹${p.price.toLocaleString('en-IN')} ${p.was>p.price?`<span style="font-size:15px; color:rgba(255,255,255,0.75); text-decoration:line-through; font-family:'JetBrains Mono';">₹${p.was.toLocaleString('en-IN')}</span>`:''}</div>
+        </div>
+        ${iconSVG(p.catKey, p.id+'-d')}
+      </div>
+    </div>
+    <div class="pd-body">
+      <div>
+        <div class="verdict-box">
+          <div class="vlabel">The Verdict</div>
+          <p>${p.verdict}</p>
+        </div>
+        <div class="pc-grid">
+          <div class="pc-col pro">
+            <h4>What holds up</h4>
+            <ul>${p.pros.map(x=>`<li>${x}</li>`).join('')}</ul>
+          </div>
+          <div class="pc-col con">
+            <h4>Where it falls short</h4>
+            <ul>${p.cons.map(x=>`<li>${x}</li>`).join('')}</ul>
+          </div>
+        </div>
+        <h4 class="mono" style="font-size:12px; text-transform:uppercase; letter-spacing:.06em; color:var(--ink-soft); margin-bottom:10px;">Full Spec Sheet</h4>
+        <table class="spec">
+          ${p.specs.map(([k,v])=>`<tr><td>${k}</td><td>${v}</td></tr>`).join('')}
+        </table>
+      </div>
+      <div class="side">
+        <div class="side-card">
+          ${stampHTML(p.score)}
+          <div class="score-label">Trust Score</div>
+          <button class="cta">View lowest price</button>
+          <div class="cta-note">Affiliate link — we may earn a commission</div>
+        </div>
+        <div class="side-card">
+          <div class="score-label" style="text-align:left; margin-bottom:10px;">6-Month Price Trend</div>
+          <div class="sparkline">${sparkline(p.priceHist)}</div>
+          <div class="price-hist">
+            <div class="row"><span>LOWEST</span><span>₹${Math.min(...p.priceHist).toLocaleString('en-IN')}</span></div>
+            <div class="row"><span>HIGHEST</span><span>₹${Math.max(...p.priceHist).toLocaleString('en-IN')}</span></div>
+          </div>
+        </div>
+        <div class="side-card">
+          <div class="score-label" style="text-align:left; margin-bottom:10px;">Score Breakdown</div>
+          <ul class="method-list">
+            <li><span>Spec accuracy</span><span class="mono">verified</span></li>
+            <li><span>Durability signal</span><span class="mono">3-unit test</span></li>
+            <li><span>Value for price</span><span class="mono">category avg</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  `;
+  switchTab('detail');
+}
+
+function switchTab(tab){
+  document.querySelectorAll('main > section').forEach(s=>s.classList.remove('active'));
+  document.getElementById(tab).classList.add('active');
+  document.querySelectorAll('.tab-btn').forEach(b=>{
+    b.classList.toggle('active', b.dataset.tab===tab);
+  });
+}
+
+document.querySelectorAll('[data-tab]').forEach(btn=>{
+  btn.addEventListener('click', ()=> switchTab(btn.dataset.tab));
+});
+document.querySelectorAll('[data-open-cat]').forEach(c=>{
+  c.addEventListener('click', ()=> openCategory(c.dataset.openCat));
+});
+document.querySelectorAll('.tab-btn[data-tab="listing"]').forEach(b=>{
+  b.addEventListener('click', ()=> openCategory('earbuds'));
+});
+document.getElementById('search-input').addEventListener('input', (e)=>{
+  runSearch(e.target.value);
+});
+
+document.querySelectorAll('.cat-icon-wrap').forEach(wrap=>{
+  const frames = wrap.querySelectorAll('.cat-icon-frame');
+  if(frames.length < 2) return;
+  let idx = 0;
+  setInterval(()=>{
+    frames[idx].classList.remove('frame-active');
+    idx = (idx + 1) % frames.length;
+    frames[idx].classList.add('frame-active');
+  }, 2200);
+});
+
+renderList();
+</script>
+
+</body>
+</html>
