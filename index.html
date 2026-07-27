@@ -137,12 +137,6 @@
   .hero-top{
     display:grid; grid-template-columns: 1.15fr 1fr; gap:20px; align-items:start;
   }
-  .hero-visual{ position:relative; height:240px; }
-  .float-item{ position:absolute; filter: drop-shadow(0 18px 24px rgba(26,26,46,0.18)); }
-  .laptop-float{ width:230px; top:70px; left:0; animation: floaty 5.5s ease-in-out infinite; }
-  .phone-float{ width:100px; top:0; right:30px; z-index:2; animation: floaty 4.5s ease-in-out infinite .4s; }
-  .earbuds-float{ width:88px; bottom:0; right:110px; z-index:3; animation: floaty 4s ease-in-out infinite .8s; }
-  @keyframes floaty{ 0%,100%{ transform: translateY(0); } 50%{ transform: translateY(-14px); } }
 
   .eyebrow{
     font-family:'Manrope'; font-weight:700; font-size:12px; letter-spacing: 0.04em;
@@ -325,10 +319,7 @@
   @media (max-width: 760px){
     h1.hero-line{ font-size:32px; }
     .hero-top{ grid-template-columns:1fr; }
-    .hero-visual{ height:220px; margin-top:20px; }
-    .laptop-float{ width:180px; left:10px; }
-    .phone-float{ width:80px; }
-    .earbuds-float{ width:70px; right:70px; }
+    .showcase{ margin-top:20px; }
     .hero-grid{ grid-template-columns:1fr; }
     .cat-grid{ grid-template-columns:1fr; }
     .prod-list{ grid-template-columns:1fr; }
@@ -661,6 +652,71 @@
   body.dark .aff-bar{ background:rgba(124,58,237,0.12); }
 
   .aff-top{ margin: 0 0 16px; }
+
+  /* ---------- FAQ page ---------- */
+  .faq-list{ margin-top:26px; }
+  .faq-item{
+    border:2px solid var(--line); border-radius:14px; background:var(--card);
+    margin-bottom:10px; overflow:hidden; transition: border-color .15s;
+  }
+  .faq-item[open]{ border-color:var(--violet); }
+  .faq-item summary{
+    list-style:none; cursor:pointer; padding:15px 46px 15px 18px; position:relative;
+    font-family:'Manrope'; font-weight:700; font-size:15px; color:var(--ink); line-height:1.45;
+  }
+  .faq-item summary::-webkit-details-marker{ display:none; }
+  .faq-item summary::after{
+    content:'+'; position:absolute; right:17px; top:50%; transform:translateY(-50%);
+    font-family:'JetBrains Mono'; font-weight:700; font-size:19px; color:var(--violet); line-height:1;
+  }
+  .faq-item[open] summary::after{ content:'\2212'; }
+  .faq-item summary:hover{ color:var(--violet); }
+  .faq-body{ padding:0 18px 16px; font-size:14.5px; line-height:1.72; color:var(--ink-soft); }
+  .faq-body p + p{ margin-top:11px; }
+  .faq-body strong{ color:var(--ink); }
+  .faq-body a{ color:var(--violet); font-weight:700; text-decoration:none; }
+  .faq-body a:hover{ text-decoration:underline; }
+  .faq-group{
+    font-family:'Manrope'; font-weight:700; font-size:11px; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--ink-soft); margin:26px 0 10px;
+  }
+  .faq-group:first-of-type{ margin-top:0; }
+
+  /* ---------- Rotating phone showcase ---------- */
+  .showcase{ position:relative; height:240px; display:flex; align-items:center; justify-content:center;
+             perspective:900px; cursor:pointer; }
+  .sc-stage{ position:relative; width:132px; height:230px; transform-style:preserve-3d; }
+  .sc-phone{
+    position:absolute; inset:0; width:100%; height:100%;
+    filter: drop-shadow(0 20px 28px rgba(26,26,46,0.22));
+    animation: scIn .55s cubic-bezier(.22,.9,.3,1) both, scFloat 5s ease-in-out .55s infinite;
+  }
+  .sc-phone.out{ animation: scOut .4s cubic-bezier(.5,0,.75,0) both; }
+  @keyframes scIn  { from{ opacity:0; transform: rotateY(38deg) translateX(34px) scale(.93);} 
+                       to{ opacity:1; transform: rotateY(0) translateX(0) scale(1);} }
+  @keyframes scOut { from{ opacity:1; transform: rotateY(0) translateX(0) scale(1);} 
+                       to{ opacity:0; transform: rotateY(-38deg) translateX(-34px) scale(.93);} }
+  @keyframes scFloat{ 0%,100%{ translate:0 0; } 50%{ translate:0 -12px; } }
+
+  .sc-tag{
+    position:absolute; left:50%; bottom:-4px; transform:translateX(-50%);
+    display:flex; align-items:center; gap:9px; white-space:nowrap;
+    background:var(--card); border:2px solid var(--line); border-radius:14px;
+    padding:8px 14px; box-shadow:0 8px 20px rgba(26,26,46,0.10);
+  }
+  .sc-tag .nm{ font-family:'Manrope'; font-weight:700; font-size:12.5px; color:var(--ink); }
+  .sc-tag .pr{ font-family:'JetBrains Mono'; font-weight:700; font-size:12.5px; color:var(--violet); }
+  .sc-tag .sr{ font-family:'JetBrains Mono'; font-weight:700; font-size:10.5px; color:#fff;
+               background:var(--green); border-radius:6px; padding:2px 6px; }
+
+  .sc-dots{ position:absolute; bottom:-30px; left:50%; transform:translateX(-50%); display:flex; gap:6px; }
+  .sc-dots i{ width:6px; height:6px; border-radius:50%; background:var(--line); transition:background .25s, width .25s; }
+  .sc-dots i.on{ background:var(--violet); width:16px; border-radius:3px; }
+
+  @media (max-width: 820px){ .showcase{ height:210px; } }
+  @media (prefers-reduced-motion: reduce){
+    .sc-phone, .sc-phone.out{ animation:none; opacity:1; transform:none; }
+  }
 </style>
 </head>
 <body>
@@ -695,40 +751,13 @@
           <h1 class="hero-line">Know what you're actually buying, before you buy it.</h1>
           <p class="hero-sub">Every product here is broken down into a Trust Score, plain pros and cons, and real price history — so a comparison shopping trip takes minutes, not tabs.</p>
         </div>
-        <div class="hero-visual">
-          <svg class="float-item laptop-float" viewBox="0 0 220 170" xmlns="http://www.w3.org/2000/svg">
-            <defs><linearGradient id="lapScreen" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7C3AED"/><stop offset="1" stop-color="#2563EB"/></linearGradient></defs>
-            <rect x="10" y="10" width="200" height="120" rx="10" fill="url(#lapScreen)"/>
-            <rect x="20" y="20" width="180" height="100" rx="4" fill="#ffffff"/>
-            <rect x="32" y="80" width="14" height="30" rx="3" fill="#DDD6FE"/>
-            <rect x="52" y="65" width="14" height="45" rx="3" fill="#93C5FD"/>
-            <rect x="72" y="50" width="14" height="60" rx="3" fill="#FED7AA"/>
-            <rect x="92" y="70" width="14" height="40" rx="3" fill="#7C3AED"/>
-            <circle cx="160" cy="45" r="14" fill="#F0FDF4" stroke="#16A34A" stroke-width="3"/>
-            <path d="M154 45 l4 5 l9 -11" stroke="#16A34A" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M0 130 L220 130 L204 158 L16 158 Z" fill="#E5E4F0"/>
-            <rect x="90" y="130" width="40" height="6" rx="3" fill="#C9C7DE"/>
-          </svg>
-          <svg class="float-item phone-float" viewBox="0 0 110 220" xmlns="http://www.w3.org/2000/svg">
-            <defs><linearGradient id="phoneBody" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#EC4899"/><stop offset="1" stop-color="#7C3AED"/></linearGradient></defs>
-            <rect x="4" y="4" width="102" height="212" rx="22" fill="url(#phoneBody)"/>
-            <rect x="12" y="16" width="86" height="188" rx="10" fill="#ffffff"/>
-            <rect x="20" y="28" width="70" height="18" rx="6" fill="#F5F5FD"/>
-            <rect x="20" y="52" width="70" height="34" rx="8" fill="#DDD6FE"/>
-            <rect x="26" y="60" width="30" height="6" rx="3" fill="#7C3AED"/>
-            <rect x="26" y="70" width="45" height="5" rx="2.5" fill="#A78BFA"/>
-            <rect x="20" y="92" width="70" height="34" rx="8" fill="#BFDBFE"/>
-            <rect x="26" y="100" width="30" height="6" rx="3" fill="#2563EB"/>
-            <rect x="26" y="110" width="45" height="5" rx="2.5" fill="#60A5FA"/>
-          </svg>
-          <svg class="float-item earbuds-float" viewBox="0 0 100 70" xmlns="http://www.w3.org/2000/svg">
-            <defs><linearGradient id="caseGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#DDD6FE"/></linearGradient></defs>
-            <rect x="10" y="10" width="80" height="50" rx="20" fill="url(#caseGrad)" stroke="#C9C7DE" stroke-width="2"/>
-            <line x1="10" y1="35" x2="90" y2="35" stroke="#C9C7DE" stroke-width="1.5"/>
-            <circle cx="50" cy="20" r="3" fill="#16A34A"/>
-            <ellipse cx="35" cy="45" rx="8" ry="6" fill="#7C3AED"/>
-            <ellipse cx="65" cy="45" rx="8" ry="6" fill="#7C3AED"/>
-          </svg>
+        <div class="showcase" id="showcase" role="button" tabindex="0" aria-label="Featured phone, tap to open">
+          <div class="sc-stage">
+            <div id="sc-slot"></div>
+            <div class="sc-tag" id="sc-tag"></div>
+            <div class="sc-dots" id="sc-dots"></div>
+          </div>
+        </div>
         </div>
       </div>
 
@@ -964,6 +993,134 @@
     </div>
   </section>
 
+  <!-- FAQ -->
+  <section id="faq">
+    <div style="padding: 40px 0 64px; max-width:720px;">
+      <h2 style="font-family:'Poppins'; font-weight:700; font-size:28px; margin-bottom:8px;">Frequently asked questions</h2>
+      <p style="font-size:15px; line-height:1.7; color:var(--ink-soft); margin-bottom:4px;">Straight answers about how this site works, where the numbers come from, and what we don&rsquo;t know. If something isn&rsquo;t covered here, <a href="#/contact" style="color:var(--violet); font-weight:700; text-decoration:none;">write to us</a>.</p>
+
+      <div class="faq-list">
+
+        <div class="faq-group">How Verdikt works</div>
+
+        <details class="faq-item">
+          <summary>Do you actually test these products yourselves?</summary>
+          <div class="faq-body">
+            <p><strong>No, and we&rsquo;d rather say so plainly.</strong> Verdikt is not a lab. We don&rsquo;t buy units, run battery rundowns, measure screen brightness with instruments, or drop-test anything.</p>
+            <p>What we do is read the published specifications carefully, compare them against what the manufacturer claims in its marketing, and weigh the result against the price. Where owners consistently report the same problem, that shapes the &ldquo;where it falls short&rdquo; list.</p>
+            <p>That&rsquo;s a real service &mdash; but it is not the same as hands-on testing, and you should treat it accordingly. If we ever start testing units ourselves, we will say so on the page.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>What is the Trust Score, and how is it calculated?</summary>
+          <div class="faq-body">
+            <p>It&rsquo;s our own judgement, expressed as a number out of 100, built from three things: how closely a product matches its advertised specs, what owners consistently report about reliability, and what you get for the price compared with alternatives in the same bracket.</p>
+            <p>It is deliberately <strong>not</strong> based on star ratings or review counts, because those are the easiest numbers on the internet to inflate.</p>
+            <p>We don&rsquo;t publish fixed percentage weightings, because we don&rsquo;t use them &mdash; quoting &ldquo;40% this, 30% that&rdquo; would suggest a precision that isn&rsquo;t there. Treat the score as an informed opinion, and read the pros and cons underneath it, which is where the actual reasoning lives.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>How do you decide which products to cover?</summary>
+          <div class="faq-body">
+            <p>Right now we cover smartphones sold in India, chosen by what people are actually shopping for across price bands &mdash; roughly &#8377;13,000 to &#8377;85,000.</p>
+            <p>No brand has paid to be listed, and no brand has been left out for refusing to. Other categories &mdash; earbuds, laptops, smartwatches &mdash; will come back once we&rsquo;ve verified their data the same way we&rsquo;re doing for phones.</p>
+          </div>
+        </details>
+
+        <div class="faq-group">Prices and links</div>
+
+        <details class="faq-item">
+          <summary>How often are prices updated?</summary>
+          <div class="faq-body">
+            <p>Manually, and not on a fixed schedule &mdash; typically once or twice a week, more often around festive sales.</p>
+            <p>This is an honest limitation. We don&rsquo;t scrape retailers automatically, so the price you see is what we recorded when we last checked. <strong>Always confirm on the retailer&rsquo;s page before buying.</strong> Every product page tells you this too.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Why does the price history say &ldquo;not tracked long enough yet&rdquo;?</summary>
+          <div class="faq-body">
+            <p>Because we genuinely haven&rsquo;t tracked it long enough, and we&rsquo;d rather tell you that than draw a chart out of thin air.</p>
+            <p>A price history chart is only useful if the points on it are real observations. Ours started recently. Once there are enough recorded price changes to say something meaningful &mdash; whether today&rsquo;s price is a good one or an inflated one &mdash; the chart will appear on its own.</p>
+            <p>In the meantime, setting a price alert is the more useful move.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Why do some products say &ldquo;Link coming soon&rdquo;?</summary>
+          <div class="faq-body">
+            <p>Because we haven&rsquo;t yet confirmed a retailer listing for the exact variant shown on that page.</p>
+            <p>Phone models are sold in several storage and RAM configurations, at prices that can differ by &#8377;10,000 or more. Linking to the wrong one sends you to a product that isn&rsquo;t what you just read about. Until we&rsquo;ve checked which listing matches, we leave the button off rather than guess.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>The price here doesn&rsquo;t match what I see on Amazon or Flipkart. Why?</summary>
+          <div class="faq-body">
+            <p>Most likely one of two things: the price moved since we last checked, or you&rsquo;re looking at a different storage variant.</p>
+            <p>Retailer prices change daily, and the same phone can appear at very different prices for 128GB and 256GB. The retailer&rsquo;s page is always the authority &mdash; if ours is wrong, <a href="#/contact">tell us</a> and we&rsquo;ll correct it.</p>
+          </div>
+        </details>
+
+        <div class="faq-group">Money</div>
+
+        <details class="faq-item">
+          <summary>How does Verdikt make money?</summary>
+          <div class="faq-body">
+            <p>Affiliate links. When you buy through a link that carries our tracking code, the retailer may pay us a small commission &mdash; typically 1&#37; to 4&#37; on electronics. <strong>You pay exactly the same price.</strong></p>
+            <p>Not every link earns us anything. Under each buy button we say which kind it is, so you never have to guess. The <a href="#/disclosure">full disclosure is here</a>.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Do brands pay you for a better score or a higher ranking?</summary>
+          <div class="faq-body">
+            <p>No. Scores and rankings are decided before any commercial link is attached, and are never adjusted because one retailer or brand pays more.</p>
+            <p>We have never taken payment from a brand to be featured or covered favourably. If that ever changes, it will be labelled sponsored on the page itself &mdash; not hidden in a policy page.</p>
+          </div>
+        </details>
+
+        <div class="faq-group">Price alerts</div>
+
+        <details class="faq-item">
+          <summary>How do price alerts work?</summary>
+          <div class="faq-body">
+            <p>Pick a product, enter your email and the price you&rsquo;d be happy to pay. When we record that product at or below your price, you get one email. That&rsquo;s the whole thing.</p>
+            <p>Since prices are checked manually rather than continuously, an alert may arrive a day or two after the drop rather than within minutes.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>What do you do with my email address?</summary>
+          <div class="faq-body">
+            <p>We store it alongside the product and your target price, and use it for exactly one thing: sending that one alert email.</p>
+            <p>No newsletters, no marketing, no sharing, no selling. Every alert email has an unsubscribe link that works immediately, and alerts are removed once they&rsquo;ve fired or you&rsquo;ve unsubscribed. Details are in the <a href="#/privacy">Privacy Policy</a>.</p>
+          </div>
+        </details>
+
+        <div class="faq-group">Everything else</div>
+
+        <details class="faq-item">
+          <summary>I found a mistake. How do I report it?</summary>
+          <div class="faq-body">
+            <p>Email <span class="mono">ak5249474@gmail.com</span> with the product page and what&rsquo;s wrong. A screenshot helps.</p>
+            <p>Corrections are the most useful message we get &mdash; a site built on being accurate depends on people telling us when it isn&rsquo;t.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Are you affiliated with any of these brands?</summary>
+          <div class="faq-body">
+            <p>No. Verdikt is independently built and not affiliated with or endorsed by Apple, Samsung, Xiaomi, OnePlus, Vivo, OPPO, Realme, or any other brand mentioned. Product names and logos belong to their owners.</p>
+          </div>
+        </details>
+
+      </div>
+    </div>
+  </section>
+
   <!-- CONTACT -->
   <section id="contact">
     <div style="padding: 40px 0 64px; max-width:600px;">
@@ -996,6 +1153,7 @@
       <button data-tab="privacy" style="background:none; border:none; cursor:pointer; font-family:'Manrope'; font-weight:600; font-size:13px; color:var(--ink-soft);">Privacy Policy</button>
       <button data-tab="terms" style="background:none; border:none; cursor:pointer; font-family:'Manrope'; font-weight:600; font-size:13px; color:var(--ink-soft);">Terms &amp; Conditions</button>
       <button data-tab="disclosure" style="background:none; border:none; cursor:pointer; font-family:'Manrope'; font-weight:600; font-size:13px; color:var(--ink-soft);">Affiliate Disclosure</button>
+      <button data-tab="faq" style="background:none; border:none; cursor:pointer; font-family:'Manrope'; font-weight:600; font-size:13px; color:var(--ink-soft);">FAQ</button>
       <button data-tab="contact" style="background:none; border:none; cursor:pointer; font-family:'Manrope'; font-weight:600; font-size:13px; color:var(--ink-soft);">Contact</button>
       <button data-tab="home" style="background:none; border:none; cursor:pointer; font-family:'Manrope'; font-weight:600; font-size:13px; color:var(--ink-soft);">Home</button>
     </div>
@@ -1629,6 +1787,136 @@ const firstLiveCat = ()  => LIVE_CATEGORIES[0] || 'phones';
 /* The Editor's Pick is simply the highest Trust Score among the products
    we're actually showing. Hardcoding it meant it could point at something
    the visitor can no longer find. */
+
+/* =====================================================================
+   ROTATING PHONE SHOWCASE
+   ---------------------------------------------------------------------
+   These are illustrations, not photographs. Manufacturer product shots
+   are copyrighted, and Amazon/Flipkart only license theirs through their
+   own APIs, which we don't have access to yet. So each phone is drawn
+   from its published camera arrangement and finish — factual, and ours.
+   ===================================================================== */
+const PHONE_ART = {
+  'iphone-17':                { body:'#E9E7F2', cam:'apple2',  accent:'#CFCADD' },
+  'iphone-16':                { body:'#2B2B3A', cam:'apple2',  accent:'#3E3E52' },
+  'iphone-13':                { body:'#4B6EA9', cam:'apple2',  accent:'#5E83C0' },
+  'samsung-galaxy-s24-fe':    { body:'#8FCFC0', cam:'bare3',   accent:'#A6DCCF' },
+  'samsung-galaxy-a56':       { body:'#C9CCD4', cam:'plate3',  accent:'#DADDE3' },
+  'samsung-galaxy-m35-5g':    { body:'#2F3E6B', cam:'plate3',  accent:'#41528A' },
+  'oneplus-13r-5g':           { body:'#22242C', cam:'circle3', accent:'#343744' },
+  'oneplus-nord-6-5g':        { body:'#9FD8C4', cam:'circle3', accent:'#B6E4D4' },
+  'oneplus-nord-ce4':         { body:'#7FA88C', cam:'circle3', accent:'#95BCA1' },
+  'oppo-reno-14-pro-5g':      { body:'#6E5C8E', cam:'plate3',  accent:'#8574A5' },
+  'oppo-reno-14-5g':          { body:'#3F7D6E', cam:'plate3',  accent:'#549384' },
+  'realme-15-pro-5g':         { body:'#D8C48A', cam:'plate3',  accent:'#E4D4A5' },
+  'realme-narzo-80x-5g':      { body:'#2E5C8A', cam:'square2',  accent:'#3F73A6' },
+  'vivo-v50-5g':              { body:'#C79AB4', cam:'circle3', accent:'#D6AFC5' },
+  'vivo-t3-5g':               { body:'#3B5BA5', cam:'square2',  accent:'#4E70BE' },
+  'vivo-t4x-5g':              { body:'#4A4F63', cam:'square2',  accent:'#5D637A' },
+  'redmi-note-15-pro-plus-5g':{ body:'#2C2E38', cam:'plate3',  accent:'#3E414E' },
+  'redmi-note-15-5g':         { body:'#7C8BA8', cam:'plate3',  accent:'#93A1BB' }
+};
+const PHONE_ART_FALLBACK = { body:'#5C5A78', cam:'plate3', accent:'#73718F' };
+
+function lens(cx, cy, r, dark){
+  return `<circle cx="${cx}" cy="${cy}" r="${r}" fill="#15151F"/>
+          <circle cx="${cx}" cy="${cy}" r="${r*0.62}" fill="${dark}"/>
+          <circle cx="${cx - r*0.28}" cy="${cy - r*0.30}" r="${r*0.20}" fill="#ffffff" opacity=".55"/>`;
+}
+
+function camModule(kind, accent){
+  if(kind === 'apple2'){
+    return `<rect x="14" y="16" width="42" height="42" rx="13" fill="${accent}"/>
+            ${lens(27, 29, 8.5, '#1F3A5F')}${lens(43, 45, 8.5, '#1F3A5F')}`;
+  }
+  if(kind === 'bare3'){
+    return `${lens(26, 22, 7.5, '#243043')}${lens(26, 40, 7.5, '#243043')}${lens(26, 58, 6.5, '#243043')}`;
+  }
+  if(kind === 'circle3'){
+    return `<circle cx="34" cy="36" r="24" fill="${accent}"/>
+            ${lens(27, 28, 8, '#1B2430')}${lens(43, 34, 8, '#1B2430')}${lens(31, 48, 6, '#1B2430')}`;
+  }
+  if(kind === 'square2'){
+    return `<rect x="14" y="16" width="38" height="46" rx="12" fill="${accent}"/>
+            ${lens(28, 30, 9, '#1B2430')}${lens(28, 50, 6.5, '#1B2430')}`;
+  }
+  /* plate3 */
+  return `<rect x="14" y="14" width="40" height="52" rx="13" fill="${accent}"/>
+          ${lens(28, 27, 8.5, '#1B2430')}${lens(28, 46, 7, '#1B2430')}${lens(28, 60, 5, '#1B2430')}`;
+}
+
+/* Rear view — the side people recognise a phone by. */
+function phoneArtSVG(p){
+  const a = PHONE_ART[p.id] || PHONE_ART_FALLBACK;
+  return `
+  <svg class="sc-phone" viewBox="0 0 132 230" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs>
+      <linearGradient id="scSheen" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0"   stop-color="#ffffff" stop-opacity=".30"/>
+        <stop offset=".45" stop-color="#ffffff" stop-opacity=".04"/>
+        <stop offset="1"   stop-color="#000000" stop-opacity=".14"/>
+      </linearGradient>
+    </defs>
+    <rect x="4" y="4" width="124" height="222" rx="26" fill="#0E0E16" opacity=".28"/>
+    <rect x="6" y="3" width="120" height="220" rx="25" fill="${a.body}"/>
+    <rect x="6" y="3" width="120" height="220" rx="25" fill="url(#scSheen)"/>
+    <rect x="9" y="6" width="114" height="214" rx="22" fill="none" stroke="#ffffff" stroke-opacity=".22" stroke-width="1.5"/>
+    <g transform="translate(10,14)">${camModule(a.cam, a.accent)}</g>
+    <rect x="0" y="52"  width="6" height="26" rx="3" fill="#00000030"/>
+    <rect x="0" y="86"  width="6" height="26" rx="3" fill="#00000030"/>
+    <rect x="126" y="66" width="6" height="38" rx="3" fill="#00000030"/>
+  </svg>`;
+}
+
+/* ---------- the rotation itself ---------- */
+let scIndex = 0, scTimer = null, scItems = [];
+
+function scRender(){
+  const slot = document.getElementById('sc-slot');
+  const tag  = document.getElementById('sc-tag');
+  const dots = document.getElementById('sc-dots');
+  if(!slot || !scItems.length) return;
+
+  const p = scItems[scIndex];
+  const old = slot.querySelector('.sc-phone');
+  if(old){
+    old.classList.add('out');
+    setTimeout(() => old.remove(), 400);
+  }
+  slot.insertAdjacentHTML('beforeend', phoneArtSVG(p));
+
+  tag.innerHTML = `
+    <span class="nm">${escapeHtml(p.name)}</span>
+    <span class="pr">${inr(p.price)}</span>
+    <span class="sr">${p.score}</span>`;
+
+  dots.innerHTML = scItems.map((_, i) => `<i class="${i === scIndex ? 'on' : ''}"></i>`).join('');
+}
+
+function scStart(){
+  const host = document.getElementById('showcase');
+  if(!host) return;
+  /* Only ever shows products that are actually live, so the hero can't
+     advertise something the visitor then can't find. */
+  scItems = liveProducts().slice().sort((a,b) => b.score - a.score).slice(0, 5);
+  if(!scItems.length){ host.style.display = 'none'; return; }
+
+  scRender();
+  const tick = () => { scIndex = (scIndex + 1) % scItems.length; scRender(); };
+  const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(!reduced && scItems.length > 1) scTimer = setInterval(tick, 4200);
+
+  const open = () => { const p = scItems[scIndex]; if(p) go('#/product/' + p.id); };
+  host.addEventListener('click', open);
+  host.addEventListener('keydown', e => { if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); open(); } });
+
+  /* Don't keep animating a tab nobody is looking at. */
+  document.addEventListener('visibilitychange', () => {
+    if(document.hidden){ clearInterval(scTimer); scTimer = null; }
+    else if(!scTimer && !reduced && scItems.length > 1){ scTimer = setInterval(tick, 4200); }
+  });
+}
+
 function renderEditorsPick(){
   const el = document.getElementById('editors-pick');
   if(!el) return;
@@ -2592,7 +2880,7 @@ function wireCompare(){
    button works and links can actually be shared. Hash routing because
    this is a single static file with no server rewrites behind it.
    ===================================================================== */
-const SIMPLE_ROUTES = ['about', 'privacy', 'terms', 'contact', 'disclosure'];
+const SIMPLE_ROUTES = ['about', 'privacy', 'terms', 'contact', 'disclosure', 'faq'];
 
 function go(hash){
   if(location.hash === hash) applyRoute();
@@ -2642,11 +2930,13 @@ function applyRoute(){
   }
   else if(SIMPLE_ROUTES.includes(head)){
     switchTab(head);
-    const TITLES = { disclosure: 'Affiliate Disclosure' };
+    const TITLES = { disclosure: 'Affiliate Disclosure', faq: 'FAQ' };
     const t = TITLES[head] || (head.charAt(0).toUpperCase() + head.slice(1));
     setDocTitle(`${t} | Verdikt`,
       head === 'disclosure'
         ? 'How Verdikt makes money: affiliate links, what they do and do not affect, and how we label the ones that earn a commission.'
+        : head === 'faq'
+        ? 'How the Trust Score works, how often prices are updated, whether we test products ourselves, and what happens to your email when you set a price alert.'
         : '');
   }
   else {
@@ -2888,7 +3178,7 @@ function switchTab(tab){
 const TAB_HASH = {
   home: '#/', listing: '#/browse/' + firstLiveCat(), compare: '#/compare',
   about: '#/about', privacy: '#/privacy', terms: '#/terms', contact: '#/contact',
-  disclosure: '#/disclosure'
+  disclosure: '#/disclosure', faq: '#/faq'
 };
 document.querySelectorAll('[data-tab]').forEach(btn=>{
   btn.addEventListener('click', ()=> go(TAB_HASH[btn.dataset.tab] || '#/'));
@@ -3104,6 +3394,8 @@ async function syncLivePrices(){
 
     if(moved){
       renderList();
+      renderEditorsPick();
+      scRender();
       /* if a product page is open, redraw it with the new number */
       const detail = document.getElementById('detail');
       if(detail && detail.classList.contains('active') && currentDetailId){
@@ -3117,6 +3409,7 @@ async function syncLivePrices(){
 
 renderList();
 renderEditorsPick();
+scStart();
 wireCompare();
 applyRoute();
 syncLivePrices();
