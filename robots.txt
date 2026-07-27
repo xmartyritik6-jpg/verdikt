@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /v1-admin.html
 
 Sitemap: https://verdikt-mu.vercel.app/sitemap.xml
