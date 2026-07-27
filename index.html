@@ -647,6 +647,20 @@
 
   .cmp-share{ display:flex; justify-content:center; gap:10px; margin: 0 0 30px; }
   .cmp-share .share-btn{ padding:11px 22px; }
+
+  /* ---------- Affiliate disclosure ---------- */
+  .aff-bar{
+    display:flex; align-items:flex-start; gap:10px;
+    background:var(--violet-light); border:1px solid var(--line);
+    border-radius:12px; padding:11px 14px; margin-bottom:18px;
+    font-size:12.5px; line-height:1.55; color:var(--ink-soft);
+  }
+  .aff-bar .ic{ flex:0 0 auto; font-size:14px; line-height:1.3; }
+  .aff-bar a{ color:var(--violet); font-weight:700; text-decoration:none; }
+  .aff-bar a:hover{ text-decoration:underline; }
+  body.dark .aff-bar{ background:rgba(124,58,237,0.12); }
+
+  .aff-top{ margin: 0 0 16px; }
 </style>
 </head>
 <body>
@@ -719,14 +733,7 @@
       </div>
 
       <div class="hero-grid">
-        <div class="verdict-card">
-          <div class="label">🏆 Editor's Pick — This Week</div>
-          <div class="name">OnePlus Nord Buds 3 Pro (TWS Earbuds)</div>
-          <div class="verdict-row">
-            <div class="stamp sm"><span class="num">84</span><span class="of">/100</span></div>
-            <p style="font-size:13.5px; color:rgba(255,255,255,0.9);">Strongest ANC rating under ₹3,000 — tuning is bass-forward.</p>
-          </div>
-        </div>
+        <div class="verdict-card" id="editors-pick"></div>
         <div class="how-card">
           <div class="label mono" style="font-size:11px; color:var(--violet-deep); font-weight:700; text-transform:uppercase; letter-spacing:.06em;">How scoring works</div>
           <p style="font-size:13.5px; color:var(--ink-soft); margin-top:10px; line-height:1.6;">Trust Score = how well a product matches its advertised specs, what owners report about reliability, and value for the price — not review volume.</p>
@@ -882,10 +889,13 @@
       <h3 style="font-family:'Poppins'; font-weight:600; font-size:17px; margin: 24px 0 10px;">4. Third-party sites</h3>
       <p style="font-size:14.5px; line-height:1.7; color:var(--ink-soft); margin-bottom:14px;">Verdikt links out to third-party retailers and services. We are not responsible for the privacy practices or content of those external sites — please review their own privacy policies separately.</p>
 
-      <h3 style="font-family:'Poppins'; font-weight:600; font-size:17px; margin: 24px 0 10px;">5. Your rights</h3>
+      <h3 style="font-family:'Poppins'; font-weight:600; font-size:17px; margin: 24px 0 10px;">5. Price alert emails</h3>
+      <p style="font-size:14.5px; line-height:1.7; color:var(--ink-soft); margin-bottom:14px;">If you set a price alert, we store your email address, the product, and the target price you asked for. We use this for one thing only: sending you a single email when that product reaches your price. We do not send newsletters, marketing, or any other mail to that address, and we never sell or share it. Every alert email carries an unsubscribe link that removes your address immediately, and alerts are deleted once they have fired or you unsubscribe. You can also email us at any time to have your address removed.</p>
+
+      <h3 style="font-family:'Poppins'; font-weight:600; font-size:17px; margin: 24px 0 10px;">6. Your rights</h3>
       <p style="font-size:14.5px; line-height:1.7; color:var(--ink-soft); margin-bottom:14px;">You can request details of any data held about you, or request its deletion, by contacting us at the email below.</p>
 
-      <h3 style="font-family:'Poppins'; font-weight:600; font-size:17px; margin: 24px 0 10px;">6. Contact</h3>
+      <h3 style="font-family:'Poppins'; font-weight:600; font-size:17px; margin: 24px 0 10px;">7. Contact</h3>
       <p style="font-size:14.5px; line-height:1.7; color:var(--ink-soft); margin-bottom:14px;">Questions about this policy can be sent to <span class="mono">ak5249474@gmail.com</span>.</p>
 
       <p style="font-size:12.5px; color:var(--ink-soft); margin-top:28px; padding:16px; background:var(--violet-light); border-radius:12px;">Note: this is a general-purpose template, not legal advice. Before launch, especially given India's Digital Personal Data Protection Act, it's worth having a professional review this policy for full compliance.</p>
@@ -926,6 +936,34 @@
     </div>
   </section>
 
+  <!-- AFFILIATE DISCLOSURE -->
+  <section id="disclosure">
+    <div style="padding: 40px 0 64px; max-width:720px;">
+      <h2 style="font-family:'Poppins'; font-weight:700; font-size:28px; margin-bottom:6px;">Affiliate Disclosure</h2>
+      <p class="mono" style="font-size:11.5px; color:var(--ink-soft); text-transform:uppercase; letter-spacing:.06em; margin-bottom:24px;">Last updated: July 2026</p>
+
+      <p style="font-size:14.5px; line-height:1.7; color:var(--ink-soft); margin-bottom:14px;">Verdikt is free to read. We pay for it through affiliate links.</p>
+
+      <h3 style="font-family:'Poppins'; font-weight:600; font-size:17px; margin: 24px 0 10px;">What that means in plain terms</h3>
+      <p style="font-size:14.5px; line-height:1.7; color:var(--ink-soft); margin-bottom:14px;">When you click a &ldquo;View lowest price&rdquo; button and buy the product, the retailer may pay us a small commission &mdash; usually between 1&#37; and 4&#37; of the sale for electronics. <strong style="color:var(--ink);">You pay exactly the same price.</strong> Nothing is added to your bill, and the retailer&rsquo;s own offers, warranty and return policy apply as normal.</p>
+
+      <h3 style="font-family:'Poppins'; font-weight:600; font-size:17px; margin: 24px 0 10px;">Which links earn us money</h3>
+      <p style="font-size:14.5px; line-height:1.7; color:var(--ink-soft); margin-bottom:14px;">Not all of them. Some products link straight to a retailer with no tracking code attached, and those earn us nothing. Rather than make you guess, we label it under every buy button: a link that can earn a commission says so, and a plain link says <em>&ldquo;Direct retailer link &mdash; no commission earned on this one.&rdquo;</em></p>
+
+      <h3 style="font-family:'Poppins'; font-weight:600; font-size:17px; margin: 24px 0 10px;">What it does not affect</h3>
+      <p style="font-size:14.5px; line-height:1.7; color:var(--ink-soft); margin-bottom:14px;">Trust Scores, rankings, pros and cons, and which products appear on this site are decided before any commercial link is added, and are never changed because one retailer pays more than another. We have never accepted payment from a brand to be featured, scored higher, or covered favourably. If that ever changes, the placement will be labelled as sponsored, clearly, on the page itself &mdash; not only here.</p>
+
+      <h3 style="font-family:'Poppins'; font-weight:600; font-size:17px; margin: 24px 0 10px;">Programmes we participate in</h3>
+      <p style="font-size:14.5px; line-height:1.7; color:var(--ink-soft); margin-bottom:14px;">We link to retailers including Amazon India and Flipkart. Where we are enrolled in a retailer&rsquo;s affiliate programme, links to that retailer may carry our tracking code. Enrolment changes over time, so treat the label under each button as the accurate answer for that specific link.</p>
+
+      <h3 style="font-family:'Poppins'; font-weight:600; font-size:17px; margin: 24px 0 10px;">Prices</h3>
+      <p style="font-size:14.5px; line-height:1.7; color:var(--ink-soft); margin-bottom:14px;">Prices shown on Verdikt are what we recorded when we last checked that listing, and they move constantly. Always confirm the current price, variant and availability on the retailer&rsquo;s own page before you buy. We are not responsible for a price that has changed since we checked.</p>
+
+      <h3 style="font-family:'Poppins'; font-weight:600; font-size:17px; margin: 24px 0 10px;">Questions</h3>
+      <p style="font-size:14.5px; line-height:1.7; color:var(--ink-soft); margin-bottom:14px;">If anything here is unclear, or you think a link is mislabelled, email <span class="mono">ak5249474@gmail.com</span> and we will fix it.</p>
+    </div>
+  </section>
+
   <!-- CONTACT -->
   <section id="contact">
     <div style="padding: 40px 0 64px; max-width:600px;">
@@ -957,6 +995,7 @@
       <button data-tab="about" style="background:none; border:none; cursor:pointer; font-family:'Manrope'; font-weight:600; font-size:13px; color:var(--ink-soft);">About Us</button>
       <button data-tab="privacy" style="background:none; border:none; cursor:pointer; font-family:'Manrope'; font-weight:600; font-size:13px; color:var(--ink-soft);">Privacy Policy</button>
       <button data-tab="terms" style="background:none; border:none; cursor:pointer; font-family:'Manrope'; font-weight:600; font-size:13px; color:var(--ink-soft);">Terms &amp; Conditions</button>
+      <button data-tab="disclosure" style="background:none; border:none; cursor:pointer; font-family:'Manrope'; font-weight:600; font-size:13px; color:var(--ink-soft);">Affiliate Disclosure</button>
       <button data-tab="contact" style="background:none; border:none; cursor:pointer; font-family:'Manrope'; font-weight:600; font-size:13px; color:var(--ink-soft);">Contact</button>
       <button data-tab="home" style="background:none; border:none; cursor:pointer; font-family:'Manrope'; font-weight:600; font-size:13px; color:var(--ink-soft);">Home</button>
     </div>
@@ -1104,7 +1143,7 @@ const PRODUCTS = [
     verdict: "The Nord CE4 pairs a Snapdragon 7 Gen 3 chipset with genuinely fast 100W charging, going from empty to full in well under 30 minutes — a rare combination at this price. Camera performance in low light is where it falls behind pricier OnePlus siblings, with visible noise creeping in past dusk.",
     pros: ['100W SUPERVOOC charging takes the 5500mAh battery from empty to full in around 27 minutes', 'Snapdragon 7 Gen 3 handles multitasking and moderate gaming smoothly without noticeable lag', 'AMOLED display with 120Hz refresh rate feels fluid for everyday scrolling and video'],
     cons: ['Low-light photos show visible noise and softness compared to pricier OnePlus models', 'IP54 rating only protects against light splashes, not submersion or heavy rain exposure'],
-    specs: [['Display','6.7" AMOLED FHD+, 120Hz'],['Processor','Qualcomm Snapdragon 7 Gen 3'],['RAM/Storage','8GB/128GB (up to 8GB/256GB)'],['Battery','5500mAh, 100W SUPERVOOC charging'],['Rear Camera','50MP + 8MP dual camera'],['Build','IP54 rating']],
+    specs: [['Display','6.7" AMOLED FHD+, 120Hz'],['Processor','Qualcomm Snapdragon 7 Gen 3'],['RAM/Storage','8GB/256GB'],['Battery','5500mAh, 100W SUPERVOOC charging'],['Rear Camera','50MP + 8MP dual camera'],['Build','IP54 rating']],
     priceHist: [20999], tracking: 'new',
   },
   {
@@ -1579,9 +1618,33 @@ const PRODUCTS = [
    ===================================================================== */
 const LIVE_CATEGORIES = ['phones'];
 
-const isLive       = p   => LIVE_CATEGORIES.includes(p.catKey);
+/* Individual products pulled from the site without deleting their data.
+   Use this when a review can't be backed by a real, buyable listing. */
+const HIDDEN_IDS = ['redmi-note-14-5g'];
+
+const isLive       = p   => LIVE_CATEGORIES.includes(p.catKey) && !HIDDEN_IDS.includes(p.id);
 const liveProducts = ()  => PRODUCTS.filter(isLive);
 const firstLiveCat = ()  => LIVE_CATEGORIES[0] || 'phones';
+
+/* The Editor's Pick is simply the highest Trust Score among the products
+   we're actually showing. Hardcoding it meant it could point at something
+   the visitor can no longer find. */
+function renderEditorsPick(){
+  const el = document.getElementById('editors-pick');
+  if(!el) return;
+  const pick = liveProducts().slice().sort((a,b) => b.score - a.score)[0];
+  if(!pick){ el.style.display = 'none'; return; }
+  const hook = pick.verdict.split('. ')[0];
+  el.innerHTML = `
+    <div class="label">🏆 Editor's Pick — Highest Trust Score</div>
+    <div class="name">${escapeHtml(pick.name)} (${escapeHtml(pick.category)})</div>
+    <div class="verdict-row">
+      <div class="stamp sm"><span class="num">${pick.score}</span><span class="of">/100</span></div>
+      <p style="font-size:13.5px; color:rgba(255,255,255,0.9);">${escapeHtml(hook)}.</p>
+    </div>`;
+  el.style.cursor = 'pointer';
+  el.onclick = () => go('#/product/' + pick.id);
+}
 
 const CATEGORIES = {
   earbuds: 'Wireless Earbuds',
@@ -1918,6 +1981,27 @@ function priceChartHTML(hist){
         ${ticks}
       </svg>
       <div class="pchart-tip"></div>
+    </div>`;
+}
+
+/* Only claim a commission when the link actually carries an affiliate tag.
+   Saying "affiliate link" on a plain retailer URL is a claim we can't back. */
+function isAffiliateLink(url){
+  return !!url && /[?&](tag|affid|affExtParam1|affExtParam2|utm_source=verdikt|ascsubtag)=/.test(url);
+}
+function ctaNote(p){
+  if(!p.buyUrl)              return 'We only link once we\u2019ve found the product listed.';
+  if(isAffiliateLink(p.buyUrl)) return 'Affiliate link \u2014 we may earn a commission at no extra cost to you.';
+  return 'Direct retailer link \u2014 no commission earned on this one.';
+}
+
+/* Networks and the FTC both expect the disclosure to sit next to the link
+   itself, not buried in a Terms page nobody opens. */
+function affBarHTML(){
+  return `
+    <div class="aff-bar">
+      <span class="ic">\u{1F517}</span>
+      <span><b style="color:var(--ink);">Affiliate disclosure.</b> Some links on this page go to retailers like Amazon and Flipkart. If you buy through one that carries our tracking code, we may earn a small commission \u2014 the price you pay is exactly the same. This never changes a Trust Score or where a product ranks. <a href="#/disclosure">Read the full disclosure</a>.</span>
     </div>`;
 }
 
@@ -2398,6 +2482,8 @@ function renderCompare(){
       ${pcCol(b)}
     </div>
 
+    ${affBarHTML()}
+
     <div class="cmp-share">
       <button class="share-btn wa" id="cmp-share-wa">Share this comparison</button>
       <button class="share-btn" id="cmp-share-copy">Copy link</button>
@@ -2506,7 +2592,7 @@ function wireCompare(){
    button works and links can actually be shared. Hash routing because
    this is a single static file with no server rewrites behind it.
    ===================================================================== */
-const SIMPLE_ROUTES = ['about', 'privacy', 'terms', 'contact'];
+const SIMPLE_ROUTES = ['about', 'privacy', 'terms', 'contact', 'disclosure'];
 
 function go(hash){
   if(location.hash === hash) applyRoute();
@@ -2556,7 +2642,12 @@ function applyRoute(){
   }
   else if(SIMPLE_ROUTES.includes(head)){
     switchTab(head);
-    setDocTitle(`${head.charAt(0).toUpperCase() + head.slice(1)} | Verdikt`);
+    const TITLES = { disclosure: 'Affiliate Disclosure' };
+    const t = TITLES[head] || (head.charAt(0).toUpperCase() + head.slice(1));
+    setDocTitle(`${t} | Verdikt`,
+      head === 'disclosure'
+        ? 'How Verdikt makes money: affiliate links, what they do and do not affect, and how we label the ones that earn a commission.'
+        : '');
   }
   else {
     go('#/');
@@ -2635,6 +2726,7 @@ function openDetail(id){
     </div>
     <div class="pd-body">
       <div>
+        ${affBarHTML()}
         <div class="verdict-box">
           <div class="vlabel">The Verdict</div>
           <p>${p.verdict}</p>
@@ -2662,7 +2754,7 @@ function openDetail(id){
           ${p.buyUrl
             ? `<a class="cta" href="${p.buyUrl}" target="_blank" rel="nofollow sponsored noopener" style="display:flex; align-items:center; justify-content:center; text-decoration:none;">View lowest price</a>`
             : `<button class="cta" disabled title="No retailer link set yet" style="opacity:.5; cursor:not-allowed;">Link coming soon</button>`}
-          <div class="cta-note">Affiliate link — we may earn a commission</div>
+          <div class="cta-note">${ctaNote(p)}</div>
           <button class="cta-ghost" id="alert-btn">🔔 <span>Alert me on price drop</span></button>
           <button class="cmp-with" id="cmp-with-btn">⇄ Compare with another</button>
           ${shareRowHTML()}
@@ -2795,7 +2887,8 @@ function switchTab(tab){
 
 const TAB_HASH = {
   home: '#/', listing: '#/browse/' + firstLiveCat(), compare: '#/compare',
-  about: '#/about', privacy: '#/privacy', terms: '#/terms', contact: '#/contact'
+  about: '#/about', privacy: '#/privacy', terms: '#/terms', contact: '#/contact',
+  disclosure: '#/disclosure'
 };
 document.querySelectorAll('[data-tab]').forEach(btn=>{
   btn.addEventListener('click', ()=> go(TAB_HASH[btn.dataset.tab] || '#/'));
@@ -2847,11 +2940,12 @@ themeToggleBtn.addEventListener('click', ()=>{
 /* ---------- FAQ Chat Widget ---------- */
 const FAQS = [
   { keywords: ['trust score','score kaise','score calculate','rating kaise'],
-    answer: "Trust Score teen cheezon se banta hai: product apne claims pe khara utarta hai kya (40%), durability/build quality signals (30%), aur price ke hisaab se value (30%). Yeh review-count se nahi banta — sirf star-rating dekh ke bharosa mat karo, humari score breakdown har product page pe milegi." },
+    answer: "Trust Score teen cheezon se banta hai: product apne advertised specs pe kitna khara utarta hai, owners reliability ke baare mein kya batate hain, aur price ke hisaab se value. Yeh review-count se nahi banta. Hum lab test nahi karte — poori methodology 'About Us' page pe likhi hai." },
   { keywords: ['paid','sponsor','fake review','honest','biased','commission se'],
     answer: "Nahi — Trust Score kisi bhi affiliate commission se influence nahi hota. Hum affiliate links se kamate hain (Amazon/Flipkart), lekin isse rankings pe koi asar nahi padta. Zyada detail 'About Us' page pe hai." },
   { keywords: ['affiliate','extra cost','extra paisa','link safe','commission kya'],
-    answer: "Affiliate link pe click karke kharidne se tumhe **koi extra paisa nahi lagta** — hume retailer se chhoti commission milti hai, tumhare price me koi farak nahi aata." },
+    answer: "Affiliate link pe click karke kharidne se tumhe **koi extra paisa nahi lagta** — hume retailer se chhoti commission mil sakti hai, tumhare price me koi farak nahi aata. Har buy button ke neeche likha hota hai ki us link se commission milti hai ya nahi.",
+    action: { label: 'Full disclosure padho', fn: () => go('#/disclosure') } },
   { keywords: ['review kaise','write a review','review likh','apna review'],
     answer: "Kisi bhi product ki detail page kholo, neeche scroll karo 'Community Reviews' section tak — wahan naam, rating, aur review likh ke submit kar sakte ho. Sabko dikhega!" },
   { keywords: ['best earbuds','earbuds recommend','earbuds suggest'],
@@ -3022,6 +3116,7 @@ async function syncLivePrices(){
 }
 
 renderList();
+renderEditorsPick();
 wireCompare();
 applyRoute();
 syncLivePrices();
