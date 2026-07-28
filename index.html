@@ -777,6 +777,38 @@
     .gd-pick{ grid-template-columns:1fr; gap:12px; }
     .gd-head h2{ font-size:24px; }
   }
+
+  /* ---------- EU energy label ---------- */
+  .eu-card{ background:var(--card); border:2px solid var(--line); border-radius:18px;
+            padding:20px 22px; margin-top:22px; }
+  .eu-top{ display:flex; align-items:flex-start; justify-content:space-between; gap:14px; flex-wrap:wrap; }
+  .eu-title{ font-family:'Poppins'; font-weight:600; font-size:16px; }
+  .eu-sub{ font-size:12.5px; color:var(--ink-soft); margin-top:4px; line-height:1.55; max-width:420px; }
+  .eu-flag{ font-family:'JetBrains Mono'; font-weight:700; font-size:10px; letter-spacing:.06em;
+            background:#003399; color:#FFCC00; border-radius:6px; padding:4px 9px; white-space:nowrap; }
+
+  .eu-ladder{ display:flex; gap:4px; margin:16px 0 6px; }
+  .eu-step{ flex:1; height:26px; border-radius:5px; display:flex; align-items:center; justify-content:center;
+            font-family:'JetBrains Mono'; font-weight:700; font-size:12px; color:#fff; opacity:.22; }
+  .eu-step.on{ opacity:1; box-shadow:0 0 0 2px var(--card), 0 0 0 4px var(--ink); }
+  .eu-ladder-note{ font-size:11.5px; color:var(--ink-soft); }
+
+  .eu-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:10px; margin-top:16px; }
+  .eu-cell{ background:var(--violet-light); border-radius:12px; padding:12px 14px; }
+  .eu-cell .k{ font-family:'Manrope'; font-weight:700; font-size:10px; letter-spacing:.06em;
+               text-transform:uppercase; color:var(--ink-soft); }
+  .eu-cell .v{ font-family:'JetBrains Mono'; font-weight:700; font-size:17px; margin-top:5px; }
+  .eu-cell .h{ font-size:11.5px; color:var(--ink-soft); margin-top:4px; line-height:1.5; }
+  .eu-cell .v .cls{ display:inline-block; min-width:22px; text-align:center; border-radius:5px;
+                    color:#fff; padding:1px 6px; margin-right:6px; }
+
+  .eu-src{ font-size:11.5px; color:var(--ink-soft); margin-top:15px; line-height:1.65;
+           padding-top:13px; border-top:1px solid var(--line); }
+  .eu-src a{ color:var(--violet); font-weight:700; text-decoration:none; }
+  .eu-src a:hover{ text-decoration:underline; }
+
+  .eu-empty{ font-size:13.5px; color:var(--ink-soft); line-height:1.7; margin-top:12px; }
+  .eu-empty b{ color:var(--ink); }
 </style>
 </head>
 <body>
@@ -2126,6 +2158,135 @@ function mountGuideCards(){
     c.addEventListener('click', () => go('#/guide/' + c.dataset.guide)));
 }
 
+
+/* =====================================================================
+   EU ENERGY LABEL
+   ---------------------------------------------------------------------
+   Since 20 June 2025 every smartphone placed on the EU market must carry
+   an energy label, and the underlying figures are registered in EPREL —
+   the EU's public product database. The manufacturer declares them and is
+   legally answerable for them, which makes this the only hard, verifiable
+   performance data we can publish without running a lab ourselves.
+
+   NOTHING GOES IN THIS TABLE THAT HASN'T BEEN READ OFF AN EPREL RECORD.
+   An empty entry is correct and honest; a guessed one is not. Two real
+   reasons a phone may never get an entry:
+     - it is sold only in India and never placed on the EU market
+     - the Indian variant differs from the EU one (different chipset,
+       battery or storage), in which case the EU figures do not apply
+
+   Shape:
+     'product-id': {
+       energy:    'A'..'G',        // energy efficiency class
+       battery:   '2d 4h',         // endurance per charge, as printed
+       cycles:    1200,            // full charge cycles to 80% capacity
+       drop:      'A'..'E',        // repeated free fall reliability class
+       repair:    'A'..'E',        // repairability class
+       ip:        'IP68',          // ingress protection
+       eprel:     'https://eprel.ec.europa.eu/screen/product/...',
+       variant:   'EU model XYZ',  // which model the record covers
+       checked:   '2026-07-28'
+     }
+   ===================================================================== */
+const EU_LABEL = {};
+
+const EU_CLASS_COLOR = {
+  A:'#009640', B:'#52AE32', C:'#C8D200', D:'#FFED00', E:'#FBBA00', F:'#EF7D00', G:'#E30613'
+};
+/* Yellow needs dark text to stay readable. */
+const EU_DARK_TEXT = { C:1, D:1 };
+
+function euClassChip(cls){
+  const bg = EU_CLASS_COLOR[cls] || 'var(--ink-soft)';
+  const fg = EU_DARK_TEXT[cls] ? '#1A1A2E' : '#fff';
+  return `<span class="cls" style="background:${bg}; color:${fg};">${escapeHtml(cls)}</span>`;
+}
+
+function euLadder(active, letters){
+  return `
+    <div class="eu-ladder">
+      ${letters.map(L => {
+        const bg = EU_CLASS_COLOR[L];
+        const fg = EU_DARK_TEXT[L] ? '#1A1A2E' : '#fff';
+        return `<div class="eu-step ${L === active ? 'on' : ''}" style="background:${bg}; color:${fg};">${L}</div>`;
+      }).join('')}
+    </div>`;
+}
+
+function euLabelHTML(p){
+  const d = EU_LABEL[p.id];
+
+  if(!d){
+    return `
+    <div class="eu-card">
+      <div class="eu-top">
+        <div>
+          <div class="eu-title">EU energy label</div>
+          <div class="eu-sub">Manufacturer-declared battery life, drop resistance and repairability, registered with the European Commission.</div>
+        </div>
+        <span class="eu-flag">EPREL</span>
+      </div>
+      <p class="eu-empty"><b>We haven't looked this one up yet.</b> Since June 2025 every phone sold in the EU carries these figures, and they're the closest thing to independently checkable durability data that exists. We add them one phone at a time, after reading the actual EPREL record &mdash; never from an estimate.</p>
+      <p class="eu-empty">Some phones will never have an entry: models sold only in India are never placed on the EU market, and where the Indian variant differs from the European one the figures wouldn't apply anyway. If that turns out to be the case here, we'll say so rather than leave this blank.</p>
+    </div>`;
+  }
+
+  const cells = [];
+  if(d.battery) cells.push(`
+    <div class="eu-cell">
+      <div class="k">Battery endurance</div>
+      <div class="v">${escapeHtml(d.battery)}</div>
+      <div class="h">Per full charge, measured to a fixed EU test cycle</div>
+    </div>`);
+  if(d.cycles) cells.push(`
+    <div class="eu-cell">
+      <div class="k">Battery cycles</div>
+      <div class="v">${Number(d.cycles).toLocaleString('en-IN')}</div>
+      <div class="h">Charges before capacity drops to 80%. EU minimum is 800</div>
+    </div>`);
+  if(d.drop) cells.push(`
+    <div class="eu-cell">
+      <div class="k">Drop resistance</div>
+      <div class="v">${euClassChip(d.drop)}<span style="font-size:12px; color:var(--ink-soft);">of A&ndash;E</span></div>
+      <div class="h">Repeated free-fall reliability class</div>
+    </div>`);
+  if(d.repair) cells.push(`
+    <div class="eu-cell">
+      <div class="k">Repairability</div>
+      <div class="v">${euClassChip(d.repair)}<span style="font-size:12px; color:var(--ink-soft);">of A&ndash;E</span></div>
+      <div class="h">Parts access, disassembly and spare part pricing</div>
+    </div>`);
+  if(d.ip) cells.push(`
+    <div class="eu-cell">
+      <div class="k">Ingress protection</div>
+      <div class="v" style="font-size:15px;">${escapeHtml(d.ip)}</div>
+      <div class="h">Dust and water rating, as declared</div>
+    </div>`);
+
+  return `
+    <div class="eu-card">
+      <div class="eu-top">
+        <div>
+          <div class="eu-title">EU energy label</div>
+          <div class="eu-sub">Declared by the manufacturer to the European Commission. Not our measurement, and not marketing &mdash; a legally binding registration.</div>
+        </div>
+        <span class="eu-flag">EPREL</span>
+      </div>
+
+      ${d.energy ? `
+        ${euLadder(d.energy, ['A','B','C','D','E','F','G'])}
+        <div class="eu-ladder-note">Energy efficiency class <b>${escapeHtml(d.energy)}</b> &mdash; how much charge the phone gets through for the work it does.</div>
+      ` : ''}
+
+      <div class="eu-grid">${cells.join('')}</div>
+
+      <div class="eu-src">
+        ${d.variant ? `Figures are for <b>${escapeHtml(d.variant)}</b>. ` : ''}Read from the EPREL record${d.checked ? ` on ${escapeHtml(d.checked)}` : ''}.
+        ${d.eprel ? `<a href="${d.eprel}" target="_blank" rel="noopener">Open the original record &rarr;</a>` : ''}
+      </div>
+    </div>`;
+}
+
 function renderEditorsPick(){
   const el = document.getElementById('editors-pick');
   if(!el) return;
@@ -3251,6 +3412,7 @@ function openDetail(id){
         <table class="spec">
           ${p.specs.map(([k,v])=>`<tr><td>${k}</td><td>${v}</td></tr>`).join('')}
         </table>
+        ${euLabelHTML(p)}
         <div id="reviews-section"></div>
       </div>
       <div class="side">
