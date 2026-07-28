@@ -111,11 +111,6 @@
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://verdikt-mu.vercel.app/#/faq</loc>
-    <lastmod>2026-07-27</lastmod>
-    <priority>0.5</priority>
-  </url>
-  <url>
     <loc>https://verdikt-mu.vercel.app/#/privacy</loc>
     <lastmod>2026-07-27</lastmod>
     <priority>0.2</priority>
