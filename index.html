@@ -807,6 +807,17 @@
   .eu-src a{ color:var(--violet); font-weight:700; text-decoration:none; }
   .eu-src a:hover{ text-decoration:underline; }
 
+  .eu-break{ margin-top:14px; border-top:1px solid var(--line); padding-top:12px; }
+  .eu-break summary{ list-style:none; cursor:pointer; font-family:'Manrope'; font-weight:700;
+                     font-size:12.5px; color:var(--violet); }
+  .eu-break summary::-webkit-details-marker{ display:none; }
+  .eu-break summary::after{ content:' +'; font-family:'JetBrains Mono'; }
+  .eu-break[open] summary::after{ content:' \2212'; }
+  .eu-break table{ width:100%; border-collapse:collapse; margin-top:10px; }
+  .eu-break td{ padding:6px 0; font-size:13px; color:var(--ink-soft); border-bottom:1px solid var(--line); }
+  .eu-break td:last-child{ text-align:right; font-family:'JetBrains Mono'; font-weight:700; color:var(--ink); }
+  .eu-break p{ font-size:12px; color:var(--ink-soft); line-height:1.65; margin-top:10px; }
+
   .eu-empty{ font-size:13.5px; color:var(--ink-soft); line-height:1.7; margin-top:12px; }
   .eu-empty b{ color:var(--ink); }
 </style>
@@ -2175,20 +2186,84 @@ function mountGuideCards(){
      - the Indian variant differs from the EU one (different chipset,
        battery or storage), in which case the EU figures do not apply
 
-   Shape:
-     'product-id': {
-       energy:    'A'..'G',        // energy efficiency class
-       battery:   '2d 4h',         // endurance per charge, as printed
-       cycles:    1200,            // full charge cycles to 80% capacity
-       drop:      'A'..'E',        // repeated free fall reliability class
-       repair:    'A'..'E',        // repairability class
-       ip:        'IP68',          // ingress protection
-       eprel:     'https://eprel.ec.europa.eu/screen/product/...',
-       variant:   'EU model XYZ',  // which model the record covers
-       checked:   '2026-07-28'
-     }
+   Every field is optional — the card renders only what we actually have.
+   Leave a field out rather than estimate it.
    ===================================================================== */
-const EU_LABEL = {};
+const EU_LABEL = {
+  'iphone-16': {
+    variant:    'Apple A3287 \u2014 the global iPhone 16, the same model sold in India',
+    battery:    '37h 00min',
+    cycles:     1000,
+    capacity:   3561,
+    drop:       'C',
+    dropFalls:  90,
+    ip:         'IP68',
+    immersion:  '6 m',
+    mohs:       4,
+    osUpdates:  5,
+    repair:     'C',
+    repairIndex:'2.80',
+    repairScores: [
+      ['Disassembly depth', '2.70'],
+      ['Fasteners', '3.20'],
+      ['Tools required', '1.00'],
+      ['Spare parts', '4'],
+      ['Software update duration', '1'],
+      ['Repair information', '5']
+    ],
+    eprel:   'https://eprel.ec.europa.eu/screen/product/smartphonestablets20231669/2251146',
+    checked: '2026-07-28'
+  },
+
+  'iphone-17': {
+    variant:    'Apple A3520 \u2014 the global iPhone 17, the same model sold in India',
+    battery:    '41h 00min',
+    cycles:     1000,
+    capacity:   3692,
+    drop:       'B',
+    dropFalls:  180,
+    ip:         'IP68',
+    immersion:  '6 m',
+    mohs:       5,
+    osUpdates:  5,
+    repair:     'C',
+    repairIndex:'2.82',
+    repairScores: [
+      ['Disassembly depth', '2.75'],
+      ['Fasteners', '3.20'],
+      ['Tools required', '1.00'],
+      ['Spare parts', '4'],
+      ['Software update duration', '1'],
+      ['Repair information', '5']
+    ],
+    eprel:   'https://eprel.ec.europa.eu/screen/product/smartphonestablets20231669/2402623',
+    checked: '2026-07-29'
+  },
+
+  'samsung-galaxy-a56': {
+    variant:    'Samsung SM-A566B/DS \u2014 registered by Samsung Electronics (UK) Limited as manufacturer',
+    battery:    '44h 34min',
+    cycles:     2000,
+    capacity:   4905,
+    drop:       'A',
+    dropFalls:  270,
+    ip:         'IP67',
+    mohs:       5,
+    osUpdates:  5,
+    repair:     'C',
+    repairIndex:'3.19',
+    repairScores: [
+      ['Disassembly depth', '2.65'],
+      ['Fasteners', '3.10'],
+      ['Tools required', '2.80'],
+      ['Spare parts', '5'],
+      ['Software update duration', '1'],
+      ['Repair information', '5']
+    ],
+    eprel:   'https://eprel.ec.europa.eu/screen/product/smartphonestablets20231669/2339787',
+    checked: '2026-07-29'
+  }
+};
 
 const EU_CLASS_COLOR = {
   A:'#009640', B:'#52AE32', C:'#C8D200', D:'#FFED00', E:'#FBBA00', F:'#EF7D00', G:'#E30613'
@@ -2236,31 +2311,43 @@ function euLabelHTML(p){
     <div class="eu-cell">
       <div class="k">Battery endurance</div>
       <div class="v">${escapeHtml(d.battery)}</div>
-      <div class="h">Per full charge, measured to a fixed EU test cycle</div>
+      <div class="h">Per full charge, on a fixed EU test cycle${d.capacity ? ` \u00b7 ${Number(d.capacity).toLocaleString('en-IN')} mAh` : ''}</div>
     </div>`);
   if(d.cycles) cells.push(`
     <div class="eu-cell">
       <div class="k">Battery cycles</div>
       <div class="v">${Number(d.cycles).toLocaleString('en-IN')}</div>
-      <div class="h">Charges before capacity drops to 80%. EU minimum is 800</div>
+      <div class="h">Charges before capacity falls to 80%. EU minimum is 800</div>
     </div>`);
   if(d.drop) cells.push(`
     <div class="eu-cell">
       <div class="k">Drop resistance</div>
       <div class="v">${euClassChip(d.drop)}<span style="font-size:12px; color:var(--ink-soft);">of A&ndash;E</span></div>
-      <div class="h">Repeated free-fall reliability class</div>
+      <div class="h">${d.dropFalls ? `Survived ${d.dropFalls} falls without defect in the EU test` : 'Repeated free-fall reliability class'}</div>
     </div>`);
   if(d.repair) cells.push(`
     <div class="eu-cell">
       <div class="k">Repairability</div>
       <div class="v">${euClassChip(d.repair)}<span style="font-size:12px; color:var(--ink-soft);">of A&ndash;E</span></div>
-      <div class="h">Parts access, disassembly and spare part pricing</div>
+      <div class="h">${d.repairIndex ? `Index ${escapeHtml(d.repairIndex)} out of 5` : 'Parts access, disassembly and spare part pricing'}</div>
     </div>`);
   if(d.ip) cells.push(`
     <div class="eu-cell">
       <div class="k">Ingress protection</div>
       <div class="v" style="font-size:15px;">${escapeHtml(d.ip)}</div>
-      <div class="h">Dust and water rating, as declared</div>
+      <div class="h">Dust and water${d.immersion ? ` \u00b7 rated to ${escapeHtml(d.immersion)}` : ''}</div>
+    </div>`);
+  if(d.osUpdates) cells.push(`
+    <div class="eu-cell">
+      <div class="k">Guaranteed OS updates</div>
+      <div class="v">${d.osUpdates} yr</div>
+      <div class="h">Minimum the maker is legally bound to, from end of sale</div>
+    </div>`);
+  if(d.mohs) cells.push(`
+    <div class="eu-cell">
+      <div class="k">Screen scratch</div>
+      <div class="v">${d.mohs}<span style="font-size:12px; color:var(--ink-soft); margin-left:5px;">Mohs</span></div>
+      <div class="h">Hardness at which the screen begins to scratch</div>
     </div>`);
 
   return `
@@ -2279,6 +2366,15 @@ function euLabelHTML(p){
       ` : ''}
 
       <div class="eu-grid">${cells.join('')}</div>
+
+      ${d.repairScores && d.repairScores.length ? `
+      <details class="eu-break">
+        <summary>What makes up the repairability index</summary>
+        <table>
+          ${d.repairScores.map(([k, v]) => `<tr><td>${escapeHtml(k)}</td><td>${escapeHtml(v)}</td></tr>`).join('')}
+        </table>
+        <p>Each part is scored out of 5, then weighted into the overall index. A low <b>tools</b> score means special tools are needed to open it; a low <b>software update duration</b> score means the guaranteed support window is short by EU standards.</p>
+      </details>` : ''}
 
       <div class="eu-src">
         ${d.variant ? `Figures are for <b>${escapeHtml(d.variant)}</b>. ` : ''}Read from the EPREL record${d.checked ? ` on ${escapeHtml(d.checked)}` : ''}.
