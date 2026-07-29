@@ -820,6 +820,186 @@
 
   .eu-empty{ font-size:13.5px; color:var(--ink-soft); line-height:1.7; margin-top:12px; }
   .eu-empty b{ color:var(--ink); }
+
+  /* ---------- Cost to keep ---------- */
+  .keep-card{ background:var(--card); border:2px solid var(--line); border-radius:18px;
+              padding:20px 22px; margin-top:18px; }
+  .keep-title{ font-family:'Poppins'; font-weight:600; font-size:16px; }
+  .keep-sub{ font-size:12.5px; color:var(--ink-soft); margin-top:4px; line-height:1.55; }
+  .keep-hero{ display:flex; align-items:baseline; gap:10px; margin:16px 0 4px; flex-wrap:wrap; }
+  .keep-hero .n{ font-family:'JetBrains Mono'; font-weight:700; font-size:28px; color:var(--violet); }
+  .keep-hero .u{ font-size:13px; color:var(--ink-soft); }
+  .keep-math{ font-size:12.5px; color:var(--ink-soft); font-family:'JetBrains Mono'; }
+  .keep-rows{ margin-top:16px; border-top:1px solid var(--line); }
+  .keep-row{ display:flex; justify-content:space-between; gap:14px; padding:9px 0;
+             border-bottom:1px solid var(--line); font-size:13.5px; }
+  .keep-row span:first-child{ color:var(--ink-soft); }
+  .keep-row span:last-child{ font-family:'JetBrains Mono'; font-weight:700; }
+  .keep-note{ font-size:12px; color:var(--ink-soft); line-height:1.65; margin-top:13px; }
+  .keep-note b{ color:var(--ink); }
+
+  /* ---------- Phone finder ---------- */
+  .fd-head{ max-width:660px; }
+  .fd-head h2{ font-family:'Poppins'; font-weight:700; font-size:29px; line-height:1.2; letter-spacing:-.01em; }
+  .fd-head p{ font-size:15px; line-height:1.7; color:var(--ink-soft); margin-top:10px; }
+
+  .fd-step{ margin-top:28px; }
+  .fd-q{ font-family:'Poppins'; font-weight:600; font-size:16.5px; margin-bottom:4px; }
+  .fd-hint{ font-size:12.5px; color:var(--ink-soft); margin-bottom:12px; }
+  .fd-opts{ display:flex; flex-wrap:wrap; gap:9px; }
+  .fd-opt{
+    font-family:'Manrope'; font-weight:700; font-size:13.5px; cursor:pointer;
+    border:2px solid var(--line); background:var(--card); color:var(--ink-soft);
+    border-radius:12px; padding:10px 16px; transition:border-color .15s, color .15s;
+  }
+  .fd-opt:hover{ border-color:var(--violet); color:var(--violet); }
+  .fd-opt.on{ border-color:var(--violet); background:var(--violet-light); color:var(--violet-deep); }
+  .fd-opt small{ display:block; font-weight:400; font-size:11.5px; margin-top:3px; opacity:.85; }
+
+  .fd-actions{ margin-top:26px; display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
+  .fd-go{
+    font-family:'Manrope'; font-weight:700; font-size:14.5px; cursor:pointer;
+    background:var(--violet); color:#fff; border:none; border-radius:13px; padding:13px 26px;
+  }
+  .fd-go:disabled{ opacity:.4; cursor:not-allowed; }
+  .fd-reset{
+    font-family:'Manrope'; font-weight:700; font-size:13px; cursor:pointer;
+    background:none; border:none; color:var(--ink-soft); text-decoration:underline;
+  }
+
+  .fd-result{ margin-top:34px; }
+  .fd-pick{
+    display:grid; grid-template-columns:auto 1fr; gap:0 18px;
+    background:var(--card); border:2px solid var(--line); border-radius:18px;
+    padding:20px 22px; margin-bottom:13px;
+  }
+  .fd-pick.top{ border-color:var(--violet); }
+  .fd-rank{
+    font-family:'Poppins'; font-weight:700; font-size:19px; color:var(--violet);
+    background:var(--violet-light); border-radius:12px;
+    width:44px; height:44px; display:flex; align-items:center; justify-content:center;
+  }
+  .fd-name{ font-family:'Poppins'; font-weight:600; font-size:18px; }
+  .fd-line{ display:flex; align-items:center; gap:11px; flex-wrap:wrap; margin-top:6px; }
+  .fd-price{ font-family:'JetBrains Mono'; font-weight:700; font-size:15px; }
+  .fd-score{ font-family:'JetBrains Mono'; font-weight:700; font-size:11px; color:#fff;
+             background:var(--green); border-radius:6px; padding:2px 7px; }
+  .fd-why{ margin-top:12px; display:flex; flex-wrap:wrap; gap:7px; }
+  .fd-why span{
+    font-size:12px; background:var(--violet-light); color:var(--violet-deep);
+    border-radius:8px; padding:5px 10px; font-weight:700;
+  }
+  .fd-against{ font-size:13px; color:var(--ink-soft); line-height:1.7; margin-top:11px; }
+  .fd-against b{ color:var(--ink); }
+  .fd-act{ margin-top:13px; display:flex; gap:9px; flex-wrap:wrap; }
+  .fd-act button{
+    font-family:'Manrope'; font-weight:700; font-size:12.5px; cursor:pointer;
+    border-radius:10px; padding:8px 14px; border:2px solid var(--line);
+    background:transparent; color:var(--ink-soft);
+  }
+  .fd-act button:hover{ border-color:var(--violet); color:var(--violet); }
+  .fd-none{
+    background:var(--violet-light); border-radius:14px; padding:18px 20px;
+    font-size:14px; line-height:1.75; color:var(--ink-soft); max-width:660px;
+  }
+  .fd-none b{ color:var(--ink); }
+  .fd-honest{
+    font-size:12.5px; line-height:1.7; color:var(--ink-soft); margin-top:22px;
+    padding-top:14px; border-top:1px solid var(--line); max-width:660px;
+  }
+  .fd-honest b{ color:var(--ink); }
+
+  @media (max-width:560px){ .fd-pick{ grid-template-columns:1fr; gap:12px; } }
+
+  .fd-cta{
+    display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap;
+    background:var(--violet-light); border-radius:20px; padding:24px 26px; margin-top:40px;
+    cursor:pointer; border:2px solid transparent; transition:border-color .15s;
+  }
+  .fd-cta:hover{ border-color:var(--violet); }
+  .fd-cta .t{ font-family:'Poppins'; font-weight:600; font-size:19px; color:var(--ink); }
+  .fd-cta p{ font-size:14px; color:var(--ink-soft); margin-top:7px; line-height:1.65; max-width:520px; }
+  .fd-cta button{
+    font-family:'Manrope'; font-weight:700; font-size:14px; cursor:pointer; white-space:nowrap;
+    background:var(--violet); color:#fff; border:none; border-radius:13px; padding:13px 24px;
+  }
+
+  /* ---------- finder: progress ---------- */
+  .fd-prog{ display:flex; align-items:center; gap:10px; margin-top:26px; }
+  .fd-prog-bar{ flex:1; height:6px; background:var(--line); border-radius:3px; overflow:hidden; }
+  .fd-prog-fill{ height:100%; background:linear-gradient(90deg, var(--violet), var(--pink));
+                 border-radius:3px; transition:width .45s cubic-bezier(.22,.9,.3,1); }
+  .fd-prog-txt{ font-family:'JetBrains Mono'; font-weight:700; font-size:11.5px; color:var(--ink-soft);
+                white-space:nowrap; }
+
+  /* ---------- finder: option cards ---------- */
+  .fd-opt{ position:relative; text-align:left; line-height:1.35; }
+  .fd-opt .ic{ font-size:15px; margin-right:7px; }
+  .fd-opt.on{ box-shadow:0 6px 16px rgba(124,58,237,0.16); }
+  .fd-step{ animation: fdIn .4s ease both; }
+  .fd-step:nth-child(2){ animation-delay:.06s; }
+  .fd-step:nth-child(3){ animation-delay:.12s; }
+  @keyframes fdIn{ from{ opacity:0; transform:translateY(10px);} to{ opacity:1; transform:none;} }
+
+  /* ---------- finder: results ---------- */
+  .fd-pick{ animation: fdIn .5s ease both; position:relative; overflow:hidden; }
+  .fd-pick:nth-child(2){ animation-delay:.08s; }
+  .fd-pick:nth-child(3){ animation-delay:.16s; }
+  .fd-pick.top{ box-shadow:0 12px 30px rgba(124,58,237,0.14); }
+
+  .fd-badge{
+    position:absolute; top:0; right:0;
+    font-family:'Manrope'; font-weight:700; font-size:10.5px; letter-spacing:.05em;
+    text-transform:uppercase; color:#fff; background:var(--violet);
+    padding:5px 12px; border-radius:0 16px 0 12px;
+  }
+  .fd-badge.val{ background:var(--green); }
+
+  .fd-art{ width:52px; flex-shrink:0; }
+  .fd-headrow{ display:flex; align-items:center; gap:14px; }
+
+  .fd-meter{ margin-top:13px; }
+  .fd-meter-top{ display:flex; justify-content:space-between; align-items:baseline;
+                 font-size:11px; letter-spacing:.05em; text-transform:uppercase;
+                 color:var(--ink-soft); font-weight:700; margin-bottom:5px; }
+  .fd-meter-top b{ font-family:'JetBrains Mono'; font-size:13px; color:var(--violet); letter-spacing:0; }
+  .fd-meter-bar{ height:7px; background:var(--line); border-radius:4px; overflow:hidden; }
+  .fd-meter-fill{ height:100%; background:linear-gradient(90deg, var(--violet), var(--pink));
+                  border-radius:4px; width:0; transition:width .8s cubic-bezier(.22,.9,.3,1); }
+
+  .fd-why span{ display:inline-flex; align-items:center; gap:5px; }
+  .fd-why span::before{ content:'✓'; font-family:'JetBrains Mono'; font-weight:700; opacity:.75; }
+
+  .fd-share{ display:flex; gap:9px; flex-wrap:wrap; margin-top:20px; }
+  .fd-share button{
+    font-family:'Manrope'; font-weight:700; font-size:12.5px; cursor:pointer;
+    border-radius:11px; padding:10px 16px; border:2px solid var(--line);
+    background:transparent; color:var(--ink-soft);
+  }
+  .fd-share button:hover{ border-color:var(--green); color:var(--green); }
+
+  /* ---------- Owner's report ---------- */
+  .own-card{ background:var(--card); border:2px solid var(--green); border-radius:18px;
+             padding:20px 22px; margin-top:22px; }
+  .own-top{ display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
+  .own-tag{ font-family:'Manrope'; font-weight:700; font-size:10px; letter-spacing:.07em;
+            text-transform:uppercase; color:#fff; background:var(--green);
+            border-radius:6px; padding:4px 9px; white-space:nowrap; }
+  .own-title{ font-family:'Poppins'; font-weight:600; font-size:16px; }
+  .own-by{ font-size:12.5px; color:var(--ink-soft); margin-top:9px; line-height:1.6; }
+  .own-item{ margin-top:18px; padding-top:15px; border-top:1px solid var(--line); }
+  .own-item:first-of-type{ border-top:none; padding-top:6px; }
+  .own-h{ font-family:'Manrope'; font-weight:700; font-size:13.5px; color:var(--ink); margin-bottom:6px; }
+  .own-p{ font-size:14.5px; line-height:1.75; color:var(--ink-soft); }
+  .own-p + .own-p{ margin-top:9px; }
+  .own-vs{
+    margin-top:11px; background:var(--green-bg); border-left:3px solid var(--green);
+    padding:11px 14px; font-size:13px; line-height:1.7; color:var(--ink-soft);
+  }
+  .own-vs b{ color:var(--ink); }
+  .own-foot{ font-size:12px; color:var(--ink-soft); line-height:1.7; margin-top:16px;
+             padding-top:13px; border-top:1px solid var(--line); }
+  .own-foot b{ color:var(--ink); }
 </style>
 </head>
 <body>
@@ -938,6 +1118,14 @@
         <h3>Smart TVs</h3>
         <p>Samsung, LG, Xiaomi, Sony &amp; TCL</p>
       </div>
+    </div>
+
+    <div class="fd-cta" id="finder-cta">
+      <div>
+        <div class="t">Not sure where to start?</div>
+        <p>Three questions &mdash; budget, what you refuse to compromise on, Android or iPhone &mdash; and we'll show you which of our phones match, with the reason for every match spelled out.</p>
+      </div>
+      <button>Find my phone &rarr;</button>
     </div>
 
     <div class="section-head" style="margin-top:44px;">
@@ -1072,6 +1260,18 @@
       <p style="font-size:14.5px; line-height:1.7; color:var(--ink-soft); margin-bottom:14px;">These terms are governed by the laws of India.</p>
 
       <p style="font-size:12.5px; color:var(--ink-soft); margin-top:28px; padding:16px; background:var(--violet-light); border-radius:12px;">Note: this is a general-purpose template, not legal advice. Have a professional review this before relying on it for a live business.</p>
+    </div>
+  </section>
+
+  <!-- PHONE FINDER -->
+  <section id="finder">
+    <div style="padding: 30px 0 64px;">
+      <div class="breadcrumb"><button data-tab="home">&larr; BACK TO HOME</button></div>
+      <div class="fd-head">
+        <h2>Which phone actually fits you?</h2>
+        <p>Three questions. We match them against the specs we hold for every phone on the site and show you exactly why each one came up &mdash; no black box, no &ldquo;sponsored pick&rdquo;.</p>
+      </div>
+      <div id="finder-body"></div>
     </div>
   </section>
 
@@ -1272,6 +1472,7 @@
       <button data-tab="terms" style="background:none; border:none; cursor:pointer; font-family:'Manrope'; font-weight:600; font-size:13px; color:var(--ink-soft);">Terms &amp; Conditions</button>
       <button data-tab="disclosure" style="background:none; border:none; cursor:pointer; font-family:'Manrope'; font-weight:600; font-size:13px; color:var(--ink-soft);">Affiliate Disclosure</button>
       <button data-tab="faq" style="background:none; border:none; cursor:pointer; font-family:'Manrope'; font-weight:600; font-size:13px; color:var(--ink-soft);">FAQ</button>
+      <button data-tab="finder" style="background:none; border:none; cursor:pointer; font-family:'Manrope'; font-weight:600; font-size:13px; color:var(--ink-soft);">Phone finder</button>
       <button data-tab="contact" style="background:none; border:none; cursor:pointer; font-family:'Manrope'; font-weight:600; font-size:13px; color:var(--ink-soft);">Contact</button>
       <button data-tab="home" style="background:none; border:none; cursor:pointer; font-family:'Manrope'; font-weight:600; font-size:13px; color:var(--ink-soft);">Home</button>
     </div>
@@ -2383,6 +2584,333 @@ function euLabelHTML(p){
     </div>`;
 }
 
+
+/* =====================================================================
+   PHONE FINDER
+   ---------------------------------------------------------------------
+   Every signal below is read out of the spec strings we already publish
+   for that phone, or out of its EPREL record. Nothing is invented, and
+   nothing is weighted by anything commercial.
+
+   Where a phone simply doesn't carry the information a priority needs,
+   it scores zero on that priority rather than being guessed at — and we
+   say so on screen. A finder that always produces a confident answer is
+   a finder that is making things up.
+   ===================================================================== */
+
+/* ---------- pull hard numbers out of the spec strings ---------- */
+function specText(p, keyRe){
+  const row = p.specs.find(([k]) => keyRe.test(k));
+  return row ? row[1] : '';
+}
+function num(re, str){
+  const m = String(str).replace(/,/g, '').match(re);
+  return m ? parseFloat(m[1]) : null;
+}
+
+function phoneSignals(p){
+  const battery = specText(p, /battery/i);
+  const display = specText(p, /display/i);
+  const camera  = specText(p, /camera/i);
+  const build   = specText(p, /build|charging/i);
+  const chip    = specText(p, /processor|chipset/i);
+  const all     = p.specs.map(r => r.join(' ')).join(' ');
+  const eu      = EU_LABEL[p.id];
+
+  return {
+    mah:      num(/(\d{4,5})\s*mAh/i, battery),
+    hz:       num(/(\d{2,3})\s*Hz/i, display),
+    mp:       num(/(\d{2,3})\s*MP/i, camera),
+    lenses:   (camera.match(/MP/gi) || []).length,
+    ip:       (all.match(/IP(\d{2})/i) || [])[0] || null,
+    ipNum:    num(/IP(\d{2})/i, all),
+    watts:    num(/(\d{2,3})\s*W/i, all),
+    chip:     chip,
+    flagship: /snapdragon 8|dimensity 9|apple a1[89]|exynos 2/i.test(chip),
+    upper:    /snapdragon 7|dimensity 8|apple a1[5-7]|exynos 15/i.test(chip),
+    euDrop:   eu && eu.drop   ? eu.drop   : null,
+    euRepair: eu && eu.repair ? eu.repair : null,
+    euCycles: eu && eu.cycles ? eu.cycles : null,
+    euYears:  eu && eu.osUpdates ? eu.osUpdates : null
+  };
+}
+
+/* ---------- what each priority actually rewards ---------- */
+const FD_PRIORITIES = {
+  battery: {
+    ic: '\u{1F50B}',
+    label: 'Battery that lasts',
+    hint:  'Big cell, fast charging, cycles it survives',
+    score(p, g){
+      let sc = 0; const why = [];
+      if(g.mah){
+        sc += Math.min(40, (g.mah - 4000) / 100);
+        if(g.mah >= 6000) why.push(`${g.mah.toLocaleString('en-IN')} mAh battery`);
+        else if(g.mah >= 5000) why.push(`${g.mah.toLocaleString('en-IN')} mAh`);
+      }
+      if(g.watts && g.watts >= 65){ sc += 12; why.push(`${g.watts}W charging`); }
+      if(g.euCycles){ sc += g.euCycles >= 1500 ? 18 : 8; why.push(`${g.euCycles.toLocaleString('en-IN')} charge cycles (EU tested)`); }
+      return { sc, why };
+    }
+  },
+  camera: {
+    ic: '\u{1F4F8}',
+    label: 'Camera first',
+    hint:  'Main sensor and how many usable lenses',
+    score(p, g){
+      let sc = 0; const why = [];
+      if(g.mp){ sc += Math.min(35, g.mp / 3); why.push(`${g.mp}MP main camera`); }
+      if(g.lenses >= 3){ sc += 14; why.push(`${g.lenses} rear lenses`); }
+      else if(g.lenses === 2){ sc += 6; }
+      return { sc, why };
+    }
+  },
+  speed: {
+    ic: '\u26A1',
+    label: 'Speed and gaming',
+    hint:  'Chipset tier and screen refresh rate',
+    score(p, g){
+      let sc = 0; const why = [];
+      if(g.flagship){ sc += 34; why.push(`Flagship chipset — ${g.chip}`); }
+      else if(g.upper){ sc += 18; why.push(`Upper mid chipset — ${g.chip}`); }
+      if(g.hz && g.hz >= 120){ sc += 14; why.push(`${g.hz}Hz display`); }
+      return { sc, why };
+    }
+  },
+  tough: {
+    ic: '\u{1F6E1}\uFE0F',
+    label: 'Survives being dropped',
+    hint:  'IP rating, and the EU drop test where we have it',
+    score(p, g){
+      let sc = 0; const why = [];
+      if(g.ipNum){
+        sc += g.ipNum >= 68 ? 26 : g.ipNum >= 67 ? 20 : 10;
+        why.push(`${g.ip} rated`);
+      }
+      if(g.euDrop){
+        sc += g.euDrop === 'A' ? 30 : g.euDrop === 'B' ? 20 : 8;
+        why.push(`EU drop class ${g.euDrop}`);
+      }
+      return { sc, why };
+    }
+  },
+  keeps: {
+    ic: '\u{1F504}',
+    label: 'Keeps working for years',
+    hint:  'Guaranteed software support and repairability',
+    score(p, g){
+      let sc = 0; const why = [];
+      if(g.euYears){ sc += g.euYears * 7; why.push(`${g.euYears} years of guaranteed updates`); }
+      if(g.euRepair){ sc += g.euRepair === 'A' ? 24 : g.euRepair === 'B' ? 18 : 10; why.push(`EU repairability class ${g.euRepair}`); }
+      if(g.euCycles && g.euCycles >= 1500){ sc += 10; }
+      return { sc, why };
+    }
+  },
+  value: {
+    ic: '\u{1F48E}',
+    label: 'Most for the money',
+    hint:  'Trust Score against what it costs',
+    score(p, g){
+      const perPoint = p.price / p.score;
+      const sc = Math.max(0, 60 - perPoint / 12);
+      return { sc, why: [`${inr(Math.round(perPoint))} per point of Trust Score`] };
+    }
+  }
+};
+
+const FD_BUDGETS = [
+  { id: 'b1', label: 'Under ₹20,000',       ic: '\u{1FA99}', min: 0,     max: 20000 },
+  { id: 'b2', label: '₹20,000 – ₹35,000',   ic: '\u{1FA99}', min: 20000, max: 35000 },
+  { id: 'b3', label: '₹35,000 – ₹55,000',   ic: '\u{1FA99}', min: 35000, max: 55000 },
+  { id: 'b4', label: 'Above ₹55,000',       ic: '\u{1FA99}', min: 55000, max: Infinity },
+  { id: 'b5', label: 'No fixed budget',     ic: '\u2728', min: 0,     max: Infinity }
+];
+
+const FD_OS = [
+  { id: 'any',     label: 'No preference', ic: '\u2728' },
+  { id: 'android', label: 'Android', ic: '\u{1F916}' },
+  { id: 'ios',     label: 'iPhone', ic: '\u{1F34E}' }
+];
+
+const fdState = { budget: null, priority: null, os: null, done: false };
+
+function fdOptsHTML(list, sel, kind){
+  return list.map(o => `
+    <button class="fd-opt ${sel === o.id ? 'on' : ''}" data-fd="${kind}" data-val="${o.id}">
+      ${o.ic ? `<span class="ic">${o.ic}</span>` : ''}${escapeHtml(o.label)}${o.hint ? `<small>${escapeHtml(o.hint)}</small>` : ''}
+    </button>`).join('');
+}
+
+function renderFinder(){
+  const el = document.getElementById('finder-body');
+  if(!el) return;
+
+  const prios = Object.entries(FD_PRIORITIES).map(([id, v]) => ({ id, label: v.label, hint: v.hint, ic: v.ic }));
+  const answered = ['budget', 'priority', 'os'].filter(k => fdState[k]).length;
+
+  el.innerHTML = `
+    <div class="fd-prog">
+      <div class="fd-prog-bar"><div class="fd-prog-fill" style="width:${Math.round(answered / 3 * 100)}%;"></div></div>
+      <div class="fd-prog-txt">${answered} / 3 answered</div>
+    </div>
+
+    <div class="fd-step">
+      <div class="fd-q">1. What are you spending?</div>
+      <div class="fd-hint">We won't push you over it. If nothing fits, we'll say so.</div>
+      <div class="fd-opts">${fdOptsHTML(FD_BUDGETS, fdState.budget, 'budget')}</div>
+    </div>
+
+    <div class="fd-step">
+      <div class="fd-q">2. What matters most?</div>
+      <div class="fd-hint">Pick the one you'd refuse to compromise on.</div>
+      <div class="fd-opts">${fdOptsHTML(prios, fdState.priority, 'priority')}</div>
+    </div>
+
+    <div class="fd-step">
+      <div class="fd-q">3. Android or iPhone?</div>
+      <div class="fd-hint">Only filters the list — it doesn't change the scoring.</div>
+      <div class="fd-opts">${fdOptsHTML(FD_OS, fdState.os, 'os')}</div>
+    </div>
+
+    <div class="fd-actions">
+      <button class="fd-go" id="fd-go" ${fdState.budget && fdState.priority && fdState.os ? '' : 'disabled'}>Show me the matches</button>
+      ${fdState.done ? '<button class="fd-reset" id="fd-reset">Start again</button>' : ''}
+    </div>
+
+    <div class="fd-result" id="fd-result"></div>`;
+
+  el.querySelectorAll('[data-fd]').forEach(b => b.addEventListener('click', () => {
+    fdState[b.dataset.fd] = b.dataset.val;
+    const keep = fdState.done;
+    renderFinder();
+    if(keep) fdRun();
+  }));
+  const go = document.getElementById('fd-go');
+  if(go) go.addEventListener('click', fdRun);
+  const rs = document.getElementById('fd-reset');
+  if(rs) rs.addEventListener('click', () => {
+    fdState.budget = fdState.priority = fdState.os = null;
+    fdState.done = false;
+    renderFinder();
+  });
+
+  if(fdState.done) fdRun();
+}
+
+function fdRun(){
+  const out = document.getElementById('fd-result');
+  if(!out || !fdState.budget || !fdState.priority || !fdState.os) return;
+  fdState.done = true;
+
+  const band = FD_BUDGETS.find(b => b.id === fdState.budget);
+  const prio = FD_PRIORITIES[fdState.priority];
+
+  let pool = liveProducts().filter(p => p.price >= band.min && p.price < band.max);
+  if(fdState.os === 'ios')     pool = pool.filter(p => /apple|iphone/i.test(p.name));
+  if(fdState.os === 'android') pool = pool.filter(p => !/apple|iphone/i.test(p.name));
+
+  if(!pool.length){
+    out.innerHTML = `
+      <div class="fd-none">
+        <b>Nothing we cover fits that combination.</b> We only have 18 phones on the site, all smartphones, and we'd rather tell you the list is empty than push you towards something outside your budget. Try widening the budget, or
+        <button class="fd-reset" id="fd-none-reset" style="padding:0;">start again</button>.
+      </div>`;
+    const r = document.getElementById('fd-none-reset');
+    if(r) r.addEventListener('click', () => {
+      fdState.budget = fdState.priority = fdState.os = null;
+      fdState.done = false;
+      renderFinder();
+    });
+    return;
+  }
+
+  const ranked = pool.map(p => {
+    const g = phoneSignals(p);
+    const { sc, why } = prio.score(p, g);
+    return { p, g, sc, why };
+  }).sort((a, b) => b.sc - a.sc || b.p.score - a.p.score);
+
+  const allZero = ranked.every(r => r.sc <= 0);
+  const top = ranked.slice(0, 3);
+
+  const best = ranked[0].sc || 1;
+  const cheapest = top.reduce((a, b) => a.p.price <= b.p.price ? a : b);
+
+  out.innerHTML = `
+    ${allZero ? `
+      <div class="fd-none" style="margin-bottom:18px;">
+        <b>We can't rank these on that priority.</b> None of the phones in this band carry the specification we'd need, so ordering them would be guesswork. They're listed below by Trust Score instead.
+      </div>` : ''}
+
+    ${top.map((r, i) => {
+      const pct = allZero ? 0 : Math.max(6, Math.round(r.sc / best * 100));
+      const badge = (i === 0 && !allZero) ? '<div class="fd-badge">Best match</div>'
+                  : (r === cheapest && top.length > 1) ? '<div class="fd-badge val">Easiest on the wallet</div>'
+                  : '';
+      return `
+      <div class="fd-pick ${i === 0 && !allZero ? 'top' : ''}">
+        ${badge}
+        <div class="fd-rank">${i + 1}</div>
+        <div>
+          <div class="fd-headrow">
+            <div class="fd-art">${phoneArtSVG(r.p).replace('class="sc-phone"', 'style="width:100%;height:auto;"')}</div>
+            <div>
+              <div class="fd-name">${escapeHtml(r.p.name)}</div>
+              <div class="fd-line">
+                <span class="fd-price">${inr(r.p.price)}</span>
+                <span class="fd-score">${r.p.score}/100</span>
+              </div>
+            </div>
+          </div>
+
+          ${allZero ? '' : `
+          <div class="fd-meter">
+            <div class="fd-meter-top"><span>Match on ${escapeHtml(prio.label.toLowerCase())}</span><b>${pct}%</b></div>
+            <div class="fd-meter-bar"><div class="fd-meter-fill" data-w="${pct}"></div></div>
+          </div>`}
+
+          ${r.why.length ? `<div class="fd-why">${r.why.map(w => `<span>${escapeHtml(w)}</span>`).join('')}</div>` : ''}
+          ${r.p.cons && r.p.cons.length ? `<p class="fd-against"><b>Against it:</b> ${escapeHtml(r.p.cons[0])}.</p>` : ''}
+          <div class="fd-act">
+            <button data-open-product="${r.p.id}">Read the full breakdown</button>
+            ${top[1] && i === 0 ? `<button data-cmp-pair="${r.p.id}|${top[1].p.id}">Compare with #2</button>` : ''}
+          </div>
+        </div>
+      </div>`;
+    }).join('')}
+
+    <div class="fd-share">
+      <button id="fd-wa">Share this result on WhatsApp</button>
+      <button id="fd-copy">Copy link</button>
+    </div>
+
+    <p class="fd-honest">
+      <b>What the percentage means.</b> It is how strongly each phone matched <em>your</em> priority, measured against the strongest match in this list &mdash; not a rating of the phone. The best match is always 100% by definition, so read the reasons underneath it rather than the number on its own.
+    </p>
+    <p class="fd-honest" style="border-top:none; padding-top:0; margin-top:10px;">
+      <b>How this was worked out.</b> Every point comes from a specification we publish on that phone's own page, or from its EU energy label record where one exists. Nothing is weighted by price, commission, or brand. Where a phone doesn't carry the figure a priority needs, it scores nothing for it rather than being given a guess &mdash; which is why some phones show fewer reasons than others.
+    </p>`;
+
+  /* fill the meters after paint so the bars animate */
+  requestAnimationFrame(() => {
+    out.querySelectorAll('.fd-meter-fill').forEach(f => { f.style.width = f.dataset.w + '%'; });
+  });
+
+  const shareTxt = `I used Verdikt's phone finder \u2014 ${band.label.toLowerCase()}, ${prio.label.toLowerCase()}.\n\nTop match: ${top[0].p.name} \u2014 ${inr(top[0].p.price)}, Trust Score ${top[0].p.score}/100\n${top[0].why.length ? '\u2713 ' + top[0].why.slice(0, 2).join('\n\u2713 ') + '\n' : ''}\n${routeUrl('#/finder')}`;
+  const wa = document.getElementById('fd-wa');
+  if(wa) wa.addEventListener('click', () => openWhatsApp(shareTxt));
+  const cp = document.getElementById('fd-copy');
+  if(cp) cp.addEventListener('click', () => copyLink(routeUrl('#/finder'), cp));
+
+  out.querySelectorAll('[data-open-product]').forEach(b =>
+    b.addEventListener('click', () => go('#/product/' + b.dataset.openProduct)));
+  out.querySelectorAll('[data-cmp-pair]').forEach(b =>
+    b.addEventListener('click', () => {
+      const [a, c] = b.dataset.cmpPair.split('|');
+      go(`#/compare/${a}/${c}`);
+    }));
+}
+
 function renderEditorsPick(){
   const el = document.getElementById('editors-pick');
   if(!el) return;
@@ -2756,6 +3284,131 @@ function affBarHTML(){
     <div class="aff-bar">
       <span class="ic">\u{1F517}</span>
       <span><b style="color:var(--ink);">Affiliate disclosure.</b> Some links on this page go to retailers like Amazon and Flipkart. If you buy through one that carries our tracking code, we may earn a small commission \u2014 the price you pay is exactly the same. This never changes a Trust Score or where a product ranks. <a href="#/disclosure">Read the full disclosure</a>.</span>
+    </div>`;
+}
+
+
+/* =====================================================================
+   WHAT IT COSTS TO KEEP
+   ---------------------------------------------------------------------
+   Two parts, both built only from numbers we can point at:
+
+   1. Cost per supported year — the price we verified against a live
+      listing, divided by the number of years of operating system updates
+      the maker is legally bound to. That second figure comes from the
+      phone's EPREL record, so this is arithmetic on published data, not
+      an opinion.
+
+   2. Repair costs — what a screen or battery actually costs to replace
+      in India. This one has to be looked up per phone and per country.
+      Apple's EU filing points all three "spare part price" links at one
+      generic landing page with no prices on it, so there is no automated
+      source. REPAIR_COST stays empty until a figure is read off the
+      brand's own India service pricing page.
+   ===================================================================== */
+const REPAIR_COST = {};
+
+
+/* =====================================================================
+   OWNER'S REPORT
+   ---------------------------------------------------------------------
+   The one thing on this site that is not read off a spec sheet: someone
+   who actually owns the phone, saying what it does.
+
+   Rules for anything that goes in here:
+     - it must come from a named person who owns the device
+     - it must describe what happened, not what should happen
+     - where it can be checked against the EU record, we put the two side
+       by side and let them disagree if they disagree
+     - nothing gets smoothed into a nicer sentence than the truth
+
+   An empty entry means nobody has used that phone. That is fine.
+   ===================================================================== */
+const OWNER_REPORT = {
+  'iphone-17': {
+    by: 'Anujj',
+    role: 'runs Verdikt, uses this as his daily phone',
+    notes: [
+      {
+        h: 'Battery',
+        p: [
+          'A full day is not in question. On a normal day — streaming, messaging, the usual — it comes off the charger in the morning and still has <b>20 to 40 percent</b> left at night.',
+          'Watching series does not eat into it the way you would expect. Gaming is the only thing that changes the shape of the day.'
+        ],
+        vs: 'The EU record puts battery endurance at <b>41 hours per charge</b>, measured on a fixed test routine. Ending an ordinary day on 20–40% is what that figure looks like in ordinary use — the claim and the experience line up.'
+      },
+      {
+        h: 'Heat',
+        p: [
+          'It warms up while gaming, and only while gaming — and only when you are not sitting in air conditioning. Everything else leaves it cool.',
+          'The warmth is slight. Not the kind that makes you put the phone down.',
+          '<b>The game does not slow down.</b> No dropped frames, no stutter once it warms. It stays at the same speed.'
+        ],
+        vs: 'This is worth saying plainly because it is the part reviews filmed in cooled rooms never test. Plenty of phones start cutting performance to protect themselves in Indian ambient heat. On this one, that did not happen.'
+      }
+    ]
+  }
+};
+
+function ownerCardHTML(p){
+  const o = OWNER_REPORT[p.id];
+  if(!o || !o.notes || !o.notes.length) return '';
+
+  return `
+    <div class="own-card">
+      <div class="own-top">
+        <span class="own-tag">Owner's report</span>
+        <span class="own-title">What it's actually like to live with</span>
+      </div>
+      <p class="own-by">From <b style="color:var(--ink);">${escapeHtml(o.by)}</b>${o.role ? `, ${escapeHtml(o.role)}` : ''}${o.since ? ` &middot; using it ${escapeHtml(o.since)}` : ''}. One person, one unit — not a lab test, and not a sample size. Everything below is what happened, not what the spec sheet promises.</p>
+
+      ${o.notes.map(n => `
+        <div class="own-item">
+          <div class="own-h">${escapeHtml(n.h)}</div>
+          ${n.p.map(t => `<p class="own-p">${t}</p>`).join('')}
+          ${n.vs ? `<div class="own-vs">${n.vs}</div>` : ''}
+        </div>`).join('')}
+
+      <p class="own-foot"><b>Why this sits on the page at all.</b> Everywhere else on this site we tell you we don't test phones. This section is the exception, and it is deliberately marked as one. It carries the weight of one person's daily use — no more than that, and we won't dress it up as more.</p>
+    </div>`;
+}
+
+function keepCardHTML(p){
+  const eu = EU_LABEL[p.id];
+  const rc = REPAIR_COST[p.id];
+  const years = eu && eu.osUpdates ? eu.osUpdates : null;
+  if(!years && !rc) return '';
+
+  const perYear = years ? Math.round(p.price / years) : null;
+
+  const rows = [];
+  if(rc && rc.screen)  rows.push(['Screen replacement', inr(rc.screen)]);
+  if(rc && rc.battery) rows.push(['Battery replacement', inr(rc.battery)]);
+  if(rc && rc.back)    rows.push(['Back glass', inr(rc.back)]);
+
+  return `
+    <div class="keep-card">
+      <div class="keep-title">What it costs to keep</div>
+      <div class="keep-sub">Buying price is one number. What you pay per year you can still safely use it is a different one.</div>
+
+      ${perYear ? `
+        <div class="keep-hero">
+          <span class="n">${inr(perYear)}</span>
+          <span class="u">per year of guaranteed software support</span>
+        </div>
+        <div class="keep-math">${inr(p.price)} ÷ ${years} years</div>
+      ` : ''}
+
+      ${rows.length ? `
+        <div class="keep-rows">
+          ${rows.map(([k, v]) => `<div class="keep-row"><span>${escapeHtml(k)}</span><span>${v}</span></div>`).join('')}
+        </div>
+        <p class="keep-note">Repair prices are from ${escapeHtml(rc.source || 'the manufacturer')}${rc.checked ? `, checked ${escapeHtml(rc.checked)}` : ''}${rc.url ? ` — <a href="${rc.url}" target="_blank" rel="noopener" style="color:var(--violet); font-weight:700; text-decoration:none;">source</a>` : ''}. Out-of-warranty, at an authorised centre.</p>
+      ` : `
+        <p class="keep-note"><b>Repair costs: not checked yet.</b> What a screen or battery actually costs to replace in India isn't published in any single place — Apple's own EU filing points its three &ldquo;spare part price&rdquo; links at one page with no prices on it. We add these one phone at a time, from the brand's India service pricing, rather than repeat a number we found on a forum.</p>
+      `}
+
+      ${perYear ? `<p class="keep-note">The ${years}-year figure is the <b>minimum the maker is legally bound to</b> under EU rules, taken from this phone's EPREL record. Most makers support phones longer than they promise — but the promise is the part you can hold them to.</p>` : ''}
     </div>`;
 }
 
@@ -3394,6 +4047,12 @@ function applyRoute(){
   else if(head === 'compare'){
     applyCompareRoute(one, two);
   }
+  else if(head === 'finder'){
+    renderFinder();
+    switchTab('finder');
+    setDocTitle('Phone finder \u2014 which phone actually fits you? | Verdikt',
+      'Answer three questions and see which phones match, with the reason for every match shown in full.');
+  }
   else if(head === 'guide'){
     if(!renderGuide(one)){ go('#/'); return; }
     switchTab('guide');
@@ -3508,7 +4167,9 @@ function openDetail(id){
         <table class="spec">
           ${p.specs.map(([k,v])=>`<tr><td>${k}</td><td>${v}</td></tr>`).join('')}
         </table>
+        ${ownerCardHTML(p)}
         ${euLabelHTML(p)}
+        ${keepCardHTML(p)}
         <div id="reviews-section"></div>
       </div>
       <div class="side">
@@ -3652,7 +4313,7 @@ function switchTab(tab){
 const TAB_HASH = {
   home: '#/', listing: '#/browse/' + firstLiveCat(), compare: '#/compare',
   about: '#/about', privacy: '#/privacy', terms: '#/terms', contact: '#/contact',
-  disclosure: '#/disclosure', faq: '#/faq'
+  disclosure: '#/disclosure', faq: '#/faq', finder: '#/finder'
 };
 document.querySelectorAll('[data-tab]').forEach(btn=>{
   btn.addEventListener('click', ()=> go(TAB_HASH[btn.dataset.tab] || '#/'));
@@ -3886,6 +4547,11 @@ renderList();
 renderEditorsPick();
 scStart();
 mountGuideCards();
+
+(function wireFinderCta(){
+  const cta = document.getElementById('finder-cta');
+  if(cta) cta.addEventListener('click', () => go('#/finder'));
+})();
 wireCompare();
 applyRoute();
 syncLivePrices();
